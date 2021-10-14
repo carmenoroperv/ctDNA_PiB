@@ -3,3 +3,5 @@
 /raw_data_copy
 /Plots/PLOT_ATAC_predictions.ipynb
 sum_control_ATAC_bin_rm_gaussian_mean.csv
+/.snakemake
+/Plots

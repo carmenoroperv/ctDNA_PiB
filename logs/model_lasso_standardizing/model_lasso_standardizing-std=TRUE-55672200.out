@@ -1,0 +1,132 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Thu Oct  7 21:40:51 2021]
+rule model_lasso_standardizing:
+    input: data/sum_control_normalized_gaussian_smooth_ATAC_bin_rm.csv, data/all_samples_normalized_gaussian_smooth.csv
+    output: data/ATAC_predictions_on_all_samples_NEW/ATAC_pred_lasso_std_TRUE_gaussian.csv, Trained_models/On_summed_controls/Lasso_models/lasso_std_TRUE_gaussian.rds
+    log: logs/processed_notebooks/processed_Smooth_gaussian_10_Lasso_reg_TRUE.r.ipynb
+    jobid: 0
+    wildcards: std=TRUE
+    resources: mem_mb=50000, disk_mb=72059, tmpdir=/scratch/55672200, time=06:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/processed_Smooth_gaussian_10_Lasso_reg_TRUE.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpn_p4tz4f.Smooth_gaussian_10_Lasso_reg_TRUE.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+Traceback (most recent call last):
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/bin/jupyter-nbconvert", line 11, in <module>
+    sys.exit(main())
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/jupyter_core/application.py", line 254, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/traitlets/config/application.py", line 845, in launch_instance
+    app.start()
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 346, in start
+    self.convert_notebooks()
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 518, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 483, in convert_single_notebook
+    output, resources = self.export_single_notebook(notebook_filename, resources, input_buffer=input_buffer)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 412, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 181, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 199, in from_file
+    return self.from_notebook_node(nbformat.read(file_stream, as_version=4), resources=resources, **kw)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/exporters/notebook.py", line 32, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 143, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 318, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/preprocessors/base.py", line 47, in __call__
+    return self.preprocess(nb, resources)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/preprocessors/execute.py", line 84, in preprocess
+    self.preprocess_cell(cell, resources, index)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbconvert/preprocessors/execute.py", line 105, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187/lib/python3.9/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+library(tidyverse)
+
+install.packages('scales')
+library(scales)
+
+library(glmnet)
+
+install.packages("tidyr")
+library(tidyr)
+
+------------------
+
+Error: package or namespace load failed for ‘tidyverse’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘tidyr’
+Traceback:
+
+1. library(tidyverse)
+2. tryCatch({
+ .     attr(package, "LibPath") <- which.lib.loc
+ .     ns <- loadNamespace(package, lib.loc)
+ .     env <- attachNamespace(ns, pos = pos, deps, exclude, include.only)
+ . }, error = function(e) {
+ .     P <- if (!is.null(cc <- conditionCall(e))) 
+ .         paste(" in", deparse(cc)[1L])
+ .     else ""
+ .     msg <- gettextf("package or namespace load failed for %s%s:\n %s", 
+ .         sQuote(package), P, conditionMessage(e))
+ .     if (logical.return) 
+ .         message(paste("Error:", msg), domain = NA)
+ .     else stop(msg, call. = FALSE, domain = NA)
+ . })
+3. tryCatchList(expr, classes, parentenv, handlers)
+4. tryCatchOne(expr, names, parentenv, handlers[[1L]])
+5. value[[3L]](cond)
+6. stop(msg, call. = FALSE, domain = NA)
+ERROR: Error: package or namespace load failed for ‘tidyverse’ in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]):
+ there is no package called ‘tidyr’
+
+
+[Thu Oct  7 21:41:02 2021]
+Error in rule model_lasso_standardizing:
+    jobid: 0
+    output: data/ATAC_predictions_on_all_samples_NEW/ATAC_pred_lasso_std_TRUE_gaussian.csv, Trained_models/On_summed_controls/Lasso_models/lasso_std_TRUE_gaussian.rds
+    log: logs/processed_notebooks/processed_Smooth_gaussian_10_Lasso_reg_TRUE.r.ipynb (check log file(s) for error message)
+    conda-env: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+
+Traceback (most recent call last):
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 593, in _callback
+    raise ex
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 579, in cached_or_run
+    run_func(*args)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2460, in run_wrapper
+    raise ex
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2417, in run_wrapper
+    run(
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/snakefile_ATAC_predictions", line 63, in __rule_model_lasso_standardizing
+    input_train_data_trim = INPUT_trim_LASSO_TRAIN_DATA,
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/notebook.py", line 295, in notebook
+    executor.evaluate(edit=edit)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 381, in evaluate
+    self.execute_script(fd.name, edit=edit)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/notebook.py", line 92, in execute_script
+    self._execute_cmd(cmd, fname_out=fname_out, fname=fname)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 414, in _execute_cmd
+    return shell(
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/shell.py", line 265, in __new__
+    raise sp.CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command 'source /home/coroperv/miniconda3/bin/activate '/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187'; set -euo pipefail;  jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/processed_Smooth_gaussian_10_Lasso_reg_TRUE.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpn_p4tz4f.Smooth_gaussian_10_Lasso_reg_TRUE.r.ipynb' returned non-zero exit status 1.
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message

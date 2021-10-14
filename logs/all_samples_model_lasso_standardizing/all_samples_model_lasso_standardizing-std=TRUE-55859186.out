@@ -1,0 +1,21 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Wed Oct 13 05:26:29 2021]
+rule all_samples_model_lasso_standardizing:
+    input: data/ATACseq_250kb_bins.txt, data/all_samples_normalized_gaussian_smooth_CONTROLS.csv, data/all_samples_normalized_gaussian_smooth_CASES.csv
+    output: data/all_samples_train_ATAC_predictions_on_all_samples/all_samples_ATAC_pred_lasso_std_TRUE_gaussian.csv, Trained_models/On_all_individuals/Lasso_models/lasso_std_TRUE_gaussian.rds
+    log: logs/processed_notebooks/processed_all_samples_Smooth_gaussian_10_Lasso_reg_TRUE.r.ipynb
+    jobid: 0
+    wildcards: std=TRUE
+    threads: 4
+    resources: mem_mb=200000, disk_mb=71800, tmpdir=/scratch/55859186, time=12:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/processed_all_samples_Smooth_gaussian_10_Lasso_reg_TRUE.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpdf477qx7.all_samples_Smooth_gaussian_10_Lasso_reg_TRUE.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+[Wed Oct 13 14:39:30 2021]
+Finished job 0.
+1 of 1 steps (100%) done

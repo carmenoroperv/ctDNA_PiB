@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Thu Oct  7 22:06:05 2021]
+rule cases_normalized_gaussian_trimmed:
+    input: data/sample_types.txt, data/all_samples_normalized_gaussian_smooth_trimmed.csv
+    output: data/all_samples_normalized_gaussian_smooth_trimmed_CASES.csv
+    jobid: 0
+    resources: mem_mb=80000, disk_mb=56743, tmpdir=/scratch/55672239, time=20:00:00
+
+jupyter-nbconvert --log-level ERROR --execute  --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpnj8po6yq.Splitting_cases_from_all_samples_smooth_gaussian_trimmed.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+[Fri Oct  8 01:24:28 2021]
+Finished job 0.
+1 of 1 steps (100%) done
+touch: cannot touch ‘/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/tmp.twy4f9jd/3.jobfinished’: No such file or directory
+touch: cannot touch ‘/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/tmp.twy4f9jd/3.jobfailed’: No such file or directory

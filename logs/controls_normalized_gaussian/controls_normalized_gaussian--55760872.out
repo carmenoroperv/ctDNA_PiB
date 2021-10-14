@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Sat Oct  9 12:34:30 2021]
+rule controls_normalized_gaussian:
+    input: data/sample_types.txt, data/all_samples_normalized_gaussian_smooth.csv
+    output: data/all_samples_normalized_gaussian_smooth_CONTROLS.csv
+    jobid: 0
+    resources: mem_mb=90000, disk_mb=71800, tmpdir=/scratch/55760872, time=15:00:00
+
+jupyter-nbconvert --log-level ERROR --execute  --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmptyhlv35g.Splitting_controls_from_all_samples_smooth_gaussian.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+
+Execution halted
+[Sat Oct  9 17:51:16 2021]
+Finished job 0.
+1 of 1 steps (100%) done

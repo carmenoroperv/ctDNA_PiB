@@ -1,0 +1,93 @@
+#########Classification Snakefile - trained on the summed controls ################
+
+#####INPUT##########
+#INPUT_std_FALSE_gaussian_ALL = "data/all_samples_train_ATAC_predictions_on_all_samples/"
+
+INPUT_std_TRUE_ALL = "data/all_samples_train_ATAC_predictions_on_all_samples/all_samples_ATAC_pred_lasso_std_TRUE_formatted_standardized.csv"
+
+#INPUT_std_TRUE_gaussian_ALL ="data/all_samples_train_ATAC_predictions_on_all_samples/.csv"
+
+INPUT_std_TRUE_gaussian_trimmed_ALL = "data/all_samples_train_ATAC_predictions_on_all_samples/all_samples_ATAC_pred_lasso_std_TRUE_gaussian_trimmed_formatted_standardized.csv"
+#########################################
+
+
+
+##########OUTPUT###############################
+OUTPUT_KNN_std_FALSE_gaussian = expand("Classification/Results_trained_on_all_controls/Classification_KNN_std_FALSE_gaussian.csv")
+OUTPUT_LOGISTIC_std_FALSE_gaussian = expand("Classification/Results_trained_on_all_controls/Classification_LOGISTIC_std_FALSE_gaussian.csv")
+OUTPUT_BOOSTING_std_FALSE_gaussian = expand("Classification/Results_trained_on_all_controls/Classification_Boosting_std_FALSE_gaussian.csv")
+#######
+OUTPUT_KNN_std_TRUE = "Classification/Results_trained_on_all_controls/Classification_KNN_std_TRUE.csv"
+OUTPUT_LOGISTIC_std_TRUE = "Classification/Results_trained_on_all_controls/Classification_LOGISTIC_std_TRUE.csv"
+OUTPUT_BOOSTING__std_TRUE = "Classification/Results_trained_on_all_controls/Classification_BOOSTING_std_TRUE.csv"
+#######
+OUTPTU_KNN_std_TRUE_gaussian = "Classification/Results_trained_on_all_controls/Classification_KNN_std_TRUE_gaussian.csv"
+OUTPUT_LOGISTIC_std_TRUE_gaussian = "Classification/Results_trained_on_all_controls/Classification_LOGISTIC_std_TRUE_gaussian.csv"
+OUTPUT_BOOSTING_std_TRUE_gaussian = "Classification/Results_trained_on_all_controls/Classification_BOOSTING_std_TRUE_gaussian.csv"
+#######
+OUTPUT_KNN_std_TRUE_gaussian_trimmed = "Classification/Results_trained_on_all_controls/Classification_KNN_std_TRUE_gaussian_trimmed.csv"
+OUTPUT_LOGISTIC_std_TRUE_gaussian_trimmed = "Classification/Results_trained_on_all_controls/Classification_LOGISTIC_std_TRUE_gaussian_trimmed.csv"
+OUTPUT_BOOSTING_std_TRUE_gaussian_trimmed = "Classification/Results_trained_on_all_controls/Classification_BOOSTING_std_TRUE_gaussian_trimmed.csv"
+###############################################
+
+
+
+rule all:
+    input: OUTPUT_KNN_std_FALSE_gaussian, OUTPUT_LOGISTIC_std_FALSE_gaussian, OUTPUT_BOOSTING_std_FALSE_gaussian, OUTPUT_KNN_std_TRUE, OUTPUT_LOGISTIC_std_TRUE, OUTPUT_BOOSTING__std_TRUE, OUTPTU_KNN_std_TRUE_gaussian, OUTPUT_LOGISTIC_std_TRUE_gaussian, OUTPUT_BOOSTING_std_TRUE_gaussian, OUTPUT_KNN_std_TRUE_gaussian_trimmed, OUTPUT_LOGISTIC_std_TRUE_gaussian_trimmed, OUTPUT_BOOSTING_std_TRUE_gaussian_trimmed
+    
+    
+rule KNN:
+    input:
+        std_FALSE_gaussian = INPUT_std_FALSE_gaussian
+        std_TRUE = INPUT_std_TRUE
+        std_TRUE_gaussian = INPUT_std_TRUE_gaussian
+        std_TRUE_gaussian_trimmed = INPUT_std_TRUE_gaussian_trimmed
+    output: 
+        output_pred_std_FALSE_gaussian = "Classification/Results_trained_on_all_controls/Classification_KNN_std_FALSE_gaussian.csv"
+        output_pred_std_TRUE = "Classification/Results_trained_on_all_controls/Classification_KNN_std_TRUE.csv"
+        output_pred_std_TRUE_gaussian = "Classification/Results_trained_on_all_controls/Classification_KNN_std_TRUE_gaussian.csv"
+        output_pred_std_TRUE_gaussian_trimmed = "Classification/Results_trained_on_all_controls/Classification_KNN_std_TRUE_gaussian_trimmed.csv"
+    conda: 
+        "conda_envs/ctDNA.yml"
+    log: 
+        
+    notebook:
+        "Classification/KNN.r.ipynb"
+        
+
+rule Logistic regression:
+    input:
+        std_FALSE_gaussian = INPUT_std_FALSE_gaussian
+        std_TRUE = INPUT_std_TRUE
+        std_TRUE_gaussian = INPUT_std_TRUE_gaussian
+        std_TRUE_gaussian_trimmed = INPUT_std_TRUE_gaussian_trimmed
+    output: 
+        output_pred_std_FALSE_gaussian = "Classification/Results_trained_on_all_controls/Classification_LOGISTIC_std_FALSE_gaussian.csv"
+        output_pred_std_TRUE = "Classification/Results_trained_on_all_controls/Classification_LOGISTIC_std_TRUE.csv"
+        output_pred_std_TRUE_gaussian ="Classification/Results_trained_on_all_controls/Classification_LOGISTIC_std_TRUE_gaussian.csv"
+        output_pred_std_TRUE_gaussian_trimmed = "Classification/Results_trained_on_all_controls/Classification_LOGISTIC_std_TRUE_gaussian_trimmed.csv"
+    conda: 
+        "conda_envs/ctDNA.yml"
+    log: 
+        
+    notebook:
+        "Classification/Logistic_reg_new.r.ipynb"
+        
+
+rule Boosting:
+    input:
+        std_FALSE_gaussian = INPUT_std_FALSE_gaussian
+        std_TRUE = INPUT_std_TRUE
+        std_TRUE_gaussian = INPUT_std_TRUE_gaussian
+        std_TRUE_gaussian_trimmed = INPUT_std_TRUE_gaussian_trimmed
+    output: 
+        output_pred_std_FALSE_gaussian = "Classification/Results_trained_on_all_controls/Classification_Boosting_std_FALSE_gaussian.csv"
+        output_pred_std_TRUE = "Classification/Results_trained_on_all_controls/Classification_BOOSTING_std_TRUE.csv"
+        output_pred_std_TRUE_gaussian = "Classification/Results_trained_on_all_controls/Classification_BOOSTING_std_TRUE_gaussian.csv"
+        output_pred_std_TRUE_gaussian_trimmed ="Classification/Results_trained_on_all_controls/Classification_BOOSTING_std_TRUE_gaussian_trimmed.csv"
+    conda: 
+        "conda_envs/ctDNA.yml"
+    log: 
+        
+    notebook:
+        "Classification/Boosting.r.ipynb"
