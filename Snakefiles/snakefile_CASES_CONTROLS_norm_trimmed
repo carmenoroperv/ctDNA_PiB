@@ -1,0 +1,21 @@
+OUTPUT_controls_normalized_trimmed = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CONTROLS.rds"
+OUTPUT_cases_normalized_trimmed = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds"
+
+
+rule all: 
+	input: OUTPUT_controls_normalized_trimmed, OUTPUT_cases_normalized_trimmed
+
+rule cases_controls_normalized_trimmed:
+	input: 
+		input_samples = "data/sample_types.txt",
+		input_data = "data/data_rds_format/all_samples_normalized_trimmed.rds"
+	output: 
+		output_cases_normalized_trimmed = OUTPUT_cases_normalized_trimmed,
+		output_controls_normalized_trimmed = OUTPUT_controls_normalized_trimmed
+	conda:
+		"conda_envs/ctDNA.yml"
+	log: 
+		notebook = "logs/processed_notebooks/processed_splitting_cases_controls_norm_trimmed.r.ipynb"
+	notebook:
+		"Notebooks for data prep, formatting, normalizing/splitting_cases_controls/splitting_cases_controls_norm_trimmed.r.ipynb"
+

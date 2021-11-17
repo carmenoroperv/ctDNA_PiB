@@ -1,0 +1,26 @@
+INPUT_SUFFIX = ["gaussian_smooth_CONTROLS", "CONTROLS", "gaussian_smooth_trimmed_CONTROLS", "trimmed_CONTROLS"]
+
+#######################################
+INPUT_DATA = expand("data/cases_controls/cases_controls_rds_format/all_samples_normalized_{input_suffix}.rds", input_suffix = INPUT_SUFFIX)
+
+OUTPUT_80_final = expand("data/20_80_splits_group_by_ind/80_all_samples_normalized_{input_suffix}.rds", input_suffix = INPUT_SUFFIX)
+OUTPUT_20_final = expand("data/20_80_splits_group_by_ind/20_all_samples_normalized_{input_suffix}.rds", input_suffix = INPUT_SUFFIX)
+
+########################################
+
+rule all:
+	input: OUTPUT_80_final, OUTPUT_20_final
+
+rule splitting_group_by_individual:
+	input: 
+		input_data = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_{input_suffix}.rds"
+	output: 
+		output_data_20 = "data/20_80_splits_group_by_ind/20_all_samples_normalized_{input_suffix}.rds",
+		output_data_80 = "data/20_80_splits_group_by_ind/80_all_samples_normalized_{input_suffix}.rds", 
+	threads: 3
+	conda:
+		"conda_envs/ctDNA.yml"
+	log:
+		notebook = "logs/processed_notebooks/processed_Data_splitting_20_80_group_by_individual_{input_suffix}.r.ipynb"
+	notebook:
+		"20_80_experiments/Data_splitting_20_80_group_by_individual.r.ipynb"

@@ -2,13 +2,120 @@ digraph snakemake_dag {
     graph[bgcolor=white, margin=0];
     node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
     edge[penwidth=2, color=grey];
-	0[label = "all", color = "0.33 0.6 0.85", style="rounded"];
-	1[label = "all_samples_model_lasso_standardizing\nstd: TRUE", color = "0.00 0.6 0.85", style="rounded"];
-	2[label = "all_samples_model_lasso_standardizing\nstd: FALSE", color = "0.00 0.6 0.85", style="rounded"];
-	3[label = "all_samples_model_lasso_smoothing", color = "0.50 0.6 0.85", style="rounded"];
-	4[label = "all_samples_model_lasso_trimming", color = "0.17 0.6 0.85", style="rounded"];
+	0[label = "all", color = "0.17 0.6 0.85", style="rounded"];
+	1[label = "splitting\npercentage: 0.05\nsuffix: CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	2[label = "splitting\npercentage: 0.05\nsuffix: gaussian_smooth_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	3[label = "splitting\npercentage: 0.05\nsuffix: gaussian_smooth_trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	4[label = "splitting\npercentage: 0.05\nsuffix: trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	5[label = "splitting\npercentage: 0.1\nsuffix: CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	6[label = "splitting\npercentage: 0.1\nsuffix: gaussian_smooth_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	7[label = "splitting\npercentage: 0.1\nsuffix: gaussian_smooth_trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	8[label = "splitting\npercentage: 0.1\nsuffix: trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	9[label = "splitting\npercentage: 0.2\nsuffix: CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	10[label = "splitting\npercentage: 0.2\nsuffix: gaussian_smooth_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	11[label = "splitting\npercentage: 0.2\nsuffix: gaussian_smooth_trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	12[label = "splitting\npercentage: 0.2\nsuffix: trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	13[label = "splitting\npercentage: 0.5\nsuffix: CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	14[label = "splitting\npercentage: 0.5\nsuffix: gaussian_smooth_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	15[label = "splitting\npercentage: 0.5\nsuffix: gaussian_smooth_trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	16[label = "splitting\npercentage: 0.5\nsuffix: trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	17[label = "splitting\npercentage: 0.8\nsuffix: CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	18[label = "splitting\npercentage: 0.8\nsuffix: gaussian_smooth_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	19[label = "splitting\npercentage: 0.8\nsuffix: gaussian_smooth_trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	20[label = "splitting\npercentage: 0.8\nsuffix: trimmed_CONTROLS", color = "0.33 0.6 0.85", style="rounded"];
+	21[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	22[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	23[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	24[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	25[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	26[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	27[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	28[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	29[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	30[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	31[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	32[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	33[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	34[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	35[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	36[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	37[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	38[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	39[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	40[label = "ATAC_predictions", color = "0.00 0.6 0.85", style="rounded"];
+	41[label = "ATAC_predictions_FALSE", color = "0.50 0.6 0.85", style="rounded"];
+	42[label = "ATAC_predictions_FALSE", color = "0.50 0.6 0.85", style="rounded"];
+	43[label = "ATAC_predictions_FALSE", color = "0.50 0.6 0.85", style="rounded"];
+	44[label = "ATAC_predictions_FALSE", color = "0.50 0.6 0.85", style="rounded"];
+	45[label = "ATAC_predictions_FALSE", color = "0.50 0.6 0.85", style="rounded"];
 	1 -> 0
 	2 -> 0
 	3 -> 0
 	4 -> 0
+	5 -> 0
+	6 -> 0
+	7 -> 0
+	8 -> 0
+	9 -> 0
+	10 -> 0
+	11 -> 0
+	12 -> 0
+	13 -> 0
+	14 -> 0
+	15 -> 0
+	16 -> 0
+	17 -> 0
+	18 -> 0
+	19 -> 0
+	20 -> 0
+	21 -> 0
+	22 -> 0
+	23 -> 0
+	24 -> 0
+	25 -> 0
+	26 -> 0
+	27 -> 0
+	28 -> 0
+	29 -> 0
+	30 -> 0
+	31 -> 0
+	32 -> 0
+	33 -> 0
+	34 -> 0
+	35 -> 0
+	36 -> 0
+	37 -> 0
+	38 -> 0
+	39 -> 0
+	40 -> 0
+	41 -> 0
+	42 -> 0
+	43 -> 0
+	44 -> 0
+	45 -> 0
+	1 -> 21
+	2 -> 22
+	3 -> 23
+	4 -> 24
+	5 -> 25
+	6 -> 26
+	7 -> 27
+	8 -> 28
+	9 -> 29
+	10 -> 30
+	11 -> 31
+	12 -> 32
+	13 -> 33
+	14 -> 34
+	15 -> 35
+	16 -> 36
+	17 -> 37
+	18 -> 38
+	19 -> 39
+	20 -> 40
+	2 -> 41
+	6 -> 42
+	10 -> 43
+	14 -> 44
+	18 -> 45
 }            

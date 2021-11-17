@@ -1,0 +1,26 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Sat Oct 23 22:02:26 2021]
+rule splitting:
+    input: data/ATACseq_250kb_bins.txt, data/20_80_splits_group_by_ind/80_all_samples_normalized_trimmed_CONTROLS.rds
+    output: data/experiment_ATAC_predictions/traindata_splits_diff_percentages/trimmed_CONTROLS_split_0.2.rds
+    log: logs/processed_notebooks/experiments/splitting_80_to_smaller_trimmed_CONTROLS_0.2.r.ipynb
+    jobid: 0
+    wildcards: suffix=trimmed_CONTROLS, percentage=0.2
+    resources: mem_mb=100000, disk_mb=4845, tmpdir=/scratch/56346173, time=5:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/experiments/splitting_80_to_smaller_trimmed_CONTROLS_0.2.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpo36pfx9f.Data_splitting_from_80_to_smaller.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+Waiting at most 60 seconds for missing files.
+MissingOutputException in line 38 of /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/snakefile_split_experiments_large:
+Job Missing files after 60 seconds:
+data/experiment_ATAC_predictions/traindata_splits_diff_percentages/trimmed_CONTROLS_split_0.2.rds
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Job id: 0 completed successfully, but some output files are missing. 0
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+touch: cannot touch ‘/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/tmp.k41nchi6/12.jobfailed’: No such file or directory

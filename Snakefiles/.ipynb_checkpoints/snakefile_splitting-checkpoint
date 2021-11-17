@@ -1,0 +1,35 @@
+INPUT_std_LASSO_TRAIN_DATA = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_gaussian_smooth_CONTROLS.rds"
+OUTPUT_std_LASSO_DATA_80_final = "data/20_80_splits/80_all_samples_normalized_gaussian_smooth_CONTROLS.rds"
+OUTPUT_std_LASSO_DATA_20_final = "data/20_80_splits/20_all_samples_normalized_gaussian_smooth_CONTROLS.rds"
+OUTPUT_std_LASSO_DATA_80_20_final = "data/20_80_splits/80_20_all_samples_normalized_gaussian_smooth_CONTROLS.rds"
+
+INPUT_smooth_LASSO_TRAIN_DATA = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_CONTROLS.rds"
+OUTPUT_smooth_LASSO_DATA_80_final = "data/20_80_splits/80_all_samples_normalized_CONTROLS.rds"
+OUTPUT_smooth_LASSO_DATA_20_final = "data/20_80_splits/20_all_samples_normalized_CONTROLS.rds"
+OUTPUT_smooth_LASSO_DATA_80_20_final = "data/20_80_splits/80_20_all_samples_normalized_CONTROLS.rds"
+
+INPUT_trim_LASSO_TRAIN_DATA = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+OUTPUT_trim_LASSO_DATA_80_final = "data/20_80_splits/80_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+OUTPUT_trim_LASSO_DATA_20_final = "data/20_80_splits/20_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+OUTPUT_trim_LASSO_DATA_80_20_final = "data/20_80_splits/80_20_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+
+rule splitting:
+	input: 
+		input_std_LASSO_TRAIN_DATA = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_gaussian_smooth_CONTROLS.rds",
+		input_smooth_LASSO_TRAIN_DATA = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_CONTROLS.rds",
+		input_trim_LASSO_TRAIN_DATA = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+	output: 
+		OUTPUT_std_LASSO_DATA_20 = "data/20_80_splits/20_all_samples_normalized_gaussian_smooth_CONTROLS.rds",
+		OUTPUT_std_LASSO_DATA_80 = "data/20_80_splits/80_all_samples_normalized_gaussian_smooth_CONTROLS.rds", 
+		OUTPUT_std_LASSO_DATA_80_20 = "data/20_80_splits/80_20_all_samples_normalized_gaussian_smooth_CONTROLS.rds",
+		OUTPUT_smooth_LASSO_DATA_20 = "data/20_80_splits/20_all_samples_normalized_CONTROLS.rds",
+		OUTPUT_smooth_LASSO_DATA_80 = "data/20_80_splits/80_all_samples_normalized_CONTROLS.rds",
+		OUTPUT_smooth_LASSO_DATA_80_20 = "data/20_80_splits/80_20_all_samples_normalized_CONTROLS.rds",
+		OUTPUT_trim_LASSO_DATA_20 = "data/20_80_splits/20_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds",
+		OUTPUT_trim_LASSO_DATA_80 = "data/20_80_splits/80_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds",
+		OUTPUT_trim_LASSO_DATA_80_20 = "data/20_80_splits/80_20_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+	threads: 3
+	conda:
+		"conda_envs/ctDNA.yml"
+	notebook:
+		"20_80_experiments/Data_splitting_20_80.r.ipynb"

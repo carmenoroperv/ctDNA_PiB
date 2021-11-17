@@ -1,0 +1,115 @@
+INPUT_ATAC = "data/ATACseq_250kb_bins.txt"
+
+##############################################
+STANDARDIZATION = ["TRUE", "FALSE"]
+
+INPUT_std_LASSO_TRAIN_DATA = "data/20_80_splits_group_by_ind/20_all_samples_normalized_gaussian_smooth_CONTROLS.rds"
+INPUT_std_LASSO_TEST_DATA_80_CONTROLS = "data/20_80_splits_group_by_ind/80_all_samples_normalized_gaussian_smooth_CONTROLS.rds"
+INPUT_std_LASSO_TEST_DATA_CASES = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_gaussian_smooth_CASES.rds"
+OUTPUT_std_LASSO_PRED_FINAL = expand("data/ATAC_predictions_train_20_predict_80_and_cases/ATAC_pred_lasso_std_{std}_gaussian.rds", std = STANDARDIZATION)
+OUTPUT_std_LASSO_MODEL_FINAL = expand("Trained_models/Train_20_predict_80_and_cases_models/Lasso_models/lasso_std_{std}_gaussian.rds", std = STANDARDIZATION)
+##############################################
+
+##############################################
+INPUT_smooth_LASSO_TRAIN_DATA = "data/20_80_splits_group_by_ind/20_all_samples_normalized_CONTROLS.rds"
+INPUT_smooth_LASSO_TEST_DATA_80_CONTROLS = "data/20_80_splits_group_by_ind/80_all_samples_normalized_CONTROLS.rds"
+INPUT_smooth_LASSO_TEST_DATA_CASES = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_CASES.rds"
+OUTPUT_smooth_LASSO_PRED = "data/ATAC_predictions_train_20_predict_80_and_cases/ATAC_pred_lasso_std_TRUE.rds"
+OUTPUT_smooth_LASSO_MODEL = "Trained_models/Train_20_predict_80_and_cases_models/Lasso_models/lasso_std_TRUE.rds"
+##############################################
+
+##############################################
+INPUT_trim_LASSO_TRAIN_DATA = "data/20_80_splits_group_by_ind/20_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+INPUT_trim_LASSO_TEST_DATA_80_CONTROLS = "data/20_80_splits_group_by_ind/80_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+INPUT_trim_LASSO_TEST_DATA_CASES = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_gaussian_smooth_trimmed_CASES.rds"
+OUTPUT_trim_LASSO_PRED = "data/ATAC_predictions_train_20_predict_80_and_cases/ATAC_pred_lasso_std_TRUE_gaussian_trimmed.rds"
+OUTPUT_trim_LASSO_MODEL = "Trained_models/Train_20_predict_80_and_cases_models/Lasso_models/lasso_std_TRUE_gaussian_trimmed.rds"
+##############################################
+
+##############################################
+INPUT_norm_trim_LASSO_TRAIN_DATA = "data/20_80_splits_group_by_ind/20_all_samples_normalized_trimmed_CONTROLS.rds"
+INPUT_norm_trim_LASSO_TEST_DATA_80_CONTROLS = "data/20_80_splits_group_by_ind/80_all_samples_normalized_trimmed_CONTROLS.rds"
+INPUT_norm_trim_LASSO_TEST_DATA_CASES = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds"
+OUTPUT_norm_trim_LASSO_PRED = "data/ATAC_predictions_train_20_predict_80_and_cases/ATAC_pred_lasso_std_TRUE_trimmed.rds"
+OUTPUT_norm_trim_LASSO_MODEL = "Trained_models/Train_20_predict_80_and_cases_models/Lasso_models/lasso_std_TRUE_trimmed.rds"
+##############################################
+
+rule all:
+	input: OUTPUT_std_LASSO_PRED_FINAL, OUTPUT_std_LASSO_MODEL_FINAL, OUTPUT_smooth_LASSO_PRED, OUTPUT_smooth_LASSO_MODEL, OUTPUT_trim_LASSO_PRED, OUTPUT_trim_LASSO_MODEL
+
+# this rule creates two types of predictions which are made on normalized and smoothed individuals, which we can use to compare whether standardizing the columns during the model training has an effect. 
+rule train_20_test_80_model_lasso_standardizing:
+	input: 
+		input_atac = INPUT_ATAC,
+		input_train_data_std = INPUT_std_LASSO_TRAIN_DATA,
+		input_test_data_std_80_controls = INPUT_std_LASSO_TEST_DATA_80_CONTROLS,
+		input_test_data_std_cases = INPUT_std_LASSO_TEST_DATA_CASES
+	output: 
+		output_pred = "data/ATAC_predictions_train_20_predict_80_and_cases/ATAC_pred_lasso_std_{std}_gaussian.rds",
+		output_model = "Trained_models/Train_20_predict_80_and_cases_models/Lasso_models/lasso_std_{std}_gaussian.rds"
+	threads: 4
+	conda:
+		"conda_envs/ctDNA.yml"
+	log:
+		# optional path to the processed notebook
+		notebook = "logs/processed_notebooks/train_20_test_80_and_cases/processed_Smooth_gaussian_10_Lasso_reg_{std}.r.ipynb"
+	notebook:
+		"ATAC_pred_models/Train_20_predict_80_and_cases_models/Lasso_regression/Smooth_gaussian_10_Lasso_reg_{wildcards.std}.r.ipynb"
+
+
+# this rule trains the models and makes predictions on not-smoothed individuals, which we can use to compare whether gaussian smoothing has an effect. 
+rule train_20_test_80_model_lasso_smoothing:
+	input: 
+		input_atac = INPUT_ATAC,
+		input_train_data_smooth = INPUT_smooth_LASSO_TRAIN_DATA,
+		input_test_data_smooth_80_controls = INPUT_smooth_LASSO_TEST_DATA_80_CONTROLS,
+		input_test_data_smooth_cases = INPUT_smooth_LASSO_TEST_DATA_CASES
+	output:
+		output_pred = OUTPUT_smooth_LASSO_PRED,
+		output_model = OUTPUT_smooth_LASSO_MODEL
+	threads: 2
+	conda:
+		"conda_envs/ctDNA.yml"
+	log:
+		# optional path to the processed notebook
+		notebook = "logs/processed_notebooks/train_20_test_80_and_cases/processed_Lasso_reg_TRUE.r.ipynb"
+	notebook:
+		"ATAC_pred_models/Train_20_predict_80_and_cases_models/Lasso_regression/Lasso_reg_TRUE.r.ipynb"
+
+
+rule train_20_test_80_model_lasso_trimming:
+	input: 
+		input_atac = INPUT_ATAC,
+		input_train_data_trim = INPUT_trim_LASSO_TRAIN_DATA,
+		input_test_data_trim_80_controls = INPUT_trim_LASSO_TEST_DATA_80_CONTROLS,
+		input_test_data_trim_cases = INPUT_trim_LASSO_TEST_DATA_CASES
+	output:
+		output_pred = OUTPUT_trim_LASSO_PRED,
+		output_model = OUTPUT_trim_LASSO_MODEL
+	threads: 2
+	conda:
+		"conda_envs/ctDNA.yml"
+	log:
+		# optional path to the processed notebook
+		notebook = "logs/processed_notebooks/train_20_test_80_and_cases/processed_Smooth_gaussian_10_Lasso_reg_TRUE_Discard.r.ipynb"
+	notebook:
+		"ATAC_pred_models/Train_20_predict_80_and_cases_models/Lasso_regression/Smooth_gaussian_10_Lasso_reg_TRUE_Discard.r.ipynb"
+
+
+rule train_20_test_80_model_lasso_normalized_trimming:
+	input: 
+		input_atac = INPUT_ATAC,
+		input_train_data_trim = INPUT_norm_trim_LASSO_TRAIN_DATA,
+		input_test_data_trim_80_controls = INPUT_norm_trim_LASSO_TEST_DATA_80_CONTROLS,
+		input_test_data_trim_cases = INPUT_norm_trim_LASSO_TEST_DATA_CASES
+	output:
+		output_pred = OUTPUT_norm_trim_LASSO_PRED,
+		output_model = OUTPUT_norm_trim_LASSO_MODEL
+	threads: 2
+	conda:
+		"conda_envs/ctDNA.yml"
+	log:
+		# optional path to the processed notebook
+		notebook = "logs/processed_notebooks/train_20_test_80_and_cases/processed_Smooth_gaussian_10_Lasso_reg_TRUE_norm_Discard.r.ipynb"
+	notebook:
+		"ATAC_pred_models/Train_20_predict_80_and_cases_models/Lasso_regression/Smooth_gaussian_10_Lasso_reg_TRUE_Discard.r.ipynb"

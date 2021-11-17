@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Sat Oct 23 21:56:26 2021]
+rule splitting:
+    input: data/ATACseq_250kb_bins.txt, data/20_80_splits_group_by_ind/80_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds
+    output: data/experiment_ATAC_predictions/traindata_splits_diff_percentages/gaussian_smooth_trimmed_CONTROLS_split_0.05.rds
+    log: logs/processed_notebooks/experiments/splitting_80_to_smaller_gaussian_smooth_trimmed_CONTROLS_0.05.r.ipynb
+    jobid: 0
+    wildcards: suffix=gaussian_smooth_trimmed_CONTROLS, percentage=0.05
+    resources: mem_mb=100000, disk_mb=8445, tmpdir=/scratch/56345889, time=5:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/experiments/splitting_80_to_smaller_gaussian_smooth_trimmed_CONTROLS_0.05.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmp1w8vb4bw.Data_splitting_from_80_to_smaller.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+[Sat Oct 23 21:57:57 2021]
+Finished job 0.
+1 of 1 steps (100%) done

@@ -1,0 +1,22 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Tue Nov  2 19:59:47 2021]
+rule splitting_final:
+    input: data/ATACseq_250kb_bins.txt, data/cases_controls/cases_controls_rds_format/all_samples_normalized_gaussian_smooth_CONTROLS.rds
+    output: data/ATAC_predictions_new_split/train_gaussian_smooth_CONTROLS_split.rds, data/ATAC_predictions_new_split/test_gaussian_smooth_CONTROLS_split.rds
+    log: logs/processed_notebooks/experiments/splitting_80_to_smaller_gaussian_smooth_CONTROLS.r.ipynb
+    jobid: 0
+    wildcards: suffix=gaussian_smooth_CONTROLS
+    resources: mem_mb=200000, disk_mb=12442, tmpdir=/scratch/56738041, time=48:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/experiments/splitting_80_to_smaller_gaussian_smooth_CONTROLS.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpg5of4su3.Splitting.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+[Tue Nov  2 20:11:07 2021]
+Finished job 0.
+1 of 1 steps (100%) done
+touch: cannot touch ‘/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/tmp.u0vu89xf/10.jobfinished’: No such file or directory
+touch: cannot touch ‘/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/tmp.u0vu89xf/10.jobfailed’: No such file or directory

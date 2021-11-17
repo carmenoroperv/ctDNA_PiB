@@ -5,3 +5,4 @@
 sum_control_ATAC_bin_rm_gaussian_mean.csv
 /.snakemake
 /Plots
+/Classification_output

@@ -1,0 +1,50 @@
+CASES_CONTROLS_SUFFIXES = ["CASES", "CONTROLS", "gaussian_smooth_CASES", "gaussian_smooth_CONTROLS", "gaussian_smooth_trimmed_CASES", "gaussian_smooth_trimmed_CONTROLS"]
+cases_controls_input_final = expand("data/cases_controls/all_samples_normalized_{wildcard_cases_controls}.csv", wildcard_cases_controls = CASES_CONTROLS_SUFFIXES)
+cases_controls_output_final = expand("data/cases_controls/cases_controls_rds_format/all_samples_normalized_{wildcard_cases_controls}.rds", wildcard_cases_controls = CASES_CONTROLS_SUFFIXES)
+
+ALL_SAMPLES_SUFFIXES = ["_", "_trimmed", "_gaussian_smooth", "_gaussian_smooth_trimmed"]
+all_samples_input_final = expand("data/all_samples_normalized{wildcard_all_samples}.csv", wildcard_all_samples = ALL_SAMPLES_SUFFIXES)
+all_samples_output_final = expand("data/data_rds_format/all_samples_normalized{wildcard_all_samples}.rds", wildcard_all_samples = ALL_SAMPLES_SUFFIXES)
+
+SUM_CONTROL_SUFFIXES = ["ATAC_bin_rm_sliding_mean_3", "ATAC_bin_rm_sliding_mean", "normalized_ATAC_bin_rm", "normalized_ATAC", "normalized_gaussian_smooth_ATAC_bin_rm", "normalized_gaussian_smooth_trimmed_ATAC_bin_rm"]
+sum_control_input_final = expand("data/sum_control_{wildcard_sum_control}.csv", wildcard_sum_control = SUM_CONTROL_SUFFIXES)
+sum_control_output_final = expand("data/data_rds_format/sum_control_{wildcard_sum_control}.rds", wildcard_sum_control = SUM_CONTROL_SUFFIXES)
+
+rule all: 
+	input: cases_controls_output_final, all_samples_output_final, sum_control_output_final
+
+
+rule format_to_rds_cases_controls:
+	input: 
+		input_filename = "data/cases_controls/all_samples_normalized_{wildcard_cases_controls}.csv"
+	output: 
+		output_filename = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_{wildcard_cases_controls}.rds"
+	threads: 3
+	conda:
+		"conda_envs/ctDNA.yml"
+	notebook:
+		"data_to_rds_format.r.ipynb"
+
+
+rule format_to_rds_all_samples:
+	input: 
+		input_filename = "data/all_samples_normalized{wildcard_all_samples}.csv"
+	output: 
+		output_filename = "data/data_rds_format/all_samples_normalized{wildcard_all_samples}.rds"
+	threads: 4
+	conda:
+		"conda_envs/ctDNA.yml"
+	notebook:
+		"data_to_rds_format.r.ipynb"
+
+
+rule format_to_rds_sum_control:
+	input: 
+		input_filename = "data/sum_control_{wildcard_sum_control}.csv"
+	output: 
+		output_filename = "data/data_rds_format/sum_control_{wildcard_sum_control}.rds"
+	threads: 3
+	conda:
+		"conda_envs/ctDNA.yml"
+	notebook:
+		"data_to_rds_format.r.ipynb"

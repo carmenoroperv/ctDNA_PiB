@@ -1,0 +1,316 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 5
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Thu Nov 11 21:40:06 2021]
+rule PCA_SVM_Linear:
+    input: data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/PCA_SVM_linear_normalized_trimmed.rds
+    log: logs/processed_notebooks/Classification/PCA_SVM_linear_normalized_trimmed.r.ipynb
+    jobid: 0
+    threads: 5
+    resources: mem_mb=200000, disk_mb=1000, tmpdir=/scratch/56917354, time=48:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/Classification/PCA_SVM_linear_normalized_trimmed.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmp2z_zkpog.PCA_SVM_linear.r.ipynb
+Traceback (most recent call last):
+  File "/home/coroperv/miniconda3/envs/ctDNA/bin/jupyter-nbconvert", line 11, in <module>
+    sys.exit(main())
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/jupyter_core/application.py", line 254, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/traitlets/config/application.py", line 845, in launch_instance
+    app.start()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 346, in start
+    self.convert_notebooks()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 518, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 483, in convert_single_notebook
+    output, resources = self.export_single_notebook(notebook_filename, resources, input_buffer=input_buffer)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 412, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 181, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 199, in from_file
+    return self.from_notebook_node(nbformat.read(file_stream, as_version=4), resources=resources, **kw)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/notebook.py", line 32, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 143, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 318, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/preprocessors/base.py", line 47, in __call__
+    return self.preprocess(nb, resources)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/preprocessors/execute.py", line 84, in preprocess
+    self.preprocess_cell(cell, resources, index)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/preprocessors/execute.py", line 105, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+results_01 <- results %>% mutate(predicted...2_01 = ifelse(prob...2 > 0.5, 1, 0), 
+                                 predicted...3_01 = ifelse(prob...3 > 0.5, 1, 0), 
+                                 predicted...4_01 = ifelse(prob...4 > 0.5, 1, 0),
+                                 predicted...5_01 = ifelse(prob...5 > 0.5, 1, 0),
+                                 predicted...6_01 = ifelse(prob...6 > 0.5, 1, 0),
+                                 predicted...7_01 = ifelse(prob...7 > 0.5, 1, 0),
+                                 predicted...8_01 = ifelse(prob...8 > 0.5, 1, 0),
+                                 predicted...9_01 = ifelse(prob...9 > 0.5, 1, 0),
+                                 predicted...10_01 = ifelse(prob...10 > 0.5, 1, 0),
+                                 predicted...11_01 = ifelse(prob...11 > 0.5, 1, 0))
+------------------
+
+Error: Problem with `mutate()` column `predicted...2_01`.
+ℹ `predicted...2_01 = ifelse(prob...2 > 0.5, 1, 0)`.
+✖ object 'prob...2' not found
+Traceback:
+
+1. results %>% mutate(predicted...2_01 = ifelse(prob...2 > 0.5, 
+ .     1, 0), predicted...3_01 = ifelse(prob...3 > 0.5, 1, 0), predicted...4_01 = ifelse(prob...4 > 
+ .     0.5, 1, 0), predicted...5_01 = ifelse(prob...5 > 0.5, 1, 
+ .     0), predicted...6_01 = ifelse(prob...6 > 0.5, 1, 0), predicted...7_01 = ifelse(prob...7 > 
+ .     0.5, 1, 0), predicted...8_01 = ifelse(prob...8 > 0.5, 1, 
+ .     0), predicted...9_01 = ifelse(prob...9 > 0.5, 1, 0), predicted...10_01 = ifelse(prob...10 > 
+ .     0.5, 1, 0), predicted...11_01 = ifelse(prob...11 > 0.5, 1, 
+ .     0))
+2. withVisible(eval(quote(`_fseq`(`_lhs`)), env, env))
+3. eval(quote(`_fseq`(`_lhs`)), env, env)
+4. eval(quote(`_fseq`(`_lhs`)), env, env)
+5. `_fseq`(`_lhs`)
+6. freduce(value, `_function_list`)
+7. withVisible(function_list[[k]](value))
+8. function_list[[k]](value)
+9. mutate(., predicted...2_01 = ifelse(prob...2 > 0.5, 1, 0), predicted...3_01 = ifelse(prob...3 > 
+ .     0.5, 1, 0), predicted...4_01 = ifelse(prob...4 > 0.5, 1, 
+ .     0), predicted...5_01 = ifelse(prob...5 > 0.5, 1, 0), predicted...6_01 = ifelse(prob...6 > 
+ .     0.5, 1, 0), predicted...7_01 = ifelse(prob...7 > 0.5, 1, 
+ .     0), predicted...8_01 = ifelse(prob...8 > 0.5, 1, 0), predicted...9_01 = ifelse(prob...9 > 
+ .     0.5, 1, 0), predicted...10_01 = ifelse(prob...10 > 0.5, 1, 
+ .     0), predicted...11_01 = ifelse(prob...11 > 0.5, 1, 0))
+10. mutate.data.frame(., predicted...2_01 = ifelse(prob...2 > 0.5, 
+  .     1, 0), predicted...3_01 = ifelse(prob...3 > 0.5, 1, 0), predicted...4_01 = ifelse(prob...4 > 
+  .     0.5, 1, 0), predicted...5_01 = ifelse(prob...5 > 0.5, 1, 
+  .     0), predicted...6_01 = ifelse(prob...6 > 0.5, 1, 0), predicted...7_01 = ifelse(prob...7 > 
+  .     0.5, 1, 0), predicted...8_01 = ifelse(prob...8 > 0.5, 1, 
+  .     0), predicted...9_01 = ifelse(prob...9 > 0.5, 1, 0), predicted...10_01 = ifelse(prob...10 > 
+  .     0.5, 1, 0), predicted...11_01 = ifelse(prob...11 > 0.5, 1, 
+  .     0))
+11. mutate_cols(.data, ..., caller_env = caller_env())
+12. withCallingHandlers({
+  .     for (i in seq_along(dots)) {
+  .         mask$across_cache_reset()
+  .         context_poke("column", old_current_column)
+  .         quosures <- expand_across(dots[[i]])
+  .         quosures_results <- vector(mode = "list", length = length(quosures))
+  .         for (k in seq_along(quosures)) {
+  .             quo <- quosures[[k]]
+  .             quo_data <- attr(quo, "dplyr:::data")
+  .             if (!is.null(quo_data$column)) {
+  .                 context_poke("column", quo_data$column)
+  .             }
+  .             chunks <- NULL
+  .             result <- NULL
+  .             if (quo_is_symbol(quo)) {
+  .                 name <- as_string(quo_get_expr(quo))
+  .                 if (name %in% names(new_columns)) {
+  .                   result <- new_columns[[name]]
+  .                   chunks <- mask$resolve(name)
+  .                 }
+  .                 else if (name %in% names(.data)) {
+  .                   result <- .data[[name]]
+  .                   chunks <- mask$resolve(name)
+  .                 }
+  .                 if (inherits(.data, "rowwise_df") && vec_is_list(result)) {
+  .                   sizes <- list_sizes(result)
+  .                   wrong <- which(sizes != 1)
+  .                   if (length(wrong)) {
+  .                     group <- wrong[1L]
+  .                     mask$set_current_group(group)
+  .                     abort(x_size = sizes[group], class = "dplyr:::mutate_incompatible_size")
+  .                   }
+  .                 }
+  .             }
+  .             if (is.null(chunks)) {
+  .                 chunks <- mask$eval_all_mutate(quo)
+  .             }
+  .             if (is.null(chunks)) {
+  .                 next
+  .             }
+  .             if (is.null(result)) {
+  .                 if (length(rows) == 1) {
+  .                   result <- chunks[[1]]
+  .                 }
+  .                 else {
+  .                   result <- withCallingHandlers(vec_unchop(chunks <- vec_cast_common(!!!chunks), 
+  .                     rows), vctrs_error_incompatible_type = function(cnd) {
+  .                     abort(class = "dplyr:::error_mutate_incompatible_combine", 
+  .                       parent = cnd)
+  .                   })
+  .                 }
+  .             }
+  .             quosures_results[[k]] <- list(result = result, chunks = chunks)
+  .         }
+  .         for (k in seq_along(quosures)) {
+  .             quo <- quosures[[k]]
+  .             quo_data <- attr(quo, "dplyr:::data")
+  .             quo_result <- quosures_results[[k]]
+  .             if (is.null(quo_result)) {
+  .                 if (quo_data$is_named) {
+  .                   name <- quo_data$name_given
+  .                   new_columns[[name]] <- zap()
+  .                   mask$remove(name)
+  .                 }
+  .                 next
+  .             }
+  .             result <- quo_result$result
+  .             chunks <- quo_result$chunks
+  .             if (!quo_data$is_named && is.data.frame(result)) {
+  .                 new_columns[names(result)] <- result
+  .                 mask$add_many(result, chunks)
+  .             }
+  .             else {
+  .                 name <- quo_data$name_auto
+  .                 new_columns[[name]] <- result
+  .                 mask$add_one(name, chunks)
+  .             }
+  .         }
+  .     }
+  . }, error = function(e) {
+  .     local_call_step(dots = dots, .index = i, .fn = "mutate", 
+  .         .dot_data = inherits(e, "rlang_error_data_pronoun_not_found"))
+  .     call_step_envir <- peek_call_step()
+  .     error_name <- call_step_envir$error_name
+  .     error_expression <- call_step_envir$error_expression
+  .     show_group_details <- TRUE
+  .     if (inherits(e, "dplyr:::mutate_incompatible_size")) {
+  .         size <- vec_size(rows[[mask$get_current_group()]])
+  .         x_size <- e$x_size
+  .         bullets <- c(i = cnd_bullet_column_info(), i = glue("`{error_name}` must be size {or_1(size)}, not {x_size}."), 
+  .             i = cnd_bullet_rowwise_unlist())
+  .     }
+  .     else if (inherits(e, "dplyr:::mutate_mixed_null")) {
+  .         show_group_details <- FALSE
+  .         bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups."), 
+  .             i = "Cannot combine NULL and non NULL results.", 
+  .             i = cnd_bullet_rowwise_unlist())
+  .     }
+  .     else if (inherits(e, "dplyr:::mutate_not_vector")) {
+  .         bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must be a vector, not {friendly_type_of(e$result)}."), 
+  .             i = cnd_bullet_rowwise_unlist())
+  .     }
+  .     else if (inherits(e, "dplyr:::error_mutate_incompatible_combine")) {
+  .         show_group_details <- FALSE
+  .         bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups"), 
+  .             i = cnd_bullet_combine_details(e$parent$x, e$parent$x_arg), 
+  .             i = cnd_bullet_combine_details(e$parent$y, e$parent$y_arg))
+  .     }
+  .     else {
+  .         bullets <- c(i = cnd_bullet_column_info(), x = conditionMessage(e))
+  .     }
+  .     bullets <- c(cnd_bullet_header(), bullets, i = if (show_group_details) cnd_bullet_cur_group_label())
+  .     abort(bullets, class = c("dplyr:::mutate_error", "dplyr_error"), 
+  .         error_name = error_name, error_expression = error_expression, 
+  .         parent = e, bullets = bullets)
+  . }, warning = function(w) {
+  .     if (check_muffled_warning(w)) {
+  .         maybe_restart("muffleWarning")
+  .     }
+  .     local_call_step(dots = dots, .index = i, .fn = "mutate")
+  .     warn(c(cnd_bullet_header(), i = cnd_bullet_column_info(), 
+  .         i = conditionMessage(w), i = cnd_bullet_cur_group_label(what = "warning")))
+  .     maybe_restart("muffleWarning")
+  . })
+13. mask$eval_all_mutate(quo)
+14. ifelse(prob...2 > 0.5, 1, 0)
+15. .handleSimpleError(function (e) 
+  . {
+  .     local_call_step(dots = dots, .index = i, .fn = "mutate", 
+  .         .dot_data = inherits(e, "rlang_error_data_pronoun_not_found"))
+  .     call_step_envir <- peek_call_step()
+  .     error_name <- call_step_envir$error_name
+  .     error_expression <- call_step_envir$error_expression
+  .     show_group_details <- TRUE
+  .     if (inherits(e, "dplyr:::mutate_incompatible_size")) {
+  .         size <- vec_size(rows[[mask$get_current_group()]])
+  .         x_size <- e$x_size
+  .         bullets <- c(i = cnd_bullet_column_info(), i = glue("`{error_name}` must be size {or_1(size)}, not {x_size}."), 
+  .             i = cnd_bullet_rowwise_unlist())
+  .     }
+  .     else if (inherits(e, "dplyr:::mutate_mixed_null")) {
+  .         show_group_details <- FALSE
+  .         bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups."), 
+  .             i = "Cannot combine NULL and non NULL results.", 
+  .             i = cnd_bullet_rowwise_unlist())
+  .     }
+  .     else if (inherits(e, "dplyr:::mutate_not_vector")) {
+  .         bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must be a vector, not {friendly_type_of(e$result)}."), 
+  .             i = cnd_bullet_rowwise_unlist())
+  .     }
+  .     else if (inherits(e, "dplyr:::error_mutate_incompatible_combine")) {
+  .         show_group_details <- FALSE
+  .         bullets <- c(i = cnd_bullet_column_info(), x = glue("`{error_name}` must return compatible vectors across groups"), 
+  .             i = cnd_bullet_combine_details(e$parent$x, e$parent$x_arg), 
+  .             i = cnd_bullet_combine_details(e$parent$y, e$parent$y_arg))
+  .     }
+  .     else {
+  .         bullets <- c(i = cnd_bullet_column_info(), x = conditionMessage(e))
+  .     }
+  .     bullets <- c(cnd_bullet_header(), bullets, i = if (show_group_details) cnd_bullet_cur_group_label())
+  .     abort(bullets, class = c("dplyr:::mutate_error", "dplyr_error"), 
+  .         error_name = error_name, error_expression = error_expression, 
+  .         parent = e, bullets = bullets)
+  . }, "object 'prob...2' not found", base::quote(ifelse(prob...2 > 
+  .     0.5, 1, 0)))
+16. h(simpleError(msg, call))
+17. abort(bullets, class = c("dplyr:::mutate_error", "dplyr_error"), 
+  .     error_name = error_name, error_expression = error_expression, 
+  .     parent = e, bullets = bullets)
+18. signal_abort(cnd)
+ERROR: Error: Problem with `mutate()` column `predicted...2_01`.
+ℹ `predicted...2_01 = ifelse(prob...2 > 0.5, 1, 0)`.
+✖ object 'prob...2' not found
+
+
+[Thu Nov 11 22:07:43 2021]
+Error in rule PCA_SVM_Linear:
+    jobid: 0
+    output: Classification_output/PCA_SVM_linear_normalized_trimmed.rds
+    log: logs/processed_notebooks/Classification/PCA_SVM_linear_normalized_trimmed.r.ipynb (check log file(s) for error message)
+
+Traceback (most recent call last):
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 593, in _callback
+    raise ex
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 579, in cached_or_run
+    run_func(*args)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2460, in run_wrapper
+    raise ex
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2417, in run_wrapper
+    run(
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/snakefile_predict_and_classify_norm_trimmed", line 497, in __rule_PCA_SVM_Linear
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/notebook.py", line 295, in notebook
+    executor.evaluate(edit=edit)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 381, in evaluate
+    self.execute_script(fd.name, edit=edit)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/notebook.py", line 92, in execute_script
+    self._execute_cmd(cmd, fname_out=fname_out, fname=fname)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 414, in _execute_cmd
+    return shell(
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/shell.py", line 265, in __new__
+    raise sp.CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command 'set -euo pipefail;  jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/Classification/PCA_SVM_linear_normalized_trimmed.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmp2z_zkpog.PCA_SVM_linear.r.ipynb' returned non-zero exit status 1.
+Removing output files of failed job PCA_SVM_Linear since they might be corrupted:
+Classification_output/PCA_SVM_linear_normalized_trimmed.rds
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+touch: cannot touch ‘/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/tmp.c4tgr3gw/14.jobfailed’: No such file or directory

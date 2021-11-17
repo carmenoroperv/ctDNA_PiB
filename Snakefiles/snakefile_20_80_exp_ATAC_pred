@@ -1,0 +1,86 @@
+INPUT_ATAC = "data/ATACseq_250kb_bins.txt"
+
+##############################################
+STANDARDIZATION = ["TRUE", "FALSE"]
+
+INPUT_std_LASSO_TRAIN_DATA = "data/20_80_splits/80_all_samples_normalized_gaussian_smooth_CONTROLS.rds"
+INPUT_std_LASSO_TEST_DATA = "data/20_80_splits/20_all_samples_normalized_gaussian_smooth_CONTROLS.rds"
+OUTPUT_std_LASSO_PRED_FINAL = expand("data/20_80_experiment_ATAC_predictions/80_20/all_samples_ATAC_pred_lasso_std_{std}_gaussian.rds", std = STANDARDIZATION)
+OUTPUT_std_MODEL_FINAL = expand("Trained_models/20_80_experiment_models/80_20/Lasso_models/lasso_std_{std}_gaussian.rds", std = STANDARDIZATION)
+##############################################
+
+##############################################
+INPUT_smooth_LASSO_TRAIN_DATA = "data/20_80_splits/80_all_samples_normalized_CONTROLS.rds"
+INPUT_smooth_LASSO_TEST_DATA = "data/20_80_splits/20_all_samples_normalized_CONTROLS.rds"
+OUTPUT_smooth_LASSO = "data/20_80_experiment_ATAC_predictions/80_20/all_samples_ATAC_pred_lasso_std_TRUE.rds"
+OUTPUT_smooth_MODEL = "Trained_models/20_80_experiment_models/80_20/Lasso_models/lasso_std_TRUE.rds"
+##############################################
+
+##############################################
+INPUT_trim_LASSO_TRAIN_DATA = "data/20_80_splits/80_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+INPUT_trim_LASSO_TEST_DATA = "data/20_80_splits/20_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
+OUTPUT_trim_LASSO = "data/20_80_experiment_ATAC_predictions/80_20/all_samples_ATAC_pred_lasso_std_TRUE_gaussian_trimmed.rds"
+OUTPUT_trim_MODEL = "Trained_models/20_80_experiment_models/80_20/Lasso_models/lasso_std_TRUE_gaussian_trimmed.rds"
+##############################################
+
+
+rule all: 
+	input: OUTPUT_std_LASSO_PRED_FINAL, OUTPUT_std_MODEL_FINAL, OUTPUT_smooth_LASSO, OUTPUT_smooth_MODEL, OUTPUT_trim_LASSO, OUTPUT_trim_MODEL
+
+# this rule creates two types of predictions which are made on normalized and smoothed individuals, which we can use to compare whether standardizing the columns during the model training has an effect. 
+rule all_samples_model_lasso_standardizing:
+	input: 
+		input_atac = INPUT_ATAC,
+		input_train_data_std = INPUT_std_LASSO_TRAIN_DATA,
+		input_test_data_std = INPUT_std_LASSO_TEST_DATA
+	output: 
+		output_pred = "data/20_80_experiment_ATAC_predictions/80_20/all_samples_ATAC_pred_lasso_std_{std}_gaussian.rds",
+		output_model = "Trained_models/20_80_experiment_models/80_20/Lasso_models/lasso_std_{std}_gaussian.rds"
+	threads: 4
+	conda:
+		"conda_envs/ctDNA.yml"
+	log:
+		# optional path to the processed notebook
+		notebook = "logs/processed_notebooks/80_20/processed_all_samples_Smooth_gaussian_10_Lasso_reg_{std}.r.ipynb"
+	notebook:
+		"20_80_experiments/all_samples_Smooth_gaussian_10_Lasso_reg_{wildcards.std}.r.ipynb"
+
+
+# this rule trains the models and makes predictions on not-smoothed individuals, which we can use to compare whether gaussian smoothing has an effect. 
+rule all_samples_model_lasso_smoothing:
+	input: 
+		input_atac = INPUT_ATAC,
+		input_train_data_smooth = INPUT_smooth_LASSO_TRAIN_DATA,
+		input_test_data_smooth = INPUT_smooth_LASSO_TEST_DATA
+	output:
+		output_pred = OUTPUT_smooth_LASSO,
+		output_model = OUTPUT_smooth_MODEL
+	threads: 2
+	conda:
+		"conda_envs/ctDNA.yml"
+	log:
+		# optional path to the processed notebook
+		notebook = "logs/processed_notebooks/80_20/processed_all_samples_Lasso_reg_TRUE.r.ipynb"
+	notebook:
+		"20_80_experiments/all_samples_Lasso_reg_TRUE.r.ipynb"
+
+
+rule all_samples_model_lasso_trimming:
+	input: 
+		input_atac = INPUT_ATAC,
+		input_train_data_trim = INPUT_trim_LASSO_TRAIN_DATA,
+		input_test_data_trim = INPUT_trim_LASSO_TEST_DATA
+	output:
+		output_pred = OUTPUT_trim_LASSO,
+		output_model = OUTPUT_trim_MODEL
+	threads: 2
+	conda:
+		"conda_envs/ctDNA.yml"
+	log:
+		# optional path to the processed notebook
+		notebook = "logs/processed_notebooks/80_20/processed_all_samples_Smooth_gaussian_10_Lasso_reg_TRUE_Discard.r.ipynb"
+	notebook:
+		"20_80_experiments/all_samples_Smooth_gaussian_10_Lasso_reg_TRUE_Discard.r.ipynb"
+
+
+

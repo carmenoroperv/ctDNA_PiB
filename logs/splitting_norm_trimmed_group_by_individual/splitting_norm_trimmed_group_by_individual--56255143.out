@@ -1,0 +1,20 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 3
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Wed Oct 20 20:13:08 2021]
+rule splitting_norm_trimmed_group_by_individual:
+    input: data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CONTROLS.rds
+    output: data/20_80_splits_group_by_ind/20_all_samples_normalized_trimmed_CONTROLS.rds, data/20_80_splits_group_by_ind/80_all_samples_normalized_trimmed_CONTROLS.rds
+    log: logs/processed_notebooks/processed_Data_splitting_20_80_group_by_individual_norm_trimmed.r.ipynb
+    jobid: 0
+    threads: 3
+    resources: mem_mb=150000, disk_mb=5953, tmpdir=/scratch/56255143, time=5:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/processed_Data_splitting_20_80_group_by_individual_norm_trimmed.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmptbksss2u.Data_splitting_20_80_group_by_individual.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+[Wed Oct 20 20:21:36 2021]
+Finished job 0.
+1 of 1 steps (100%) done

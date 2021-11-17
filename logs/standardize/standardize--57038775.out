@@ -1,0 +1,112 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Wed Nov 17 12:56:09 2021]
+rule standardize:
+    input: data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds
+    output: data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds
+    jobid: 0
+    resources: mem_mb=200000, disk_mb=1000, tmpdir=/scratch/57038775, time=12:00:00
+
+jupyter-nbconvert --log-level ERROR --execute  --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpkfwuu72f.Standardizing_ATAC_predictions.r.ipynb
+Traceback (most recent call last):
+  File "/home/coroperv/miniconda3/envs/ctDNA/bin/jupyter-nbconvert", line 11, in <module>
+    sys.exit(main())
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/jupyter_core/application.py", line 254, in launch_instance
+    return super(JupyterApp, cls).launch_instance(argv=argv, **kwargs)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/traitlets/config/application.py", line 845, in launch_instance
+    app.start()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 346, in start
+    self.convert_notebooks()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 518, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 483, in convert_single_notebook
+    output, resources = self.export_single_notebook(notebook_filename, resources, input_buffer=input_buffer)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/nbconvertapp.py", line 412, in export_single_notebook
+    output, resources = self.exporter.from_filename(notebook_filename, resources=resources)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 181, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 199, in from_file
+    return self.from_notebook_node(nbformat.read(file_stream, as_version=4), resources=resources, **kw)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/notebook.py", line 32, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 143, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/exporters/exporter.py", line 318, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/preprocessors/base.py", line 47, in __call__
+    return self.preprocess(nb, resources)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbconvert/preprocessors/execute.py", line 80, in preprocess
+    with self.setup_kernel():
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/contextlib.py", line 117, in __enter__
+    return next(self.gen)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbclient/client.py", line 452, in setup_kernel
+    self.start_new_kernel_client()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbclient/client.py", line 423, in async_start_new_kernel_client
+    await ensure_async(self.kc.wait_for_ready(timeout=self.startup_timeout))
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/nbclient/util.py", line 85, in ensure_async
+    result = await obj
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/jupyter_client/client.py", line 180, in _async_wait_for_ready
+    raise RuntimeError("Kernel died before replying to kernel_info")
+RuntimeError: Kernel died before replying to kernel_info
+Exception ignored in: <function BaseEventLoop.__del__ at 0x2b28389c8820>
+Traceback (most recent call last):
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/asyncio/base_events.py", line 683, in __del__
+    self.close()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/asyncio/unix_events.py", line 58, in close
+    super().close()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/asyncio/selector_events.py", line 92, in close
+    self._close_self_pipe()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/asyncio/selector_events.py", line 99, in _close_self_pipe
+    self._remove_reader(self._ssock.fileno())
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/asyncio/selector_events.py", line 277, in _remove_reader
+    key = self._selector.get_key(fd)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/selectors.py", line 191, in get_key
+    return mapping[fileobj]
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/selectors.py", line 72, in __getitem__
+    fd = self._selector._fileobj_lookup(fileobj)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/selectors.py", line 226, in _fileobj_lookup
+    return _fileobj_to_fd(fileobj)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/selectors.py", line 42, in _fileobj_to_fd
+    raise ValueError("Invalid file descriptor: {}".format(fd))
+ValueError: Invalid file descriptor: -1
+[Wed Nov 17 12:56:12 2021]
+Error in rule standardize:
+    jobid: 0
+    output: data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds
+
+Traceback (most recent call last):
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 593, in _callback
+    raise ex
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 579, in cached_or_run
+    run_func(*args)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2460, in run_wrapper
+    raise ex
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2417, in run_wrapper
+    run(
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/snakefile_predict_and_classify_norm_trimmed", line 215, in __rule_standardize
+    #    notebook:
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/notebook.py", line 295, in notebook
+    executor.evaluate(edit=edit)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 381, in evaluate
+    self.execute_script(fd.name, edit=edit)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/notebook.py", line 92, in execute_script
+    self._execute_cmd(cmd, fname_out=fname_out, fname=fname)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 414, in _execute_cmd
+    return shell(
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/shell.py", line 265, in __new__
+    raise sp.CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command 'set -euo pipefail;  jupyter-nbconvert --log-level ERROR --execute  --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpkfwuu72f.Standardizing_ATAC_predictions.r.ipynb' returned non-zero exit status 1.
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message

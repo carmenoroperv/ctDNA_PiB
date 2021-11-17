@@ -1,0 +1,41 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Sat Nov  6 14:32:31 2021]
+rule ATAC_pred:
+    input: data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds, data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds, data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds, data/ATACseq_250kb_bins.txt
+    output: data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed.rds, Trained_models/train_20_predict_80_models/Lasso_models/lasso_normalized_trimmed.rds
+    log: logs/processed_notebooks/train_20_predict_80/processed_Lasso_reg_TRUE_normalized_trimmed.r.ipynb
+    jobid: 0
+    resources: mem_mb=200000, disk_mb=11137, tmpdir=/scratch/56812220, time=48:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/train_20_predict_80/processed_Lasso_reg_TRUE_normalized_trimmed.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpzkhtz74_.Lasso_reg_TRUE.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
+trying URL 'https://cran.r-project.org/src/contrib/glmnetUtils_1.1.8.tar.gz'
+Content type 'application/x-gzip' length 57060 bytes (55 KB)
+==================================================
+downloaded 55 KB
+
+* installing *source* package ‘glmnetUtils’ ...
+** package ‘glmnetUtils’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (glmnetUtils)
+
+The downloaded source packages are in
+	‘/scratch/56812220/Rtmpzs9TRt/downloaded_packages’
+[Sat Nov  6 15:51:43 2021]
+Finished job 0.
+1 of 1 steps (100%) done

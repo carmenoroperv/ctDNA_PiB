@@ -1,0 +1,17 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 3
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Sat Oct 16 15:07:06 2021]
+rule format_to_rds_cases_controls:
+    input: data/cases_controls/all_samples_normalized_gaussian_smooth_trimmed_CASES.csv
+    output: data/cases_controls/cases_controls_rds_format/all_samples_normalized_gaussian_smooth_trimmed_CASES.rds
+    jobid: 0
+    wildcards: wildcard_cases_controls=gaussian_smooth_trimmed_CASES
+    threads: 3
+    resources: mem_mb=200000, disk_mb=27718, tmpdir=/scratch/56021337, time=5:00:00
+
+jupyter-nbconvert --log-level ERROR --execute  --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpodrgj5_u.data_to_rds_format.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/1cc9c1aecfca2e5f4a23e8b12a534187
