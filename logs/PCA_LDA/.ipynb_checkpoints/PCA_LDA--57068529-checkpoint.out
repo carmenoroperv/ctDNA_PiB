@@ -1,0 +1,18 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Thu Nov 18 13:17:48 2021]
+rule PCA_LDA:
+    input: data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/PCA_LDA_normalized_trimmed.rds
+    log: logs/processed_notebooks/Classification/PCA_LDA_normalized_trimmed.r.ipynb
+    jobid: 0
+    resources: mem_mb=200000, disk_mb=1000, tmpdir=/scratch/57068529, time=12:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/Classification/PCA_LDA_normalized_trimmed.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpij4au8yb.PCA_LDA.r.ipynb
+[Thu Nov 18 13:17:55 2021]
+Finished job 0.
+1 of 1 steps (100%) done

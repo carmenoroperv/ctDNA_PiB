@@ -1,0 +1,281 @@
+########## WILDCARDS ##########
+PCA = ["Full_data", "PCA"]
+
+CASE_CONTROL_MODELS = ["Boosting", "Lasso", "LDA", "SVM_linear", "SVM_poly", "SVM_radial"]
+
+CANCER_TYPE_MODELS = ["Boosting_binomial", "Boosting_multinomial", "Lasso_binomial", "Lasso_multinomial", "LDA_binomial", "LDA_multinomial", ]
+
+########## INPUT DATA ##########
+INPUT_METH = "../data/methylation/methylation_preprocessed_FILTERED.rds"
+INPUT_TRAIN_DATA = "../data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CONTROLS.rds"
+INPUT_SAMPLE_TYPES = "../data/sample_types.txt"
+INPUT_TEST_CASES = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds"
+
+#"scripts/{wildcards.scriptname}.py"
+
+
+########## CASE/CONTROL OUTPUT #########
+LASSO_OUTPUT_FINAL = "Classification_output/Lasso.rds"
+LDA_OUTPUT_FINAL = "Classification_output/LDA.rds"
+BOOSTING_OUTPUT_FINAL = "Classification_output/Boosting.rds"
+SVM_LINEAR_OUTPUT_FINAL = "Classification_output/SVM_linear.rds"
+SVM_RADIAL_OUTPUT_FINAL = "Classification_output/SVM_radial.rds"
+SVM_POLY_OUTPUT_FINAL = "Classification_output/SVM_poly.rds"
+
+PCA_LASSO_OUTPUT_FINAL = "Classification_output/PCA_Lasso.rds"
+PCA_LDA_OUTPUT_FINAL = "Classification_output/PCA_LDA.rds"
+PCA_BOOSTING_OUTPUT_FINAL = "Classification_output/PCA_Boosting.rds"
+PCA_SVM_LINEAR_OUTPUT_FINAL = "Classification_output/PCA_SVM_linear.rds"
+PCA_SVM_RADIAL_OUTPUT_FINAL = "Classification_output/PCA_SVM_radial.rds"
+PCA_SVM_POLY_OUTPUT_FINAL = "Classification_output/PCA_SVM_poly.rds"
+
+
+########## CANCER_TYPE OUTPUT #########
+
+########## RULES ##########
+
+rule all: 
+    input: LASSO_OUTPUT_FINAL, LDA_OUTPUT_FINAL, BOOSTING_OUTPUT_FINAL, SVM_LINEAR_OUTPUT_FINAL, SVM_RADIAL_OUTPUT_FINAL, SVM_POLY_OUTPUT_FINAL, PCA_LASSO_OUTPUT_FINAL, PCA_LDA_OUTPUT_FINAL, PCA_BOOSTING_OUTPUT_FINAL, PCA_SVM_LINEAR_OUTPUT_FINAL, PCA_SVM_RADIAL_OUTPUT_FINAL, PCA_SVM_POLY_OUTPUT_FINAL
+
+
+rule splitting_final:
+    input: 
+        input_train_data = INPUT_TRAIN_DATA
+    output: 
+        train_data_output = "data/METH_predictions/train_CONTROLS_split.rds", 
+        test_data_output = "data/METH_predictions/test_CONTROLS_split.rds" 
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    log:
+        notebook = "logs/processed_notebooks/train_20_predict_80/splitting/splitting_normalized_trimmed.r.ipynb"  
+    notebook: 
+        "../Splitting.r.ipynb"
+
+
+##########################################
+#METH prediction
+##########################################
+
+#Input files should be the output files from the splitting final, one for the test data and one for the train data
+
+rule met_pred:
+    input: 
+        input_train = "data/METH_predictions/train_CONTROLS_split.rds",
+        input_test_controls = "data/METH_predictions/test_CONTROLS_split.rds",
+        input_test_cases = INPUT_METH_PRED_TEST_CASES,
+        input_meth = INPUT_METH
+    output:  
+        output_pred = "data/METH_predictions_train_20_predict_80/MATH_pred_lasso.rds",
+        output_model = "Trained_models/train_20_predict_80_models/Lasso_models/lasso.rds"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    log:
+        notebook = "logs/processed_notebooks/train_20_predict_80/processed_Lasso_reg_TRUE.r.ipynb"  
+    notebook: 
+        "../ATAC_pred_models/Train_20_predict_80_and_cases_models/Lasso_regression/Lasso_reg_TRUE.r.ipynb
+
+
+############################### FORMATTING #####################################
+
+rule met_format:
+    input:
+        input = "data/METH_predictions_train_20_predict_80/MATH_pred_lasso.rds"
+    output: 
+        output_formatted_pred = "data/METH_predictions_train_20_predict_80/ATAC_pred_lasso_formatted.rds"
+    notebook: 
+        "../prep_formatting_normalizing/Format_ATAC_predictions.r.ipynb"
+    
+
+############################### STANDARDIZING #####################################
+
+rule met_standardize:
+    input:
+        input_file = "data/METH_predictions_train_20_predict_80/ATAC_pred_lasso_formatted.rds"
+    output: 
+        output_formatted_pred = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds"
+    notebook: 
+        "../prep_formatting_normalizing/Standardizing_ATAC_predictions.r.ipynb"
+        
+
+
+##########################################
+#Classification - CASE/CONTROL
+##########################################
+
+############################### LASSO #####################################
+
+rule met_Lasso_classification:
+    input: 
+        input_predictions =  "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        lasso_output = "Classification_output/Lasso_normalized_trimmed.rds"
+    log: 
+        notebook = "logs/processed_notebooks/Classification/Lasso_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/Lasso.r.ipynb"
+
+
+############################### LDA #####################################
+
+rule LDA:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        LDA_output = "Classification_output/LDA_normalized_trimmed.rds"
+    log: 
+        notebook = "logs/processed_notebooks/Classification/LDA_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/LDA.r.ipynb"
+        
+
+############################### BOOSTING #####################################
+
+rule boosting:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        boosting_output = "Classification_output/Boosting_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/Boosting_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/Boosting.r.ipynb"
+        
+
+############################### SVM #####################################
+
+rule SVM_Linear:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/SVM_linear_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/SVM_linear_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/SVM_linear.r.ipynb"
+        
+rule SVM_Radial:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/SVM_radial_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/SVM_radial_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/SVM_radial.r.ipynb"
+
+rule SVM_Poly:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/SVM_poly_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/SVM_poly_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/SVM_poly.r.ipynb"
+        
+        
+############################### PCA CLASSIFICATION #####################################
+
+rule PCA:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds"
+    output: 
+        output_pca = "data/METH_predictions_train_20_predict_80/PCA_METH_pred_lasso_formatted_standardized.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/PCA.r.ipynb"
+    notebook: 
+        "../PCA.r.ipynb"
+        
+
+
+
+############################### PCA BOOSTING #####################################
+
+rule PCA_boosting:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        boosting_output = "Classification_output/PCA_Boosting_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_Boosting_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/PCA_classification/PCA_Boosting.r.ipynb"
+        
+        
+############################### PCA LASSO #####################################
+
+rule PCA_Lasso_classification:
+    input: 
+        input_predictions =  "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        lasso_output = "Classification_output/PCA_Lasso_normalized_trimmed.rds"
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_Lasso_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/PCA_classification/PCA_Lasso.r.ipynb"
+
+
+############################### PCA LDA #####################################
+
+rule PCA_LDA:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        LDA_output = "Classification_output/PCA_LDA_normalized_trimmed.rds"
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_LDA_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/PCA_classification/PCA_LDA.r.ipynb"
+
+############################### PCA SVM #####################################
+
+rule PCA_SVM_Linear:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/PCA_SVM_linear_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_SVM_linear_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/PCA_classification/PCA_SVM_linear.r.ipynb"
+        
+rule PCA_SVM_Radial:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/PCA_SVM_radial_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_SVM_radial_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/PCA_classification/PCA_SVM_radial.r.ipynb"
+
+rule PCA_SVM_Poly:
+    input: 
+        input_predictions = "data/METH_predictions_train_20_predict_80/METH_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/PCA_SVM_poly_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_SVM_poly_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "../Classification/PCA_classification/PCA_SVM_poly.r.ipynb"

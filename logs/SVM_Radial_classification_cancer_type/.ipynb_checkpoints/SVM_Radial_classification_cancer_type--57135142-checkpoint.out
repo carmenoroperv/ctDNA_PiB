@@ -1,0 +1,4 @@
+Waiting at most 60 seconds for missing files.
+Missing files after 60 seconds:
+/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/tmp.jgymb_ju
+touch: cannot touch ‘/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/tmp.jgymb_ju/23.jobfailed’: No such file or directory
