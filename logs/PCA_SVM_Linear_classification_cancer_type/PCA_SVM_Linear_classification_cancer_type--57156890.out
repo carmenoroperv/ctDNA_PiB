@@ -1,0 +1,3863 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 20
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Tue Nov 23 06:45:12 2021]
+rule PCA_SVM_Linear_classification_cancer_type:
+    input: data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/Cancer_type_classification/PCA_SVM_linear_binomial.rds, Classification_output/ROC_plots/Cancer_type/PCA_ROC_SVM_linear_binomial.png
+    jobid: 0
+    threads: 20
+    resources: mem_mb=300000, disk_mb=1000, tmpdir=/scratch/57156890, time=11:30:00
+
+Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpl19f56kq.SVM_linear.R
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+trying URL 'http://cran.us.r-project.org/src/contrib/kernlab_0.9-29.tar.gz'
+Content type 'application/x-gzip' length 1168376 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+* installing *source* package ‘kernlab’ ...
+** package ‘kernlab’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c brweight.cpp -o brweight.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c ctable.cpp -o ctable.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c cweight.cpp -o cweight.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dbreakpt.c -o dbreakpt.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dcauchy.c -o dcauchy.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dgpnrm.c -o dgpnrm.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dgpstep.c -o dgpstep.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dprecond.c -o dprecond.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dprsrch.c -o dprsrch.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dspcg.c -o dspcg.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dtron.c -o dtron.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dtrpcg.c -o dtrpcg.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dtrqsol.c -o dtrqsol.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c esa.cpp -o esa.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c expdecayweight.cpp -o expdecayweight.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c inductionsort.cpp -o inductionsort.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c init.c -o init.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c kspectrumweight.cpp -o kspectrumweight.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c lcp.cpp -o lcp.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c misc.c -o misc.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c msufsort.cpp -o msufsort.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c solvebqp.c -o solvebqp.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c stringk.c -o stringk.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c stringkernel.cpp -o stringkernel.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c svm.cpp -o svm.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c wkasailcp.cpp -o wkasailcp.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c wmsufsort.cpp -o wmsufsort.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -shared -L/home/coroperv/miniconda3/envs/ctDNA/lib/R/lib -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,/home/coroperv/miniconda3/envs/ctDNA/lib -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib -L/home/coroperv/miniconda3/envs/ctDNA/lib -L/home/coroperv/miniconda3/envs/ctDNA/lib -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib -o kernlab.so brweight.o ctable.o cweight.o dbreakpt.o dcauchy.o dgpnrm.o dgpstep.o dprecond.o dprsrch.o dspcg.o dtron.o dtrpcg.o dtrqsol.o esa.o expdecayweight.o inductionsort.o init.o kspectrumweight.o lcp.o misc.o msufsort.o solvebqp.o stringk.o stringkernel.o svm.o wkasailcp.o wmsufsort.o -L/home/coroperv/miniconda3/envs/ctDNA/lib/R/lib -lRlapack -L/home/coroperv/miniconda3/envs/ctDNA/lib/R/lib -lRblas -lgfortran -lm -lgomp -lquadmath -lpthread -L/home/coroperv/miniconda3/envs/ctDNA/lib/R/lib -lR
+installing to /home/coroperv/miniconda3/envs/ctDNA/lib/R/library/00LOCK-kernlab/00new/kernlab/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (kernlab)
+
+The downloaded source packages are in
+	‘/scratch/57156890/Rtmp3s8rdy/downloaded_packages’
+Updating HTML index of packages in '.Library'
+Making 'packages.html' ... done
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Warning message:
+package ‘multiROC’ was built under R version 3.6.3 
+dummies-1.5.6 provided by Decision Patterns
+
+Warning message:
+package ‘dummies’ was built under R version 3.6.3 
+Loading required package: gplots
+
+Attaching package: ‘gplots’
+
+The following object is masked from ‘package:stats’:
+
+    lowess
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+# A tibble: 9 × 2
+  sample_type           n
+  <fct>             <int>
+1 Bile_Duct_Cancer     25
+2 Breast_Cancer        54
+3 Colorectal_Cancer    26
+4 Duodenal_Cancer       1
+5 Gastric_cancer       27
+6 Healthy             194
+7 Lung_Cancer          35
+8 Ovarian_Cancer       28
+9 Pancreatic_Cancer    34
+# A tibble: 8 × 2
+  sample_type           n
+  <fct>             <int>
+1 Bile_Duct_Cancer     25
+2 Breast_Cancer        54
+3 Colorectal_Cancer    26
+4 Gastric_cancer       27
+5 Healthy             194
+6 Lung_Cancer          35
+7 Ovarian_Cancer       28
+8 Pancreatic_Cancer    34
+starting worker pid=32683 on localhost:11216 at 06:45:39.032
+starting worker pid=32717 on localhost:11216 at 06:45:39.312
+starting worker pid=32751 on localhost:11216 at 06:45:39.591
+starting worker pid=32785 on localhost:11216 at 06:45:39.832
+starting worker pid=32820 on localhost:11216 at 06:45:40.038
+starting worker pid=32854 on localhost:11216 at 06:45:40.293
+starting worker pid=32888 on localhost:11216 at 06:45:40.581
+starting worker pid=32922 on localhost:11216 at 06:45:40.822
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Loading required package: lattice
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+Loading required package: lattice
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+
+Attaching package: ‘ggplot2’
+
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+Loading required package: lattice
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+Loading required package: lattice
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+Loading required package: lattice
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+Class: Gastric_cancer
+Class: Gastric_cancer
+Class: Gastric_cancer
+CV repetition number: 3
+CV repetition number: 5
+CV repetition number: 4
+Class: Gastric_cancer
+Class: Gastric_cancer
+Class: Gastric_cancer
+Class: Gastric_cancer
+CV repetition number: 1
+CV repetition number: 8
+CV repetition number: 6
+CV repetition number: 7
+Class: Gastric_cancer
+CV inner loop, CV_rep: 3
+CV repetition number: 2
+CV inner loop, CV_rep: 5
+CV inner loop, CV_rep: 4
+CV inner loop, CV_rep: 1
+CV inner loop, CV_rep: 8
+CV inner loop, CV_rep: 6
+CV inner loop, CV_rep: 7
+CV inner loop, CV_rep: 2
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+besttune C
+0.5
+besttune C
+0.3
+besttune C
+0.5
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+2
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+besttune C
+2
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+3
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune C
+0.01
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+0.3
+besttune C
+0.01
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+besttune C
+0.5
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+Class: Gastric_cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.3
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.3
+Class: Gastric_cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+Class: Ovarian_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherOvarian_Cancer
+besttune C
+0.5
+Class: Ovarian_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+Class: Ovarian_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune C
+3
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+Class: Ovarian_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherOvarian_Cancer
+Class: Ovarian_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherOvarian_Cancer
+Class: Ovarian_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+3
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.3
+besttune C
+0.01
+besttune C
+3
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.01
+besttune C
+3
+besttune C
+2
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.3
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune C
+3
+besttune C
+0.01
+besttune C
+1
+besttune C
+2
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune C
+0.5
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.1
+besttune C
+0.5
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+besttune C
+0.5
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+3
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.3
+Class: Ovarian_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+besttune C
+3
+Gastric_cancerOther
+Class: Ovarian_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherOvarian_Cancer
+Class: Ovarian_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherOvarian_Cancer
+besttune C
+0.1
+Class: Ovarian_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+3
+besttune C
+2
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+3
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+Class: Lung_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherLung_Cancer
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.1
+Class: Lung_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+Class: Lung_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherLung_Cancer
+besttune C
+2
+besttune C
+0.1
+Class: Lung_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+2
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+0.3
+besttune C
+2
+besttune C
+1
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+1
+besttune C
+0.01
+besttune C
+1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.5
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+3
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+2
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune C
+0.01
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+3
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+Class: Lung_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+Class: Lung_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherLung_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+3
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+Class: Lung_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+0.1
+Class: Lung_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherLung_Cancer
+Class: Lung_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.3
+besttune C
+0.1
+besttune C
+0.5
+besttune C
+0.1
+besttune C
+0.01
+Class: Lung_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+Class: Healthy
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherHealthy
+besttune C
+0.01
+besttune C
+0.3
+besttune C
+0.01
+besttune C
+0.5
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+Class: Healthy
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.3
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+besttune C
+2
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.01
+Class: Healthy
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherHealthy
+besttune C
+0.1
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+Class: Healthy
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+Class: Healthy
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherHealthy
+besttune C
+0.3
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.01
+Class: Healthy
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherHealthy
+besttune C
+0.1
+Class: Healthy
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherHealthy
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+Class: Healthy
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+0.5
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+besttune C
+0.01
+besttune C
+0.3
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+besttune C
+0.3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune C
+0.01
+besttune C
+0.3
+Class: Healthy
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherHealthy
+besttune C
+0.3
+besttune C
+2
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherHealthy
+Class: Healthy
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+3
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+besttune C
+0.5
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+2
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+0.3
+besttune C
+0.1
+Class: Bile_Duct_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherHealthy
+Class: Bile_Duct_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherBile_Duct_Cancer
+besttune C
+0.1
+besttune C
+1
+Class: Bile_Duct_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherBile_Duct_Cancer
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+Class: Bile_Duct_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherBile_Duct_Cancer
+besttune C
+2
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+0.1
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.01
+besttune C
+3
+Class: Bile_Duct_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.3
+besttune C
+0.1
+besttune C
+3
+besttune C
+1
+Class: Bile_Duct_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherBile_Duct_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+0.01
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+2
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+Class: Bile_Duct_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+1
+besttune C
+0.1
+Class: Bile_Duct_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherBile_Duct_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+2
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+0.1
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+2
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.3
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.5
+besttune C
+0.5
+besttune C
+1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.01
+besttune C
+3
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.3
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+Class: Bile_Duct_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+Class: Bile_Duct_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+1
+besttune C
+3
+besttune C
+0.01
+besttune C
+3
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.01
+Class: Pancreatic_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+Class: Pancreatic_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.5
+besttune C
+2
+besttune C
+0.1
+besttune C
+3
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+Class: Pancreatic_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherPancreatic_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+1
+besttune C
+0.1
+besttune C
+2
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+Class: Pancreatic_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherPancreatic_Cancer
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+0.5
+besttune C
+0.1
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+2
+besttune C
+3
+Class: Pancreatic_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+3
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+Class: Pancreatic_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+3
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.1
+besttune C
+1
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.5
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+Class: Pancreatic_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherPancreatic_Cancer
+besttune C
+0.3
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+Class: Pancreatic_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherPancreatic_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.3
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+Class: Pancreatic_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherPancreatic_Cancer
+besttune C
+1
+besttune C
+0.01
+besttune C
+0.1
+Class: Pancreatic_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+Class: Breast_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherBreast_Cancer
+besttune C
+0.01
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+Class: Breast_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+3
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.1
+besttune C
+0.5
+Class: Breast_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherBreast_Cancer
+besttune C
+0.5
+besttune C
+0.1
+besttune C
+2
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.1
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+2
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+3
+besttune C
+0.01
+besttune C
+3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+Class: Breast_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherBreast_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune C
+0.5
+besttune C
+2
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+3
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+3
+besttune C
+0.5
+besttune C
+0.5
+Class: Breast_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+besttune C
+1
+besttune C
+0.01
+besttune C
+3
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+Class: Breast_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.3
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.1
+besttune C
+3
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+Class: Breast_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherBreast_Cancer
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+2
+Class: Breast_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune C
+1
+Class: Breast_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherBreast_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+Class: Breast_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune C
+2
+Class: Colorectal_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherColorectal_Cancer
+besttune C
+2
+besttune C
+2
+besttune C
+1
+besttune C
+2
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune C
+0.5
+besttune C
+0.01
+besttune C
+3
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+3
+besttune C
+0.3
+besttune C
+2
+besttune C
+0.01
+besttune C
+2
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+3
+besttune C
+3
+besttune C
+1
+besttune C
+0.01
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+Class: Colorectal_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune C
+2
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+3
+besttune C
+2
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune C
+2
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+Class: Colorectal_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+3
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.3
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+3
+Class: Colorectal_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+3
+besttune C
+0.01
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+besttune C
+0.01
+Class: Colorectal_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+3
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.01
+Class: Colorectal_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+Class: Colorectal_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherColorectal_Cancer
+besttune C
+2
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.1
+Class: Colorectal_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune C
+0.5
+Class: Colorectal_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherColorectal_Cancer
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.3
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.3
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.3
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+1
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+Class: Colorectal_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.1
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.5
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.3
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+0.5
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.3
+besttune C
+0.1
+besttune C
+3
+besttune C
+0.01
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune C
+0.5
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.01
+[1] "AUC calculation with pROC package == One vs. one"
+[1] "The AUC of the first CV repetition: 0.634339131467126"
+[1] "The mean AUC of all the CV repetitions: 0.625808425358007"
+[1] "Run the multiROC and plotting for all the CV repetitions"
+There were 50 or more warnings (use warnings() to see the first 50)
+New names:
+* Specificity -> Specificity...1
+* Specificity -> Specificity...2
+* Specificity -> Specificity...3
+* Specificity -> Specificity...4
+* Specificity -> Specificity...5
+* ...
+New names:
+* Sensitivity -> Sensitivity...1
+* Sensitivity -> Sensitivity...2
+* Sensitivity -> Sensitivity...3
+* Sensitivity -> Sensitivity...4
+* Sensitivity -> Sensitivity...5
+* ...
+# A tibble: 10 × 10
+   lasso.Bile_Duct_Cancer lasso.Breast_Cancer lasso.Colorectal… lasso.Gastric_c…
+                    <dbl>               <dbl>             <dbl>            <dbl>
+ 1                  0.778               0.745             0.811            0.694
+ 2                  0.787               0.752             0.841            0.724
+ 3                  0.731               0.766             0.813            0.684
+ 4                  0.779               0.759             0.789            0.699
+ 5                  0.775               0.808             0.814            0.692
+ 6                  0.725               0.770             0.719            0.719
+ 7                  0.739               0.759             0.776            0.630
+ 8                  0.649               0.775             0.804            0.740
+ 9                  0.747               0.761             0.762            0.662
+10                  0.779               0.778             0.767            0.657
+# … with 6 more variables: lasso.Healthy <dbl>, lasso.Lung_Cancer <dbl>,
+#   lasso.Ovarian_Cancer <dbl>, lasso.Pancreatic_Cancer <dbl>,
+#   lasso.macro <dbl>, lasso.micro <dbl>
+# A tibble: 6 × 3
+  Specificity Sensitivity Group           
+        <dbl>       <dbl> <fct>           
+1       1           0     Bile_Duct_Cancer
+2       0.997       0     Bile_Duct_Cancer
+3       0.995       0.004 Bile_Duct_Cancer
+4       0.993       0.004 Bile_Duct_Cancer
+5       0.990       0.008 Bile_Duct_Cancer
+6       0.988       0.016 Bile_Duct_Cancer
+null device 
+          1 
+[1] "Mean AUC over 10 repetitions of 10-fold CV: "
+ lasso.Bile_Duct_Cancer     lasso.Breast_Cancer lasso.Colorectal_Cancer 
+              0.7488643               0.7671786               0.7895563 
+   lasso.Gastric_cancer           lasso.Healthy       lasso.Lung_Cancer 
+              0.6901796               0.8643947               0.6457511 
+   lasso.Ovarian_Cancer lasso.Pancreatic_Cancer             lasso.macro 
+              0.1800000               0.3185544               0.6255548 
+            lasso.micro 
+              0.6486102 
+ [1] 0.9692671 0.9621749 0.9669031 0.9598109 0.9574468 0.9503546 0.9432624
+ [8] 0.9503546 0.9598109 0.9598109
+ [1] 0.03073286 0.03782506 0.03309693 0.04018913 0.04255319 0.04964539
+ [7] 0.05673759 0.04964539 0.04018913 0.04018913
+[1] "Mean error rate over 10 repetitions of 10-fold CV: 0.957919621749409"
+[1] "Mean accuracy over 10 repetitions of 10-fold CV: 0.042080378250591"
+[1] "### for one vs rest classifier: https://stats.stackexchange.com/questions/71700/how-to-draw-roc-curve-with-three-response-variable/110550#110550"
+[1] 0.6190422
+[1] 0.6569398 0.1546112 0.6408689 0.8678477 0.7793970 0.3078784 0.7781793
+[8] 0.7666150
+[Tue Nov 23 07:30:40 2021]
+Finished job 0.
+1 of 1 steps (100%) done

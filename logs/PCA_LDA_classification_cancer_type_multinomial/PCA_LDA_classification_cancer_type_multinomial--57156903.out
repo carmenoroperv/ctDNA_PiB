@@ -1,0 +1,499 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Tue Nov 23 07:30:48 2021]
+rule PCA_LDA_classification_cancer_type_multinomial:
+    input: data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/Cancer_type_classification/PCA_LDA_multinomial.rds, Classification_output/ROC_plots/Cancer_type/PCA_ROC_LDA_multinomial.png
+    jobid: 0
+    threads: 10
+    resources: mem_mb=300000, disk_mb=1000, tmpdir=/scratch/57156903, time=11:30:00
+
+Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpqzll254c.LDA_multinomial.R
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+Warning message:
+package ‘multiROC’ was built under R version 3.6.3 
+dummies-1.5.6 provided by Decision Patterns
+
+Warning message:
+package ‘dummies’ was built under R version 3.6.3 
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+# A tibble: 9 × 2
+  sample_type           n
+  <fct>             <int>
+1 Bile_Duct_Cancer     25
+2 Breast_Cancer        54
+3 Colorectal_Cancer    26
+4 Duodenal_Cancer       1
+5 Gastric_cancer       27
+6 Healthy             194
+7 Lung_Cancer          35
+8 Ovarian_Cancer       28
+9 Pancreatic_Cancer    34
+starting worker pid=35600 on localhost:11258 at 07:30:50.772
+starting worker pid=35624 on localhost:11258 at 07:30:51.008
+starting worker pid=35648 on localhost:11258 at 07:30:51.248
+starting worker pid=35672 on localhost:11258 at 07:30:51.485
+starting worker pid=35696 on localhost:11258 at 07:30:51.681
+starting worker pid=35720 on localhost:11258 at 07:30:51.878
+starting worker pid=35744 on localhost:11258 at 07:30:52.122
+starting worker pid=35768 on localhost:11258 at 07:30:52.323
+starting worker pid=35792 on localhost:11258 at 07:30:52.520
+starting worker pid=35816 on localhost:11258 at 07:30:52.765
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Loading required package: pkgmaker
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Loading required package: registry
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+Loading required package: foreach
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+Loading required package: foreach
+Loading required package: foreach
+Loading required package: registry
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: foreach
+Loading required package: foreach
+Loading required package: rngtools
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: foreach
+Loading required package: rngtools
+Loading required package: pkgmaker
+
+Attaching package: ‘foreach’
+
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: rngtools
+Loading required package: pkgmaker
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: registry
+Loading required package: pkgmaker
+Loading required package: registry
+Loading required package: pkgmaker
+Loading required package: pkgmaker
+Loading required package: pkgmaker
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+Loading required package: registry
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: registry
+Loading required package: foreach
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: registry
+Loading required package: registry
+Loading required package: rngtools
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: pkgmaker
+Loading required package: registry
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+
+Attaching package: ‘pkgmaker’
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+CV repetition number: 1
+CV repetition number: 6
+CV repetition number: 3
+CV repetition number: 2
+CV repetition number: 7
+CV repetition number: 8
+CV repetition number: 5
+CV repetition number: 10
+CV repetition number: 9
+CV repetition number: 4
+Error in { : task 1 failed - "invalid 'times' argument"
+Calls: cross_validation -> %dorng% -> do.call -> %dopar% -> <Anonymous>
+Execution halted
+Error in unserialize(node$con) : error reading from connection
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Execution halted
+[Tue Nov 23 07:30:55 2021]
+Error in rule PCA_LDA_classification_cancer_type_multinomial:
+    jobid: 0
+    output: Classification_output/Cancer_type_classification/PCA_LDA_multinomial.rds, Classification_output/ROC_plots/Cancer_type/PCA_ROC_LDA_multinomial.png
+
+Traceback (most recent call last):
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 593, in _callback
+    raise ex
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/concurrent/futures/thread.py", line 52, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 579, in cached_or_run
+    run_func(*args)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2460, in run_wrapper
+    raise ex
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/executors/__init__.py", line 2417, in run_wrapper
+    run(
+  File "/faststorage/project/DELFI1/Workspaces/CarmenAndAnika/snakefile_predict_and_classify_norm_trimmed", line 984, in __rule_PCA_LDA_classification_cancer_type_multinomial
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 1369, in script
+    executor.evaluate()
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 381, in evaluate
+    self.execute_script(fd.name, edit=edit)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 716, in execute_script
+    self._execute_cmd("Rscript --vanilla {fname:q}", fname=fname)
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/script.py", line 414, in _execute_cmd
+    return shell(
+  File "/home/coroperv/miniconda3/envs/ctDNA/lib/python3.9/site-packages/snakemake/shell.py", line 265, in __new__
+    raise sp.CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command 'set -euo pipefail;  Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpqzll254c.LDA_multinomial.R' returned non-zero exit status 1.
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Error in unserialize(node$con) : error reading from connection
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Execution halted
+Error in unserialize(node$con) : error reading from connection
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Execution halted
+Error in unserialize(node$con) : error reading from connection
+Calls: <Anonymous> ... doTryCatch -> recvData -> recvData.SOCKnode -> unserialize
+Execution halted

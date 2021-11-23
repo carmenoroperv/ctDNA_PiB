@@ -3,6 +3,8 @@ library(caret)
 library(pROC)
 library(xgboost)
 library(doParallel)
+library(foreach)
+library(doRNG)
 library(multiROC)
 library(dummies)
 
@@ -24,24 +26,29 @@ levels(data$sample_type)
 cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
     
     observed  <- dataset$sample_type
-    return_tibble <- tibble()
     
-    for (i in 1:k_outer_cv){ # repeated Cross-validation loop
+    cl <- makePSOCKcluster(10, outfile="")
+    registerDoParallel(cl)
+    return_tibble <- foreach(i = 1:k_outer_cv, 
+                            .inorder = TRUE,
+                            .options.RNG = 1985,
+                            .combine = "rbind",
+                            .packages = c("gbm", "caret", "tidyverse")) %dorng% { # repeated Cross-validation loop
         
         message(paste("CV repetition number: ", i, sep = ""))
         set.seed(i)
         cvfolds <- cut(seq_len(nrow(dataset)), breaks = k_inner_cv, labels = F)
         cvfolds <- sample(cvfolds)
 
-        predicted <- tibble(CV_rep = rep(i, nrow(data)),
-                    Bile_Duct_Cancer = rep(NA, nrow(data)),
-                    Breast_Cancer = rep(NA, nrow(data)),
-                    Colorectal_Cancer = rep(NA, nrow(data)),
-                    Gastric_cancer = rep(NA, nrow(data)),
-                    Healthy = rep(NA, nrow(data)),
-                    Lung_Cancer = rep(NA, nrow(data)),
-                    Ovarian_Cancer = rep(NA, nrow(data)),
-                    Pancreatic_Cancer = rep(NA, nrow(data)))  
+        predicted <- tibble(CV_rep = rep(i, nrow(dataset)),
+                     Bile_Duct_Cancer = rep(NA, nrow(dataset)),
+                     Breast_Cancer = rep(NA, nrow(dataset)),
+                     Colorectal_Cancer = rep(NA, nrow(dataset)),
+                     Gastric_cancer = rep(NA, nrow(dataset)),
+                     Healthy = rep(NA, nrow(dataset)),
+                     Lung_Cancer = rep(NA, nrow(dataset)),
+                     Ovarian_Cancer = rep(NA, nrow(dataset)),
+                     Pancreatic_Cancer = rep(NA, nrow(dataset)))
 
         for (n in 1:k_inner_cv){
             
@@ -58,76 +65,61 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
             ################# Nested cross validation #######################
             set.seed(0)
             seeds <- vector(mode = "list", length = 11)
-            for(i in 1:10) seeds[[i]]<- sample.int(n=1000, 100)
+            for(i in 1:10) seeds[[i]]<- sample.int(n=1000, 18)
             #for the last model
             seeds[[11]]<-sample.int(1000, 1)
 
             trControl_gbm <- trainControl(method = "repeatedcv", 
-                                      seeds = seeds,
-                                      number = 10, 
-                                      repeats = 1)
-
+                                          seeds = seeds,
+                                          number = 10, 
+                                          repeats = 1, 
+                                          allowParallel=TRUE)
+    
             #gbmGrid <- expand.grid(interaction.depth = c(1, 2, 3),
             #                       n.trees = seq(200, 800, 200),
             #                       shrinkage = c(0.1, 0.2, 0.01),
             #                       n.minobsinnode = c(10))
             
-            cl <- makePSOCKcluster(10)
-            registerDoParallel(cl)
 
             fit1 <- train(x = traindata, 
                          y = trainlabels, 
-                         method = "xgbTree",
+                         method = "gbm",
                          tuneLength = 5,
                          trControl = trControl_gbm, 
-                         verbose=F, 
-                         allowParallel=TRUE)
-            
-            stopCluster(cl)
-            registerDoSEQ()
+                         verbose=F)
 
-            message("besttune nrounds")
-            message(fit1$bestTune$nrounds)
-            message("besttune max_depth")
-            message(fit1$bestTune$max_depth)
-            message("besttune eta")
-            message(fit1$bestTune$eta)
-            message("besttune gamma")
-            message(fit1$bestTune$gamma)
-            message("besttune colsample_bytree")
-            message(fit1$bestTune$colsample_bytree)
-            message("besttune min_child_weight")
-            message(fit1$bestTune$min_child_weight)
-            message("besttune subsample")
-            message(fit1$bestTune$subsample)
+            message("besttune n.trees")
+            message(fit1$bestTune$n.trees)
+            message("besttune interaction.depth")
+            message(fit1$bestTune$interaction.depth)
+            message("besttune shrinkage")
+            message(fit1$bestTune$shrinkage)
+            message("besttune n.minobsinnode")
+            message(fit1$bestTune$n.minobsinnode)
             #################################################################
 
             fitControl <- trainControl()
             fit2 <- train(x = traindata, 
-                         y = trainlabels,
-                         method = "xgbTree", 
-                         trControl = fitControl,
-                         verbose = FALSE,
-                         tuneGrid = data.frame(nrounds = fit1$bestTune$nrounds,
-                                               max_depth = fit1$bestTune$max_depth,
-                                               eta = fit1$bestTune$eta,
-                                               gamma = fit1$bestTune$gamma,
-                                               colsample_bytree = fit1$bestTune$colsample_bytree,
-                                               min_child_weight = fit1$bestTune$min_child_weight,
-                                               subsample = fit1$bestTune$subsample))
-
+                          y = trainlabels,
+                          method = "gbm", 
+                          trControl = fitControl,
+                          verbose = FALSE,
+                          tuneGrid = data.frame(n.trees = fit1$bestTune$n.trees,
+                                                interaction.depth = fit1$bestTune$interaction.depth,
+                                                shrinkage = fit1$bestTune$shrinkage,
+                                                n.minobsinnode = fit1$bestTune$n.minobsinnode))
 
             tmp <- predict(fit2, newdata = testdata, type = "prob")
             tmp <- as.data.frame(tmp, row.names = NULL)
             predicted[rows, 2:9] <- as.data.frame(tmp)
-
-
         }
 
-        current_round_tibble <- predicted
-        return_tibble <- rbind(return_tibble, current_round_tibble)
+        return(predicted)
         } # end of outer cv loop
-
+    
+    stopCluster(cl)
+    registerDoSEQ()
+    
     add_observed <- tibble(observed = rep(observed, k_outer_cv))
     return_tibble <- cbind(add_observed, return_tibble)
                         

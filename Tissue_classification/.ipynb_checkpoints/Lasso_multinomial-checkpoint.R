@@ -32,9 +32,8 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
     y <- data %>% dplyr::select(sample_type) %>%  as.matrix()
     X <- data %>% dplyr::select(-sample_type) %>% as.matrix() 
     observed <- y
-    return_tibble <- tibble()
     
-    cl <- makePSOCKcluster(5, outfile="")
+    cl <- makePSOCKcluster(10, outfile="")
     registerDoParallel(cl)
     return_tibble <- foreach(i = 1:k_outer_cv, 
                             .inorder = TRUE,
@@ -84,8 +83,6 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
                                   family = "multinomial")
 
             lambda_cv <- lasso_cv$lambda.min
-            
-            
             
             message("best_alpha")
             message(best_alpha)

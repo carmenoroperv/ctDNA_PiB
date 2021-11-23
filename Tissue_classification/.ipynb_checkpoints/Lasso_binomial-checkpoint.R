@@ -10,6 +10,7 @@ library(rlist)
 library(doParallel)
 library(foreach)
 library(doRNG)
+library(rngtools)
 
 ATAC_pred <- readRDS(snakemake@input[["input_predictions"]])
 
@@ -33,28 +34,28 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
     
     X <- data %>% dplyr::select(-sample_type) %>% as.matrix() 
     observed <- y_all
-    return_tibble <- tibble(observed = rep(data$sample_type, k_outer_cv), 
-                            CV_rep = rep(1:k_outer_cv, each=nrow(data)))
+    
+    rng <- RNGseq(length(unique(y_all)) * k_outer_cv, 1234)
     
     cl <- makePSOCKcluster(8, outfile="")
     registerDoParallel(cl)
     return_tibble <- foreach(class = 1:length(unique(y_all)), 
                             .inorder = TRUE,
-                            .options.RNG = 1985,
                             .combine = "cbind",
-                            .packages = c("splitTools", "glmnetUtils", "tidyverse")) %dorng% {
-        
-        get_cvm <- function(model) {
-            index <- match(model$lambda.min, model$lambda)
-            model$cvm[index]
-        }
-        message(paste("Class: ", classes[class], sep = ""))
-        
-        y <- ifelse(y_all==classes[class], 1, 0)
-        message(y)
-        return_vector_for_class <- c()
-        
-        for (i in 1:k_outer_cv){ # repeated Cross-validation loop
+                            .packages = c("splitTools", "glmnetUtils", "tidyverse")) %:% foreach(i = 1:k_outer_cv, r=rng[(class-1)*k_outer_cv + 1:k_outer_cv],
+                                                                                                 .inorder = TRUE,
+                                                                                                 .combine = "rbind",
+                                                                                                 .packages = c("splitTools", "glmnetUtils", "tidyverse")) %dopar% {
+            
+            rngtools::setRNG(r)
+            message(paste("Class: ", classes[class], sep = ""))
+            y <- ifelse(y_all==classes[class], 1, 0)
+            
+            get_cvm <- function(model) {
+                index <- match(model$lambda.min, model$lambda)
+                model$cvm[index]
+            }
+            
             message(paste("CV repetition number: ", i, sep = ""))
             set.seed(i)
             folds <- create_folds(y, k = k_inner_cv)
@@ -96,13 +97,14 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
                 tmp       <- predict(fit, s=lambda_cv, testdata, type = "response")
                 predicted[-fold] <- tmp
                 }
-
-            return_vector_for_class <- c(return_vector_for_class, predicted)
+            predicted = tibble("{classes[class]}_pred" := predicted)
+            return(predicted)
         }  # end of outer cv loop  
-        return(tibble("{classes[class]}_pred" := return_vector_for_class))
-    } 
+ 
     stopCluster(cl)
     registerDoSEQ()
+    return_tibble <- cbind(tibble(observed = rep(data$sample_type, k_outer_cv), 
+                                  CV_rep = rep(1:k_outer_cv, each=nrow(data))), return_tibble)
     
     return(return_tibble)
 }

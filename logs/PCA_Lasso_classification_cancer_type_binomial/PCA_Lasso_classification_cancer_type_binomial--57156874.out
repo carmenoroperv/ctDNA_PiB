@@ -1,0 +1,4548 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 20
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Tue Nov 23 05:53:22 2021]
+rule PCA_Lasso_classification_cancer_type_binomial:
+    input: data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/Cancer_type_classification/PCA_Lasso_binomial.rds, Classification_output/ROC_plots/Cancer_type/PCA_ROC_lasso_binomial.png
+    jobid: 0
+    threads: 20
+    resources: mem_mb=300000, disk_mb=1000, tmpdir=/scratch/57156874, time=11:30:00
+
+Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmptg8qr0xm.Lasso_binomial.R
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loaded glmnet 2.0-16
+
+
+Attaching package: ‘glmnet’
+
+The following object is masked from ‘package:pROC’:
+
+    auc
+
+
+Attaching package: ‘glmnetUtils’
+
+The following objects are masked from ‘package:glmnet’:
+
+    cv.glmnet, glmnet
+
+Warning message:
+package ‘multiROC’ was built under R version 3.6.3 
+dummies-1.5.6 provided by Decision Patterns
+
+Warning message:
+package ‘dummies’ was built under R version 3.6.3 
+Loading required package: gplots
+
+Attaching package: ‘gplots’
+
+The following object is masked from ‘package:stats’:
+
+    lowess
+
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+# A tibble: 9 × 2
+  sample_type           n
+  <fct>             <int>
+1 Bile_Duct_Cancer     25
+2 Breast_Cancer        54
+3 Colorectal_Cancer    26
+4 Duodenal_Cancer       1
+5 Gastric_cancer       27
+6 Healthy             194
+7 Lung_Cancer          35
+8 Ovarian_Cancer       28
+9 Pancreatic_Cancer    34
+# A tibble: 8 × 2
+  sample_type           n
+  <fct>             <int>
+1 Bile_Duct_Cancer     25
+2 Breast_Cancer        54
+3 Colorectal_Cancer    26
+4 Gastric_cancer       27
+5 Healthy             194
+6 Lung_Cancer          35
+7 Ovarian_Cancer       28
+8 Pancreatic_Cancer    34
+starting worker pid=28942 on localhost:11526 at 05:53:26.171
+starting worker pid=28976 on localhost:11526 at 05:53:26.416
+starting worker pid=29011 on localhost:11526 at 05:53:26.624
+starting worker pid=29045 on localhost:11526 at 05:53:26.839
+starting worker pid=29079 on localhost:11526 at 05:53:27.058
+starting worker pid=29113 on localhost:11526 at 05:53:27.265
+starting worker pid=29147 on localhost:11526 at 05:53:27.512
+starting worker pid=29181 on localhost:11526 at 05:53:27.756
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Class: Gastric_cancer
+CV repetition number: 5
+Class: Gastric_cancer
+Class: Gastric_cancer
+CV repetition number: 8
+CV repetition number: 1
+Class: Gastric_cancer
+Class: Gastric_cancer
+Class: Gastric_cancer
+CV repetition number: 4
+CV repetition number: 3
+Class: Gastric_cancer
+CV repetition number: 7
+Class: Gastric_cancer
+CV repetition number: 6
+CV repetition number: 2
+CV inner loop, CV rep: 5
+CV inner loop, CV rep: 8
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 4
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 2
+best_alpha
+1
+best_lambda
+0.00638928465281668
+best_alpha
+0
+best_lambda
+0.0512226729954478
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0367487659372099
+best_alpha
+0
+best_lambda
+0.0394442259204513
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0423744056317166
+best_alpha
+0
+best_lambda
+0.0541952904172289
+best_alpha
+0.001
+best_lambda
+0.0568111690649226
+CV inner loop, CV rep: 5
+CV inner loop, CV rep: 8
+CV inner loop, CV rep: 6
+best_alpha
+1
+best_lambda
+0.00910152376615484
+best_alpha
+0
+best_lambda
+0.0408406605452091
+best_alpha
+0
+best_lambda
+0.05463188596912
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0424944517955121
+best_alpha
+0.064
+best_lambda
+0.0443864628756067
+best_alpha
+0
+best_lambda
+0.0410018927654276
+CV inner loop, CV rep: 5
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 2
+best_alpha
+0.512
+best_lambda
+0.0140952685958105
+CV inner loop, CV rep: 8
+best_alpha
+1
+best_lambda
+0.00776585132754272
+best_alpha
+0
+best_lambda
+0.0366659251288091
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 7
+best_alpha
+0.008
+best_lambda
+0.0460591325749104
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0497521920943041
+best_alpha
+0.064
+best_lambda
+0.0287603323379248
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0447436873595656
+best_alpha
+0
+best_lambda
+0.049441878542681
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.061474294971574
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0387496029034341
+best_alpha
+0
+best_lambda
+0.0446946945639084
+best_alpha
+0
+best_lambda
+0.0324985380453967
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 4
+CV inner loop, CV rep: 3
+best_alpha
+0.064
+best_lambda
+0.0373849123549327
+best_alpha
+1
+best_lambda
+0.0109487499308691
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 5
+best_alpha
+0.064
+best_lambda
+0.0299524664022844
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0467717158381249
+best_alpha
+0.008
+best_lambda
+0.0456703946610385
+best_alpha
+0
+best_lambda
+0.0327075528880102
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 2
+best_alpha
+0.729
+best_lambda
+0.00877107235913717
+CV inner loop, CV rep: 7
+best_alpha
+0.064
+best_lambda
+0.0324201755204327
+CV inner loop, CV rep: 6
+best_alpha
+0.064
+best_lambda
+0.0540624368488672
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0577836516117499
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.0110193558313229
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0711543283953046
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0448666556101777
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0374472710928168
+best_alpha
+1
+best_lambda
+0.00917571387545728
+CV inner loop, CV rep: 1
+best_alpha
+0.001
+best_lambda
+0.028136879116261
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0433761561903413
+best_alpha
+0
+best_lambda
+0.0467800924973052
+CV inner loop, CV rep: 7
+best_alpha
+1
+best_lambda
+0.00649064500175099
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.00960965034282303
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0510351010101591
+best_alpha
+0
+best_lambda
+0.0588294700192081
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0401172079682626
+best_alpha
+0.001
+best_lambda
+0.0422183785272816
+best_alpha
+0.729
+best_lambda
+0.00952628924304742
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 5
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0427192856275406
+CV inner loop, CV rep: 7
+best_alpha
+0.343
+best_lambda
+0.0140150325126947
+best_alpha
+0
+best_lambda
+0.0459087935644317
+CV inner loop, CV rep: 4
+CV inner loop, CV rep: 8
+best_alpha
+1
+best_lambda
+0.0087406834232118
+best_alpha
+0.027
+best_lambda
+0.0414682490889936
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 5
+best_alpha
+0.027
+best_lambda
+0.0395388557680025
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0285946722483549
+CV inner loop, CV rep: 1
+best_alpha
+0.125
+best_lambda
+0.03252802877313
+CV inner loop, CV rep: 2
+best_alpha
+1
+best_lambda
+0.0112248207828058
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0403586652900693
+CV inner loop, CV rep: 5
+best_alpha
+1
+best_lambda
+0.00882644387939713
+CV inner loop, CV rep: 3
+best_alpha
+0.027
+best_lambda
+0.0562560847427784
+CV inner loop, CV rep: 8
+best_alpha
+0.729
+best_lambda
+0.00694624799417971
+CV inner loop, CV rep: 7
+best_alpha
+0.729
+best_lambda
+0.00923607025344345
+Class: Gastric_cancer
+CV repetition number: 9
+CV inner loop, CV rep: 9
+best_alpha
+1
+best_lambda
+0.00699450056256377
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0343069625252956
+best_alpha
+0
+best_lambda
+0.0456420900042508
+best_alpha
+1
+best_lambda
+0.00851094584336445
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0648699078220113
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0487626564107131
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 8
+best_alpha
+1
+best_lambda
+0.0100358069574654
+CV inner loop, CV rep: 6
+best_alpha
+0.064
+best_lambda
+0.0343095870075889
+CV inner loop, CV rep: 9
+best_alpha
+1
+best_lambda
+0.00810134815316202
+Class: Gastric_cancer
+CV repetition number: 10
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0481908462913636
+best_alpha
+0
+best_lambda
+0.0526474324643762
+Class: Ovarian_Cancer
+CV repetition number: 1
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0605515981313669
+Class: Ovarian_Cancer
+CV repetition number: 2
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0484482506738416
+Class: Ovarian_Cancer
+CV repetition number: 3
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.00753902769942214
+best_alpha
+0
+best_lambda
+0.0335816144571216
+Class: Ovarian_Cancer
+CV repetition number: 4
+CV inner loop, CV rep: 4
+CV inner loop, CV rep: 1
+best_alpha
+1
+best_lambda
+0.00962772753969837
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0469869735475585
+CV inner loop, CV rep: 3
+best_alpha
+0.064
+best_lambda
+0.0626097244909629
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.109992221559772
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0411912015094938
+best_alpha
+1
+best_lambda
+0.00740801919349393
+Class: Ovarian_Cancer
+CV repetition number: 5
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0345264621456919
+best_alpha
+0
+best_lambda
+0.0873579686104368
+CV inner loop, CV rep: 2
+Class: Ovarian_Cancer
+CV repetition number: 6
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0438589465021598
+best_alpha
+0.008
+best_lambda
+0.0828970088650099
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.107652636988986
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0995492890306574
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0828104445070436
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0927070312153907
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0984505968104417
+CV inner loop, CV rep: 5
+best_alpha
+0.027
+best_lambda
+0.0447667766016998
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0787348910863265
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.106074159159551
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.103998567840884
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.051293499446635
+best_alpha
+0
+best_lambda
+0.136915848750632
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 9
+best_alpha
+0.001
+best_lambda
+0.0853581682095952
+CV inner loop, CV rep: 6
+best_alpha
+0.008
+best_lambda
+0.110463106181306
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0732350529680341
+CV inner loop, CV rep: 1
+best_alpha
+0.001
+best_lambda
+0.0554915876623948
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0959494529620571
+CV inner loop, CV rep: 3
+best_alpha
+0.027
+best_lambda
+0.0766764029993628
+CV inner loop, CV rep: 4
+best_alpha
+1
+best_lambda
+0.00619019490453462
+best_alpha
+0
+best_lambda
+0.0938653546893275
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 9
+best_alpha
+0.008
+best_lambda
+0.053829050524687
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.103316604344662
+CV inner loop, CV rep: 1
+best_alpha
+0.008
+best_lambda
+0.0647354293220124
+CV inner loop, CV rep: 6
+best_alpha
+0.125
+best_lambda
+0.0181525923632824
+CV inner loop, CV rep: 4
+best_alpha
+0.008
+best_lambda
+0.0901842372286542
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.00988952181112173
+CV inner loop, CV rep: 10
+best_alpha
+0.008
+best_lambda
+0.0816109964800164
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0874865289586068
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0796322192697085
+CV inner loop, CV rep: 2
+best_alpha
+0.008
+best_lambda
+0.0486471777442521
+best_alpha
+0.027
+best_lambda
+0.0781450362495935
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.111834440284949
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0656109295739627
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0536697296704529
+CV inner loop, CV rep: 10
+best_alpha
+0.125
+best_lambda
+0.0262465040204782
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0946294352452008
+CV inner loop, CV rep: 4
+best_alpha
+0.216
+best_lambda
+0.0415206988107402
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0883555146269087
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0499516894142422
+best_alpha
+0
+best_lambda
+0.0367155276464414
+CV inner loop, CV rep: 9
+best_alpha
+0.001
+best_lambda
+0.0889362855736854
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0843625441695534
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 10
+best_alpha
+0.008
+best_lambda
+0.0920171048407634
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0911902883635554
+CV inner loop, CV rep: 6
+best_alpha
+0.125
+best_lambda
+0.0204798105413591
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.11105720228314
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.10678179699055
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0812846235327645
+CV inner loop, CV rep: 5
+best_alpha
+0.027
+best_lambda
+0.0360460869351359
+best_alpha
+0.216
+best_lambda
+0.0195046861864506
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.104149342564829
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 10
+best_alpha
+0.008
+best_lambda
+0.0374685998407202
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0777649824756752
+CV inner loop, CV rep: 2
+best_alpha
+0.064
+best_lambda
+0.0520049034299379
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0532124388837867
+Class: Ovarian_Cancer
+CV repetition number: 7
+CV inner loop, CV rep: 7
+best_alpha
+0.064
+best_lambda
+0.0611202197601982
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0655007805011564
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0983780096368667
+CV inner loop, CV rep: 6
+best_alpha
+0.008
+best_lambda
+0.0386019719334684
+best_alpha
+0.008
+best_lambda
+0.0875802091947354
+CV inner loop, CV rep: 5
+best_alpha
+1
+best_lambda
+0.0125521933518766
+Class: Ovarian_Cancer
+CV repetition number: 8
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0551007844694305
+CV inner loop, CV rep: 10
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0966199009477332
+CV inner loop, CV rep: 7
+best_alpha
+0.064
+best_lambda
+0.0673432401015482
+CV inner loop, CV rep: 2
+best_alpha
+0.001
+best_lambda
+0.0580578075078996
+Class: Ovarian_Cancer
+CV repetition number: 9
+CV inner loop, CV rep: 9
+best_alpha
+0.125
+best_lambda
+0.0349294149154665
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0489123150613035
+best_alpha
+1
+best_lambda
+0.0173214756939775
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.100315404052494
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.11560512317957
+CV inner loop, CV rep: 7
+Class: Ovarian_Cancer
+CV repetition number: 10
+CV inner loop, CV rep: 10
+best_alpha
+0.008
+best_lambda
+0.0666949187874387
+Class: Lung_Cancer
+CV repetition number: 1
+CV inner loop, CV rep: 1
+best_alpha
+0.729
+best_lambda
+0.00946566700108736
+best_alpha
+0.001
+best_lambda
+0.100262642678041
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0804552357634043
+CV inner loop, CV rep: 9
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0519311679100346
+CV inner loop, CV rep: 1
+best_alpha
+0.027
+best_lambda
+0.069956674580224
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.101610737457095
+best_alpha
+0
+best_lambda
+0.0492295457813377
+Class: Lung_Cancer
+CV repetition number: 2
+CV inner loop, CV rep: 2
+Class: Lung_Cancer
+CV repetition number: 3
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.101199544501338
+CV inner loop, CV rep: 10
+best_alpha
+0.008
+best_lambda
+0.0850444070444656
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0984632252994256
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0640062124062227
+CV inner loop, CV rep: 7
+best_alpha
+0.001
+best_lambda
+0.0937339961823524
+CV inner loop, CV rep: 9
+best_alpha
+0.343
+best_lambda
+0.0133448026810398
+CV inner loop, CV rep: 2
+best_alpha
+1
+best_lambda
+0.026243403675105
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.0177845329093376
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.040985374913208
+Class: Lung_Cancer
+CV repetition number: 4
+CV inner loop, CV rep: 4
+best_alpha
+0.008
+best_lambda
+0.092980693026404
+CV inner loop, CV rep: 10
+best_alpha
+1
+best_lambda
+0.00491955271840119
+CV inner loop, CV rep: 3
+best_alpha
+0.008
+best_lambda
+0.090986372749179
+CV inner loop, CV rep: 8
+best_alpha
+0.125
+best_lambda
+0.0369349185354032
+best_alpha
+1
+best_lambda
+0.0300403878145526
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 2
+best_alpha
+0.027
+best_lambda
+0.0756301989173535
+CV inner loop, CV rep: 7
+best_alpha
+0.064
+best_lambda
+0.0620260071446849
+CV inner loop, CV rep: 9
+best_alpha
+0.125
+best_lambda
+0.0309956723805288
+CV inner loop, CV rep: 4
+best_alpha
+0.512
+best_lambda
+0.00674006180270624
+CV inner loop, CV rep: 2
+best_alpha
+0.027
+best_lambda
+0.0172451290753389
+best_alpha
+0.064
+best_lambda
+0.0640529534867053
+CV inner loop, CV rep: 10
+CV inner loop, CV rep: 1
+best_alpha
+0.064
+best_lambda
+0.0396815961419169
+best_alpha
+0.064
+best_lambda
+0.0299611725948661
+CV inner loop, CV rep: 8
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0634447139484454
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0798967100723502
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0486249630920196
+CV inner loop, CV rep: 1
+best_alpha
+0.064
+best_lambda
+0.0231340033667144
+best_alpha
+0.216
+best_lambda
+0.0137130329071135
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 3
+best_alpha
+0.027
+best_lambda
+0.0436217390702384
+CV inner loop, CV rep: 10
+best_alpha
+0.512
+best_lambda
+0.0163228067302779
+CV inner loop, CV rep: 1
+best_alpha
+0.001
+best_lambda
+0.0421232264726195
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.0390738796191247
+CV inner loop, CV rep: 4
+best_alpha
+0.027
+best_lambda
+0.0810406589105782
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0548031342689487
+CV inner loop, CV rep: 2
+best_alpha
+0.008
+best_lambda
+0.0418219399228134
+CV inner loop, CV rep: 9
+best_alpha
+0.008
+best_lambda
+0.0473520585413894
+CV inner loop, CV rep: 1
+best_alpha
+0.064
+best_lambda
+0.0288151262099045
+CV inner loop, CV rep: 7
+best_alpha
+1
+best_lambda
+0.0471973182208647
+CV inner loop, CV rep: 4
+best_alpha
+0.216
+best_lambda
+0.0161739513717891
+CV inner loop, CV rep: 2
+best_alpha
+0.343
+best_lambda
+0.0123291362586496
+CV inner loop, CV rep: 3
+best_alpha
+0.008
+best_lambda
+0.0920334287110598
+CV inner loop, CV rep: 10
+best_alpha
+0.125
+best_lambda
+0.0717861277980368
+CV inner loop, CV rep: 4
+best_alpha
+0.512
+best_lambda
+0.0103503461710881
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.10783405041104
+CV inner loop, CV rep: 8
+best_alpha
+0.027
+best_lambda
+0.0792593366030852
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0522891996156965
+CV inner loop, CV rep: 2
+best_alpha
+0.216
+best_lambda
+0.0179303282641609
+best_alpha
+0
+best_lambda
+0.0352078090174434
+CV inner loop, CV rep: 4
+Class: Lung_Cancer
+CV repetition number: 5
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0786939151643496
+CV inner loop, CV rep: 7
+best_alpha
+0.064
+best_lambda
+0.0304146263160393
+best_alpha
+0.343
+best_lambda
+0.0254637088697841
+best_alpha
+0
+best_lambda
+0.089489296221974
+CV inner loop, CV rep: 10
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 2
+best_alpha
+0.729
+best_lambda
+0.0179630815062653
+CV inner loop, CV rep: 5
+best_alpha
+0.064
+best_lambda
+0.03716842612761
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0671753072093548
+CV inner loop, CV rep: 9
+best_alpha
+0.027
+best_lambda
+0.080468452111747
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.096131884597247
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0279824531967431
+CV inner loop, CV rep: 5
+best_alpha
+0.125
+best_lambda
+0.0122597678952114
+best_alpha
+0.001
+best_lambda
+0.0824380102315664
+CV inner loop, CV rep: 10
+best_alpha
+0.343
+best_lambda
+0.0116938564092554
+Class: Lung_Cancer
+CV repetition number: 6
+CV inner loop, CV rep: 6
+best_alpha
+0.001
+best_lambda
+0.0426735091955593
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 4
+best_alpha
+0.027
+best_lambda
+0.0184072194353355
+best_alpha
+0
+best_lambda
+0.105373459462451
+CV inner loop, CV rep: 9
+CV inner loop, CV rep: 5
+best_alpha
+0.343
+best_lambda
+0.0190822675100286
+best_alpha
+0.125
+best_lambda
+0.0156209784739814
+best_alpha
+0
+best_lambda
+0.0811911611624345
+CV inner loop, CV rep: 8
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.0390278314606027
+CV inner loop, CV rep: 4
+best_alpha
+0.027
+best_lambda
+0.0712957458211278
+CV inner loop, CV rep: 7
+best_alpha
+0.343
+best_lambda
+0.0133853311777076
+Class: Lung_Cancer
+CV repetition number: 7
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 5
+best_alpha
+0.729
+best_lambda
+0.0448177802359303
+CV inner loop, CV rep: 4
+best_alpha
+0.729
+best_lambda
+0.00539231931012801
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0952614142622929
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0785606180861711
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0520465814278133
+best_alpha
+0.027
+best_lambda
+0.0898982334989182
+CV inner loop, CV rep: 9
+best_alpha
+0.343
+best_lambda
+0.0180156625184846
+best_alpha
+1
+best_lambda
+0.0113736817325642
+Class: Lung_Cancer
+CV repetition number: 8
+CV inner loop, CV rep: 8
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0728932659184817
+Class: Lung_Cancer
+CV repetition number: 9
+CV inner loop, CV rep: 9
+best_alpha
+0.343
+best_lambda
+0.0184913834651288
+CV inner loop, CV rep: 6
+best_alpha
+0.125
+best_lambda
+0.0757436159408876
+CV inner loop, CV rep: 7
+best_alpha
+0.125
+best_lambda
+0.02570706958387
+best_alpha
+0
+best_lambda
+0.0373596611989338
+CV inner loop, CV rep: 9
+best_alpha
+0.027
+best_lambda
+0.0720250324668063
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0512334775855869
+CV inner loop, CV rep: 10
+CV inner loop, CV rep: 5
+best_alpha
+1
+best_lambda
+0.0100510163753933
+best_alpha
+0.027
+best_lambda
+0.0766382375307622
+Class: Lung_Cancer
+CV repetition number: 10
+CV inner loop, CV rep: 10
+CV inner loop, CV rep: 8
+best_alpha
+0.125
+best_lambda
+0.0242917245122427
+best_alpha
+0.512
+best_lambda
+0.00638335570790818
+best_alpha
+0.343
+best_lambda
+0.0176169223902117
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 7
+best_alpha
+0.216
+best_lambda
+0.019114478801879
+CV inner loop, CV rep: 9
+best_alpha
+0.008
+best_lambda
+0.0163224126553966
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0868773385509948
+Class: Healthy
+CV repetition number: 1
+CV inner loop, CV rep: 1
+best_alpha
+0.027
+best_lambda
+0.0183613936922342
+CV inner loop, CV rep: 10
+CV inner loop, CV rep: 8
+best_alpha
+1
+best_lambda
+0.0471148199001187
+CV inner loop, CV rep: 7
+best_alpha
+0.064
+best_lambda
+0.0418619224348721
+CV inner loop, CV rep: 6
+best_alpha
+0.729
+best_lambda
+0.00457577698535639
+CV inner loop, CV rep: 1
+best_alpha
+0.001
+best_lambda
+0.037061997104343
+best_alpha
+0
+best_lambda
+0.0582898312669813
+CV inner loop, CV rep: 5
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0965966134404148
+Class: Healthy
+CV repetition number: 2
+CV inner loop, CV rep: 2
+best_alpha
+0.027
+best_lambda
+0.0366063483741647
+best_alpha
+0.729
+best_lambda
+0.00385174833609099
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 10
+best_alpha
+0.216
+best_lambda
+0.0107507255786059
+CV inner loop, CV rep: 8
+best_alpha
+1
+best_lambda
+0.0079597294274001
+CV inner loop, CV rep: 2
+best_alpha
+0.216
+best_lambda
+0.0145590202993262
+best_alpha
+0.729
+best_lambda
+0.00499856110381959
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 7
+best_alpha
+0.216
+best_lambda
+0.0384923310612298
+CV inner loop, CV rep: 5
+best_alpha
+0.512
+best_lambda
+0.00343647561536534
+CV inner loop, CV rep: 2
+best_alpha
+0.125
+best_lambda
+0.051975024365905
+best_alpha
+0.729
+best_lambda
+0.00466112562215756
+CV inner loop, CV rep: 1
+best_alpha
+0.008
+best_lambda
+0.0369617760992105
+CV inner loop, CV rep: 10
+best_alpha
+0.125
+best_lambda
+0.0222254532305486
+best_alpha
+1
+best_lambda
+0.0209408780405981
+CV inner loop, CV rep: 9
+CV inner loop, CV rep: 6
+best_alpha
+0.729
+best_lambda
+0.0029647503137915
+CV inner loop, CV rep: 2
+best_alpha
+1
+best_lambda
+0.00430635538594237
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 8
+best_alpha
+1
+best_lambda
+0.00385061357893777
+CV inner loop, CV rep: 1
+best_alpha
+0.512
+best_lambda
+0.00465211810684142
+CV inner loop, CV rep: 2
+best_alpha
+0.216
+best_lambda
+0.012159111983221
+best_alpha
+0.125
+best_lambda
+0.0255902583728242
+CV inner loop, CV rep: 7
+best_alpha
+1
+best_lambda
+0.00612978415231235
+CV inner loop, CV rep: 1
+best_alpha
+0.125
+best_lambda
+0.0203983429570817
+best_alpha
+0.216
+best_lambda
+0.200505886980445
+CV inner loop, CV rep: 8
+Class: Healthy
+CV repetition number: 3
+CV inner loop, CV rep: 3
+best_alpha
+0.512
+best_lambda
+0.00395422469939058
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 6
+best_alpha
+1
+best_lambda
+0.00382049756249839
+best_alpha
+1
+best_lambda
+0.00766940861907944
+CV inner loop, CV rep: 2
+best_alpha
+0.729
+best_lambda
+0.00369652783031775
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 1
+best_alpha
+0.216
+best_lambda
+0.014536162004787
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0606522051056037
+CV inner loop, CV rep: 6
+best_alpha
+0.729
+best_lambda
+0.00366518703713251
+CV inner loop, CV rep: 2
+best_alpha
+1
+best_lambda
+0.00318504873533023
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.00387347782896882
+CV inner loop, CV rep: 1
+best_alpha
+0.512
+best_lambda
+0.0319467229285661
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0448469933067383
+CV inner loop, CV rep: 7
+best_alpha
+0.125
+best_lambda
+0.0384274600181284
+CV inner loop, CV rep: 10
+best_alpha
+1
+best_lambda
+0.00399975252617397
+CV inner loop, CV rep: 3
+best_alpha
+0.343
+best_lambda
+0.0116855187210661
+Class: Healthy
+CV repetition number: 4
+CV inner loop, CV rep: 4
+best_alpha
+0.729
+best_lambda
+0.00340213045705333
+CV inner loop, CV rep: 2
+best_alpha
+0.216
+best_lambda
+0.0179731111749305
+best_alpha
+0
+best_lambda
+0.0531744075667503
+CV inner loop, CV rep: 8
+best_alpha
+0.008
+best_lambda
+0.0210380021337907
+best_alpha
+0.729
+best_lambda
+0.00256653973586795
+CV inner loop, CV rep: 3
+Class: Healthy
+CV repetition number: 5
+CV inner loop, CV rep: 5
+best_alpha
+1
+best_lambda
+0.0062135115575553
+CV inner loop, CV rep: 4
+best_alpha
+0.512
+best_lambda
+0.00379035970331535
+CV inner loop, CV rep: 2
+best_alpha
+0.064
+best_lambda
+0.032822572583781
+best_alpha
+0.216
+best_lambda
+0.0459843189072792
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 9
+CV inner loop, CV rep: 10
+best_alpha
+1
+best_lambda
+0.00765983448360382
+CV inner loop, CV rep: 5
+best_alpha
+0.512
+best_lambda
+0.00716418020888258
+CV inner loop, CV rep: 3
+best_alpha
+0.729
+best_lambda
+0.00415122040361287
+best_alpha
+0.064
+best_lambda
+0.0527475343477963
+CV inner loop, CV rep: 8
+Class: Healthy
+CV repetition number: 6
+CV inner loop, CV rep: 6
+best_alpha
+0.216
+best_lambda
+0.0134835306562941
+CV inner loop, CV rep: 4
+best_alpha
+0.343
+best_lambda
+0.00760160360414103
+CV inner loop, CV rep: 3
+best_alpha
+0.729
+best_lambda
+0.00310053132999542
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.035892907418796
+best_alpha
+0.027
+best_lambda
+0.030921643072049
+best_alpha
+0.512
+best_lambda
+0.0062775098503295
+CV inner loop, CV rep: 6
+best_alpha
+1
+best_lambda
+0.010136252919701
+CV inner loop, CV rep: 8
+CV inner loop, CV rep: 10
+best_alpha
+1
+best_lambda
+0.00420989436390776
+best_alpha
+1
+best_lambda
+0.00391289669519379
+CV inner loop, CV rep: 5
+best_alpha
+0.343
+best_lambda
+0.010873718274811
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.00404778611110203
+CV inner loop, CV rep: 4
+best_alpha
+0.729
+best_lambda
+0.00319297383392696
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 9
+best_alpha
+0.729
+best_lambda
+0.00465405701342316
+best_alpha
+0.512
+best_lambda
+0.00400180920595713
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.00421603391002048
+CV inner loop, CV rep: 5
+CV inner loop, CV rep: 4
+best_alpha
+0.512
+best_lambda
+0.00331437372114274
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0273853963837721
+CV inner loop, CV rep: 10
+best_alpha
+1
+best_lambda
+0.00587822768889673
+best_alpha
+1
+best_lambda
+0.00249065092030672
+CV inner loop, CV rep: 3
+best_alpha
+0.512
+best_lambda
+0.00421193720727694
+best_alpha
+0.729
+best_lambda
+0.00380913604096271
+CV inner loop, CV rep: 5
+Class: Healthy
+CV repetition number: 7
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 6
+best_alpha
+0.216
+best_lambda
+0.0265158088972895
+best_alpha
+0.343
+best_lambda
+0.00639447996186453
+CV inner loop, CV rep: 4
+best_alpha
+1
+best_lambda
+0.00799586736760774
+CV inner loop, CV rep: 7
+best_alpha
+1
+best_lambda
+0.00359515684575104
+CV inner loop, CV rep: 5
+best_alpha
+0.512
+best_lambda
+0.00262112454566351
+Class: Healthy
+CV repetition number: 8
+CV inner loop, CV rep: 8
+Class: Healthy
+CV repetition number: 9
+CV inner loop, CV rep: 9
+best_alpha
+1
+best_lambda
+0.00350610515672524
+best_alpha
+0.125
+best_lambda
+0.0319151707443583
+best_alpha
+0.343
+best_lambda
+0.0178318953298131
+CV inner loop, CV rep: 4
+CV inner loop, CV rep: 6
+best_alpha
+1
+best_lambda
+0.00499231336802712
+CV inner loop, CV rep: 8
+best_alpha
+0.729
+best_lambda
+0.00574461965475769
+CV inner loop, CV rep: 5
+CV inner loop, CV rep: 9
+best_alpha
+0.343
+best_lambda
+0.0129227629974585
+best_alpha
+1
+best_lambda
+0.00417663216630192
+CV inner loop, CV rep: 9
+best_alpha
+1
+best_lambda
+0.00300781383366523
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 10
+best_alpha
+1
+best_lambda
+0.00286995079948457
+best_alpha
+1
+best_lambda
+0.00228231547372445
+best_alpha
+1
+best_lambda
+0.00361200705163267
+CV inner loop, CV rep: 8
+best_alpha
+0.729
+best_lambda
+0.00647419605140076
+CV inner loop, CV rep: 9
+best_alpha
+0.512
+best_lambda
+0.00376153067935652
+best_alpha
+0.729
+best_lambda
+0.00310575838599563
+CV inner loop, CV rep: 7
+CV inner loop, CV rep: 4
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 5
+best_alpha
+0.064
+best_lambda
+0.0253567580380767
+best_alpha
+0.729
+best_lambda
+0.00272738821533756
+CV inner loop, CV rep: 9
+best_alpha
+0.729
+best_lambda
+0.00326316302583337
+CV inner loop, CV rep: 8
+CV inner loop, CV rep: 9
+best_alpha
+1
+best_lambda
+0.00340043434948864
+CV inner loop, CV rep: 4
+best_alpha
+0.512
+best_lambda
+0.0042386006742014
+CV inner loop, CV rep: 7
+best_alpha
+1
+best_lambda
+0.00729481829928666
+CV inner loop, CV rep: 6
+best_alpha
+1
+best_lambda
+0.00425135917525678
+best_alpha
+0.125
+best_lambda
+0.0829681611207511
+Class: Healthy
+CV repetition number: 10
+CV inner loop, CV rep: 10
+CV inner loop, CV rep: 5
+best_alpha
+0.512
+best_lambda
+0.00606180840936224
+CV inner loop, CV rep: 9
+best_alpha
+1
+best_lambda
+0.00334764107937735
+CV inner loop, CV rep: 8
+best_alpha
+0.001
+best_lambda
+0.0585565790283293
+CV inner loop, CV rep: 9
+best_alpha
+1
+best_lambda
+0.00377279047468487
+CV inner loop, CV rep: 4
+best_alpha
+0.512
+best_lambda
+0.00587516777039554
+CV inner loop, CV rep: 7
+best_alpha
+1
+best_lambda
+0.00292437809449858
+CV inner loop, CV rep: 6
+best_alpha
+0.729
+best_lambda
+0.00361618617074446
+CV inner loop, CV rep: 10
+best_alpha
+1
+best_lambda
+0.00328263751424634
+Class: Bile_Duct_Cancer
+CV repetition number: 1
+CV inner loop, CV rep: 1
+best_alpha
+0.729
+best_lambda
+0.00483144752486053
+Class: Bile_Duct_Cancer
+CV repetition number: 2
+CV inner loop, CV rep: 2
+best_alpha
+0.729
+best_lambda
+0.0125317336099938
+CV inner loop, CV rep: 9
+best_alpha
+0.343
+best_lambda
+0.00624947151693001
+CV inner loop, CV rep: 8
+best_alpha
+0.729
+best_lambda
+0.00467517009437682
+CV inner loop, CV rep: 7
+best_alpha
+1
+best_lambda
+0.00384094722987097
+CV inner loop, CV rep: 6
+best_alpha
+1
+best_lambda
+0.00375419082132146
+CV inner loop, CV rep: 10
+best_alpha
+1
+best_lambda
+0.0450001792468765
+Class: Bile_Duct_Cancer
+CV repetition number: 3
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.00562311858621219
+CV inner loop, CV rep: 9
+best_alpha
+0.729
+best_lambda
+0.00334514772253668
+best_alpha
+1
+best_lambda
+0.00249183091598165
+best_alpha
+1
+best_lambda
+0.00484564340115894
+Class: Bile_Duct_Cancer
+CV repetition number: 4
+CV inner loop, CV rep: 4
+best_alpha
+1
+best_lambda
+0.00297507681049376
+CV inner loop, CV rep: 10
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0550461875127718
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 7
+best_alpha
+1
+best_lambda
+0.00364051664137672
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0476639896846295
+CV inner loop, CV rep: 2
+best_alpha
+1
+best_lambda
+0.00403436006522157
+CV inner loop, CV rep: 10
+best_alpha
+1
+best_lambda
+0.00529535845319199
+CV inner loop, CV rep: 8
+best_alpha
+0.512
+best_lambda
+0.00458058952954938
+CV inner loop, CV rep: 7
+best_alpha
+0.125
+best_lambda
+0.0118061003856831
+CV inner loop, CV rep: 9
+best_alpha
+0.729
+best_lambda
+0.00309359750678536
+CV inner loop, CV rep: 10
+best_alpha
+0.729
+best_lambda
+0.00386284051102419
+CV inner loop, CV rep: 8
+best_alpha
+0.064
+best_lambda
+0.0466328521658454
+CV inner loop, CV rep: 4
+best_alpha
+0.512
+best_lambda
+0.00614860134789912
+CV inner loop, CV rep: 7
+best_alpha
+0.729
+best_lambda
+0.00463523544297709
+CV inner loop, CV rep: 9
+best_alpha
+0.064
+best_lambda
+0.0302823679975847
+CV inner loop, CV rep: 1
+best_alpha
+0.008
+best_lambda
+0.022045848353152
+CV inner loop, CV rep: 10
+best_alpha
+0.027
+best_lambda
+0.0532733288021809
+CV inner loop, CV rep: 3
+best_alpha
+0.216
+best_lambda
+0.0129305068661354
+CV inner loop, CV rep: 8
+best_alpha
+0.343
+best_lambda
+0.0170667998127678
+Class: Bile_Duct_Cancer
+CV repetition number: 5
+CV inner loop, CV rep: 5
+best_alpha
+1
+best_lambda
+0.00364994740389132
+best_alpha
+1
+best_lambda
+0.00196055999212948
+CV inner loop, CV rep: 10
+Class: Bile_Duct_Cancer
+CV repetition number: 6
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.0386235399650362
+CV inner loop, CV rep: 4
+best_alpha
+0.027
+best_lambda
+0.0457523599073509
+CV inner loop, CV rep: 2
+best_alpha
+1
+best_lambda
+0.00693390196216398
+Class: Bile_Duct_Cancer
+CV repetition number: 7
+CV inner loop, CV rep: 7
+best_alpha
+0.027
+best_lambda
+0.0550766933955832
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.00338733639846701
+best_alpha
+0.027
+best_lambda
+0.0517695212239553
+CV inner loop, CV rep: 5
+CV inner loop, CV rep: 10
+best_alpha
+0.729
+best_lambda
+0.0119401051105493
+CV inner loop, CV rep: 1
+best_alpha
+0.064
+best_lambda
+0.0329474731693425
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0626339154315512
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0590624220895568
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0574151477914289
+CV inner loop, CV rep: 6
+best_alpha
+0.729
+best_lambda
+0.00535117573617658
+CV inner loop, CV rep: 10
+best_alpha
+0.216
+best_lambda
+0.0229851026318573
+CV inner loop, CV rep: 3
+best_alpha
+0.008
+best_lambda
+0.0454205245093118
+CV inner loop, CV rep: 5
+best_alpha
+1
+best_lambda
+0.00545360062159256
+Class: Bile_Duct_Cancer
+CV repetition number: 8
+CV inner loop, CV rep: 8
+best_alpha
+0.125
+best_lambda
+0.0397949411547488
+CV inner loop, CV rep: 4
+best_alpha
+0.125
+best_lambda
+0.0293256723061495
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0460882662659517
+CV inner loop, CV rep: 1
+best_alpha
+0.216
+best_lambda
+0.0226510949266082
+CV inner loop, CV rep: 6
+best_alpha
+0.008
+best_lambda
+0.0360527821748136
+CV inner loop, CV rep: 3
+best_alpha
+0.512
+best_lambda
+0.0109519518820146
+CV inner loop, CV rep: 7
+best_alpha
+0.125
+best_lambda
+0.040097908542009
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0511011828970146
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0497711679044571
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.05632545390208
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.047716071885851
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.0343719780204928
+CV inner loop, CV rep: 8
+best_alpha
+0.125
+best_lambda
+0.0272700741597981
+CV inner loop, CV rep: 3
+best_alpha
+0.343
+best_lambda
+0.0155059823893403
+CV inner loop, CV rep: 7
+best_alpha
+0.027
+best_lambda
+0.0495477304614376
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0653364951276903
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0654582041482063
+CV inner loop, CV rep: 2
+best_alpha
+0.001
+best_lambda
+0.0456234399930068
+CV inner loop, CV rep: 4
+best_alpha
+0.027
+best_lambda
+0.0637641534894546
+CV inner loop, CV rep: 8
+best_alpha
+0.064
+best_lambda
+0.0404727469409361
+CV inner loop, CV rep: 1
+best_alpha
+0.125
+best_lambda
+0.0307853984854556
+CV inner loop, CV rep: 5
+best_alpha
+0.064
+best_lambda
+0.0584804629986306
+CV inner loop, CV rep: 7
+best_alpha
+0.216
+best_lambda
+0.0276129072514788
+CV inner loop, CV rep: 3
+best_alpha
+0.008
+best_lambda
+0.0414521245018097
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0597708791461461
+CV inner loop, CV rep: 4
+best_alpha
+0.001
+best_lambda
+0.0507378313553597
+CV inner loop, CV rep: 6
+best_alpha
+0.008
+best_lambda
+0.0465568767511435
+CV inner loop, CV rep: 5
+best_alpha
+0.125
+best_lambda
+0.0337883935066108
+CV inner loop, CV rep: 8
+best_alpha
+0.216
+best_lambda
+0.0191241576680405
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0328591303680143
+CV inner loop, CV rep: 2
+best_alpha
+0.064
+best_lambda
+0.0407734407576819
+CV inner loop, CV rep: 4
+best_alpha
+0.064
+best_lambda
+0.0320896741630302
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0517527283536473
+CV inner loop, CV rep: 7
+best_alpha
+0.001
+best_lambda
+0.0549799854625407
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0610231104701177
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0608968390075241
+CV inner loop, CV rep: 3
+best_alpha
+0.125
+best_lambda
+0.0232877597206486
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.0412684836181155
+CV inner loop, CV rep: 2
+best_alpha
+0.064
+best_lambda
+0.0416564663482923
+CV inner loop, CV rep: 4
+best_alpha
+0.216
+best_lambda
+0.0181627114127516
+CV inner loop, CV rep: 7
+best_alpha
+0.027
+best_lambda
+0.0390704213525941
+CV inner loop, CV rep: 8
+best_alpha
+0.064
+best_lambda
+0.0418594483147651
+CV inner loop, CV rep: 1
+best_alpha
+0.216
+best_lambda
+0.0216592250732099
+CV inner loop, CV rep: 6
+best_alpha
+0.343
+best_lambda
+0.0192167306865434
+CV inner loop, CV rep: 5
+best_alpha
+0.125
+best_lambda
+0.0279153053820932
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.038489360482976
+CV inner loop, CV rep: 7
+best_alpha
+0.125
+best_lambda
+0.0267076043360943
+CV inner loop, CV rep: 8
+best_alpha
+0.216
+best_lambda
+0.0236557426717063
+Class: Bile_Duct_Cancer
+CV repetition number: 9
+CV inner loop, CV rep: 9
+best_alpha
+0.064
+best_lambda
+0.0310125975254125
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.0396499239683586
+CV inner loop, CV rep: 7
+best_alpha
+0.216
+best_lambda
+0.0229339291497976
+Class: Bile_Duct_Cancer
+CV repetition number: 10
+CV inner loop, CV rep: 10
+best_alpha
+0.027
+best_lambda
+0.0384304556123054
+Class: Pancreatic_Cancer
+CV repetition number: 1
+CV inner loop, CV rep: 1
+best_alpha
+0.729
+best_lambda
+0.0115018258151276
+CV inner loop, CV rep: 1
+best_alpha
+0.125
+best_lambda
+0.0238650834747922
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0442390683824724
+CV inner loop, CV rep: 8
+best_alpha
+0.216
+best_lambda
+0.0231156524610698
+CV inner loop, CV rep: 7
+best_alpha
+0.008
+best_lambda
+0.0561341807069784
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0628487760001426
+CV inner loop, CV rep: 5
+best_alpha
+0.027
+best_lambda
+0.0590418362038455
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0633487909159878
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0691205582422188
+CV inner loop, CV rep: 10
+best_alpha
+0.216
+best_lambda
+0.0356720737092238
+CV inner loop, CV rep: 1
+best_alpha
+0.216
+best_lambda
+0.0219446307678955
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0386397667859164
+Class: Pancreatic_Cancer
+CV repetition number: 2
+CV inner loop, CV rep: 2
+best_alpha
+0.125
+best_lambda
+0.0383703483915034
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0655778177656215
+CV inner loop, CV rep: 8
+best_alpha
+0.008
+best_lambda
+0.0537646642242523
+CV inner loop, CV rep: 2
+best_alpha
+0.027
+best_lambda
+0.0643620896015332
+CV inner loop, CV rep: 1
+best_alpha
+0.216
+best_lambda
+0.0192204465215216
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0582531328016259
+Class: Pancreatic_Cancer
+CV repetition number: 3
+CV inner loop, CV rep: 3
+best_alpha
+0.064
+best_lambda
+0.0381807169482674
+Class: Pancreatic_Cancer
+CV repetition number: 4
+CV inner loop, CV rep: 4
+best_alpha
+0.216
+best_lambda
+0.026913615921452
+CV inner loop, CV rep: 2
+best_alpha
+0.343
+best_lambda
+0.0270019200280607
+CV inner loop, CV rep: 1
+best_alpha
+0.027
+best_lambda
+0.0357136231838216
+Class: Pancreatic_Cancer
+CV repetition number: 5
+CV inner loop, CV rep: 5
+best_alpha
+0.125
+best_lambda
+0.0234989056223037
+CV inner loop, CV rep: 4
+best_alpha
+0.064
+best_lambda
+0.0445274768307524
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0722390963219169
+CV inner loop, CV rep: 3
+best_alpha
+0.008
+best_lambda
+0.0719936026053203
+CV inner loop, CV rep: 1
+best_alpha
+0.008
+best_lambda
+0.0632396013378237
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0784911741239079
+CV inner loop, CV rep: 5
+best_alpha
+0.064
+best_lambda
+0.036027592767703
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0697452248630862
+CV inner loop, CV rep: 4
+best_alpha
+0.343
+best_lambda
+0.0256073732474973
+CV inner loop, CV rep: 2
+best_alpha
+0.027
+best_lambda
+0.0579382343545871
+CV inner loop, CV rep: 3
+best_alpha
+0.343
+best_lambda
+0.0221187017908752
+CV inner loop, CV rep: 1
+best_alpha
+0.343
+best_lambda
+0.0258662459630695
+CV inner loop, CV rep: 5
+best_alpha
+1
+best_lambda
+0.00891680330559345
+CV inner loop, CV rep: 4
+best_alpha
+0.125
+best_lambda
+0.0469636154713756
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.0130801206097156
+CV inner loop, CV rep: 2
+best_alpha
+0.064
+best_lambda
+0.0325451404840706
+CV inner loop, CV rep: 1
+best_alpha
+0.027
+best_lambda
+0.0545752497693274
+CV inner loop, CV rep: 9
+best_alpha
+0.064
+best_lambda
+0.0360661846725955
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0691119209626312
+CV inner loop, CV rep: 5
+best_alpha
+0.064
+best_lambda
+0.0424167313585378
+CV inner loop, CV rep: 4
+best_alpha
+0.216
+best_lambda
+0.019420782865472
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0408814377166772
+Class: Pancreatic_Cancer
+CV repetition number: 6
+CV inner loop, CV rep: 6
+best_alpha
+0.125
+best_lambda
+0.0551899550459596
+CV inner loop, CV rep: 2
+best_alpha
+0.027
+best_lambda
+0.0430271046819711
+CV inner loop, CV rep: 10
+best_alpha
+0.064
+best_lambda
+0.0546105721140172
+CV inner loop, CV rep: 5
+best_alpha
+0.001
+best_lambda
+0.0618981225414866
+CV inner loop, CV rep: 4
+best_alpha
+0.027
+best_lambda
+0.0787635564586068
+CV inner loop, CV rep: 6
+best_alpha
+0.125
+best_lambda
+0.0310413238849549
+CV inner loop, CV rep: 3
+best_alpha
+0.512
+best_lambda
+0.0166421109224683
+CV inner loop, CV rep: 2
+best_alpha
+0.729
+best_lambda
+0.012989349924711
+CV inner loop, CV rep: 5
+best_alpha
+0.125
+best_lambda
+0.033460942921528
+CV inner loop, CV rep: 4
+best_alpha
+0.343
+best_lambda
+0.021833938932464
+CV inner loop, CV rep: 6
+best_alpha
+1
+best_lambda
+0.0156798570594966
+CV inner loop, CV rep: 3
+best_alpha
+0.216
+best_lambda
+0.0156076528141833
+CV inner loop, CV rep: 2
+best_alpha
+0.008
+best_lambda
+0.0672344788454287
+CV inner loop, CV rep: 5
+best_alpha
+0.008
+best_lambda
+0.0663394275028264
+CV inner loop, CV rep: 6
+best_alpha
+0.729
+best_lambda
+0.0120158888957678
+CV inner loop, CV rep: 3
+best_alpha
+0.008
+best_lambda
+0.0769706841609403
+CV inner loop, CV rep: 4
+best_alpha
+0.027
+best_lambda
+0.0705717391448352
+CV inner loop, CV rep: 2
+best_alpha
+0.064
+best_lambda
+0.0353994274556948
+Class: Pancreatic_Cancer
+CV repetition number: 7
+CV inner loop, CV rep: 7
+best_alpha
+0.512
+best_lambda
+0.0146646895237845
+CV inner loop, CV rep: 5
+best_alpha
+0.027
+best_lambda
+0.0395012234487598
+CV inner loop, CV rep: 10
+best_alpha
+0.008
+best_lambda
+0.0583990119760031
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0656261187681906
+CV inner loop, CV rep: 9
+best_alpha
+0.216
+best_lambda
+0.0401591364985379
+CV inner loop, CV rep: 4
+best_alpha
+0.216
+best_lambda
+0.0359770628336411
+Class: Pancreatic_Cancer
+CV repetition number: 8
+CV inner loop, CV rep: 8
+best_alpha
+0.512
+best_lambda
+0.00719334786740236
+CV inner loop, CV rep: 3
+best_alpha
+0.512
+best_lambda
+0.0174815042017675
+CV inner loop, CV rep: 7
+best_alpha
+0.343
+best_lambda
+0.0257706511847159
+CV inner loop, CV rep: 5
+best_alpha
+0.008
+best_lambda
+0.0433283997550288
+CV inner loop, CV rep: 6
+best_alpha
+0.729
+best_lambda
+0.0200995821552834
+CV inner loop, CV rep: 4
+best_alpha
+0.027
+best_lambda
+0.067518871002966
+CV inner loop, CV rep: 8
+best_alpha
+0.064
+best_lambda
+0.0491749638697499
+CV inner loop, CV rep: 7
+best_alpha
+0.027
+best_lambda
+0.0427053023323625
+CV inner loop, CV rep: 3
+best_alpha
+0.343
+best_lambda
+0.0125434977577042
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0735512199376911
+Class: Pancreatic_Cancer
+CV repetition number: 9
+CV inner loop, CV rep: 9
+best_alpha
+0.343
+best_lambda
+0.0206807827998071
+CV inner loop, CV rep: 7
+best_alpha
+0.125
+best_lambda
+0.0337657621568041
+CV inner loop, CV rep: 8
+best_alpha
+0.729
+best_lambda
+0.0171034899613605
+Class: Pancreatic_Cancer
+CV repetition number: 10
+CV inner loop, CV rep: 10
+best_alpha
+0.216
+best_lambda
+0.0229357579092055
+CV inner loop, CV rep: 9
+best_alpha
+0.008
+best_lambda
+0.0587727122347381
+Class: Breast_Cancer
+CV repetition number: 1
+CV inner loop, CV rep: 1
+best_alpha
+0.064
+best_lambda
+0.0481264717933075
+CV inner loop, CV rep: 6
+best_alpha
+1
+best_lambda
+0.012360634305423
+CV inner loop, CV rep: 9
+best_alpha
+0.512
+best_lambda
+0.0249915922251016
+CV inner loop, CV rep: 8
+best_alpha
+0.512
+best_lambda
+0.0181023588222766
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.162806274145574
+CV inner loop, CV rep: 1
+best_alpha
+0.027
+best_lambda
+0.0580235211275473
+CV inner loop, CV rep: 7
+best_alpha
+0.125
+best_lambda
+0.0483092990093791
+CV inner loop, CV rep: 9
+best_alpha
+0.216
+best_lambda
+0.0166868947759225
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.120901453785418
+CV inner loop, CV rep: 1
+best_alpha
+0.125
+best_lambda
+0.0420059345012832
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0605650664483084
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0729135249778304
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0516914838148591
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.0634421540353749
+CV inner loop, CV rep: 9
+best_alpha
+0.008
+best_lambda
+0.0933896005964436
+CV inner loop, CV rep: 1
+best_alpha
+0.027
+best_lambda
+0.0698887874781106
+CV inner loop, CV rep: 8
+best_alpha
+0.729
+best_lambda
+0.0180452507049
+CV inner loop, CV rep: 7
+best_alpha
+0.064
+best_lambda
+0.0522221490860305
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.103824999290591
+CV inner loop, CV rep: 1
+best_alpha
+0.343
+best_lambda
+0.0241697661367623
+CV inner loop, CV rep: 8
+best_alpha
+0.008
+best_lambda
+0.0591243853545158
+CV inner loop, CV rep: 9
+best_alpha
+0.027
+best_lambda
+0.0393524090486064
+CV inner loop, CV rep: 10
+best_alpha
+0.064
+best_lambda
+0.0452511778865668
+CV inner loop, CV rep: 7
+best_alpha
+0.008
+best_lambda
+0.0667930843775468
+CV inner loop, CV rep: 10
+best_alpha
+best_alpha
+0.729
+0
+best_lambda
+best_lambda
+0.00900665392196402
+0.101623208566694
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 1
+best_alpha
+1
+best_lambda
+0.0113517046846008
+CV inner loop, CV rep: 8
+best_alpha
+0.216
+best_lambda
+0.0360686583390377
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0484239990470337
+CV inner loop, CV rep: 9
+best_alpha
+1
+best_lambda
+0.00682183158600264
+CV inner loop, CV rep: 10
+best_alpha
+0.216
+best_lambda
+0.029678582887077
+CV inner loop, CV rep: 7
+best_alpha
+0.008
+best_lambda
+0.0849959652083729
+CV inner loop, CV rep: 1
+best_alpha
+0.343
+best_lambda
+0.0174272626686596
+CV inner loop, CV rep: 9
+best_alpha
+0.512
+best_lambda
+0.0140302379766743
+CV inner loop, CV rep: 8
+best_alpha
+1
+best_lambda
+0.00965185659942418
+CV inner loop, CV rep: 7
+best_alpha
+0.343
+best_lambda
+0.0294759544853816
+CV inner loop, CV rep: 10
+best_alpha
+0.216
+best_lambda
+0.0226071251282594
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.071976604764263
+CV inner loop, CV rep: 1
+best_alpha
+1
+best_lambda
+0.0102232157572739
+CV inner loop, CV rep: 8
+best_alpha
+0.027
+best_lambda
+0.0619552003389912
+CV inner loop, CV rep: 9
+best_alpha
+0.008
+best_lambda
+0.0639597267521079
+CV inner loop, CV rep: 10
+best_alpha
+0.027
+best_lambda
+0.0431679240874583
+CV inner loop, CV rep: 9
+best_alpha
+0.008
+best_lambda
+0.0571443600041271
+Class: Breast_Cancer
+CV repetition number: 2
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0533200832806197
+CV inner loop, CV rep: 1
+best_alpha
+1
+best_lambda
+0.00790359554842975
+CV inner loop, CV rep: 9
+best_alpha
+0.512
+best_lambda
+0.0161040210864519
+Class: Breast_Cancer
+CV repetition number: 3
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.0123408152783655
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0648094432035397
+CV inner loop, CV rep: 2
+best_alpha
+0.064
+best_lambda
+0.0435939006264757
+Class: Breast_Cancer
+CV repetition number: 4
+CV inner loop, CV rep: 4
+best_alpha
+0.343
+best_lambda
+0.0262694088795206
+CV inner loop, CV rep: 1
+best_alpha
+0.343
+best_lambda
+0.0235214400668298
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.111634483590979
+CV inner loop, CV rep: 3
+best_alpha
+0.125
+best_lambda
+0.0360000557550764
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0409974975889931
+CV inner loop, CV rep: 10
+best_alpha
+0.008
+best_lambda
+0.0881732823061679
+CV inner loop, CV rep: 2
+best_alpha
+0.001
+best_lambda
+0.0518425398246115
+Class: Breast_Cancer
+CV repetition number: 5
+CV inner loop, CV rep: 5
+best_alpha
+0.027
+best_lambda
+0.104720308620064
+Class: Breast_Cancer
+CV repetition number: 6
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.11289755763301
+CV inner loop, CV rep: 4
+best_alpha
+0.512
+best_lambda
+0.0242001294229358
+Class: Breast_Cancer
+CV repetition number: 7
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.10707233801902
+CV inner loop, CV rep: 3
+best_alpha
+0.125
+best_lambda
+0.0471950413979221
+Class: Breast_Cancer
+CV repetition number: 8
+CV inner loop, CV rep: 8
+best_alpha
+0.008
+best_lambda
+0.0679949095915222
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.115332219567882
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.10001937278483
+CV inner loop, CV rep: 4
+best_alpha
+0.125
+best_lambda
+0.0477209329057795
+CV inner loop, CV rep: 5
+best_alpha
+0.343
+best_lambda
+0.0290934878147307
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.111194387851332
+CV inner loop, CV rep: 3
+best_alpha
+0.064
+best_lambda
+0.0816989519268268
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.105245852651638
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.091423843483949
+CV inner loop, CV rep: 6
+best_alpha
+0.729
+best_lambda
+0.0172498081427296
+CV inner loop, CV rep: 4
+best_alpha
+0.064
+best_lambda
+0.0873673687464609
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0854801683006859
+CV inner loop, CV rep: 8
+best_alpha
+0.064
+best_lambda
+0.0452741464991672
+CV inner loop, CV rep: 3
+best_alpha
+0.001
+best_lambda
+0.112250625524737
+CV inner loop, CV rep: 7
+best_alpha
+0.001
+best_lambda
+0.119362732013681
+CV inner loop, CV rep: 2
+best_alpha
+0.125
+best_lambda
+0.0353618025034689
+CV inner loop, CV rep: 10
+best_alpha
+0.027
+best_lambda
+0.0944950947412253
+CV inner loop, CV rep: 6
+best_alpha
+0.001
+best_lambda
+0.088243323936955
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.085820456104646
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0819961247734062
+CV inner loop, CV rep: 7
+best_alpha
+0.216
+best_lambda
+0.0475674188682841
+CV inner loop, CV rep: 8
+best_alpha
+0.027
+best_lambda
+0.0838265713305381
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.107397036964311
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.11986620256249
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.102519610401959
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.0958056178187068
+CV inner loop, CV rep: 5
+best_alpha
+0.064
+best_lambda
+0.0912878837827068
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.104384150236937
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.086315944773584
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.131242870302087
+CV inner loop, CV rep: 2
+best_alpha
+0.125
+best_lambda
+0.0530791321306012
+CV inner loop, CV rep: 4
+best_alpha
+0.008
+best_lambda
+0.0996183833549552
+CV inner loop, CV rep: 5
+best_alpha
+0.027
+best_lambda
+0.102207392387688
+CV inner loop, CV rep: 6
+best_alpha
+0.125
+best_lambda
+0.0527306785989128
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0759353024984929
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0992723702695091
+CV inner loop, CV rep: 8
+best_alpha
+0
+best_lambda
+0.0758258316072078
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0474939234402657
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.103375625046562
+CV inner loop, CV rep: 4
+best_alpha
+0.001
+best_lambda
+0.0949792216635041
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0997420253411022
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.113819292553198
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.108708143638153
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.11139866615856
+CV inner loop, CV rep: 8
+best_alpha
+0.027
+best_lambda
+0.0804430839404155
+CV inner loop, CV rep: 2
+best_alpha
+0.001
+best_lambda
+0.138897954762925
+best_alpha
+0
+best_lambda
+0.122801165398348
+CV inner loop, CV rep: 4
+CV inner loop, CV rep: 5
+best_alpha
+0.008
+best_lambda
+0.108567156695919
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0823805348093012
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0664548805791268
+CV inner loop, CV rep: 8
+best_alpha
+0.343
+best_lambda
+0.0219563874413755
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.110105034753707
+Class: Breast_Cancer
+CV repetition number: 9
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.087904800194514
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0971372973043074
+CV inner loop, CV rep: 4
+best_alpha
+0.125
+best_lambda
+0.0316570015227338
+Class: Breast_Cancer
+CV repetition number: 10
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.130004003476843
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0839876442685904
+Class: Colorectal_Cancer
+CV repetition number: 1
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.101995457001048
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0570886434535346
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.0898241223417826
+CV inner loop, CV rep: 9
+best_alpha
+0.027
+best_lambda
+0.122448620099298
+CV inner loop, CV rep: 8
+best_alpha
+0.008
+best_lambda
+0.0967054619871304
+Class: Colorectal_Cancer
+CV repetition number: 2
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0877443925533439
+CV inner loop, CV rep: 10
+best_alpha
+0.027
+best_lambda
+0.0926892674784911
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0723618575401615
+CV inner loop, CV rep: 9
+best_alpha
+0.064
+best_lambda
+0.0761999125178662
+CV inner loop, CV rep: 8
+best_alpha
+0.027
+best_lambda
+0.0930952164926761
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.0872879122014742
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0794808983822237
+Class: Colorectal_Cancer
+CV repetition number: 3
+CV inner loop, CV rep: 3
+best_alpha
+0.008
+best_lambda
+0.082980927207841
+Class: Colorectal_Cancer
+CV repetition number: 4
+CV inner loop, CV rep: 4
+best_alpha
+0.008
+best_lambda
+0.113130724750241
+CV inner loop, CV rep: 9
+best_alpha
+0.001
+best_lambda
+0.0962186645984564
+Class: Colorectal_Cancer
+CV repetition number: 5
+CV inner loop, CV rep: 5
+best_alpha
+0.125
+best_lambda
+0.042921923018639
+CV inner loop, CV rep: 1
+best_alpha
+1
+best_lambda
+0.00928005213616498
+Class: Colorectal_Cancer
+CV repetition number: 6
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.070117589612135
+CV inner loop, CV rep: 10
+best_alpha
+0.027
+best_lambda
+0.0746904117051699
+CV inner loop, CV rep: 9
+best_alpha
+0.125
+best_lambda
+0.0660854200727918
+CV inner loop, CV rep: 2
+best_alpha
+0.001
+best_lambda
+0.134101287288403
+CV inner loop, CV rep: 10
+best_alpha
+0.027
+best_lambda
+0.0753638718559225
+CV inner loop, CV rep: 9
+best_alpha
+0.064
+best_lambda
+0.0341773539257081
+CV inner loop, CV rep: 3
+best_alpha
+0.064
+best_lambda
+0.0449785201898654
+CV inner loop, CV rep: 4
+best_alpha
+0
+best_lambda
+0.105395641618614
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0613395970971664
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0394156761097147
+CV inner loop, CV rep: 5
+best_alpha
+0.512
+best_lambda
+0.0174475409721376
+CV inner loop, CV rep: 6
+best_alpha
+0.512
+best_lambda
+0.0419584680243155
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.080889550109783
+CV inner loop, CV rep: 9
+best_alpha
+0.343
+best_lambda
+0.0188289160180165
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.120316098502467
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0712312491459482
+CV inner loop, CV rep: 9
+best_alpha
+0.001
+best_lambda
+0.100969353559209
+CV inner loop, CV rep: 10
+best_alpha
+0.064
+best_lambda
+0.0432474455705422
+best_alpha
+0
+best_lambda
+0.0935963622945652
+CV inner loop, CV rep: 9
+CV inner loop, CV rep: 4
+best_alpha
+0.343
+best_lambda
+0.0362283655108611
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.136217400627695
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0809655771474214
+Class: Colorectal_Cancer
+CV repetition number: 7
+CV inner loop, CV rep: 7
+best_alpha
+0.064
+best_lambda
+0.045533526180626
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0447531120749858
+best_alpha
+0
+best_lambda
+0.111237825565268
+CV inner loop, CV rep: 10
+best_alpha
+0.064
+best_lambda
+0.0366038366618591
+best_alpha
+0
+best_lambda
+0.114612744947477
+Class: Colorectal_Cancer
+CV repetition number: 8
+CV inner loop, CV rep: 8
+best_alpha
+0.027
+best_lambda
+0.0522833288651049
+CV inner loop, CV rep: 2
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 3
+best_alpha
+0.343
+best_lambda
+0.0427045398576522
+CV inner loop, CV rep: 4
+best_alpha
+0.125
+best_lambda
+0.0306962184065304
+CV inner loop, CV rep: 5
+best_alpha
+0.729
+best_lambda
+0.00790416417563312
+CV inner loop, CV rep: 7
+best_alpha
+0.125
+best_lambda
+0.0472735128258146
+CV inner loop, CV rep: 1
+best_alpha
+0.216
+best_lambda
+0.0359673354898275
+CV inner loop, CV rep: 3
+best_alpha
+1
+best_lambda
+0.0232583445221488
+CV inner loop, CV rep: 8
+best_alpha
+0.216
+best_lambda
+0.0397583131683756
+CV inner loop, CV rep: 4
+best_alpha
+0.512
+best_lambda
+0.0269396130336927
+CV inner loop, CV rep: 5
+best_alpha
+0.064
+best_lambda
+0.0460614389160897
+CV inner loop, CV rep: 2
+best_alpha
+0.064
+best_lambda
+0.0321719104633043
+CV inner loop, CV rep: 6
+best_alpha
+0.125
+best_lambda
+0.0477596187620205
+CV inner loop, CV rep: 8
+best_alpha
+0.125
+best_lambda
+0.0352123197630363
+CV inner loop, CV rep: 1
+best_alpha
+0.729
+best_lambda
+0.0342535413275927
+CV inner loop, CV rep: 7
+best_alpha
+0.512
+best_lambda
+0.0264465253610948
+CV inner loop, CV rep: 4
+best_alpha
+1
+best_lambda
+0.018455711455756
+CV inner loop, CV rep: 5
+best_alpha
+0
+best_lambda
+0.0431890259101199
+best_alpha
+0.729
+best_lambda
+0.027444619445199
+CV inner loop, CV rep: 3
+CV inner loop, CV rep: 6
+best_alpha
+0
+best_lambda
+0.0492765244801839
+best_alpha
+0.125
+best_lambda
+0.058018372938598
+CV inner loop, CV rep: 1
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0377044732761879
+CV inner loop, CV rep: 4
+best_alpha
+0.216
+best_lambda
+0.0337773567543609
+CV inner loop, CV rep: 8
+best_alpha
+0.125
+best_lambda
+0.0660869042152095
+CV inner loop, CV rep: 5
+best_alpha
+0.125
+best_lambda
+0.0333948489588826
+CV inner loop, CV rep: 7
+best_alpha
+0.125
+best_lambda
+0.0463939777093872
+CV inner loop, CV rep: 1
+best_alpha
+0.125
+best_lambda
+0.0436744616374991
+CV inner loop, CV rep: 6
+best_alpha
+0.027
+best_lambda
+0.0538349378437221
+CV inner loop, CV rep: 3
+best_alpha
+0.008
+best_lambda
+0.089091160273175
+CV inner loop, CV rep: 4
+best_alpha
+0.216
+best_lambda
+0.0266490428918773
+best_alpha
+0
+best_lambda
+0.0646903669590178
+CV inner loop, CV rep: 5
+best_alpha
+0.729
+best_lambda
+0.0303090642585586
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 1
+best_alpha
+0.064
+best_lambda
+0.0482651851976242
+CV inner loop, CV rep: 8
+best_alpha
+0.216
+best_lambda
+0.0325150249992267
+CV inner loop, CV rep: 7
+best_alpha
+0.729
+best_lambda
+0.0272061921595665
+CV inner loop, CV rep: 2
+best_alpha
+0.216
+best_lambda
+0.0225280627405812
+CV inner loop, CV rep: 8
+best_alpha
+0.343
+best_lambda
+0.0291782532626936
+CV inner loop, CV rep: 3
+best_alpha
+0.027
+best_lambda
+0.0457098128752347
+CV inner loop, CV rep: 4
+best_alpha
+0.125
+best_lambda
+0.0421774442979514
+CV inner loop, CV rep: 5
+best_alpha
+0.064
+best_lambda
+0.0690922223116413
+CV inner loop, CV rep: 1
+best_alpha
+0
+best_lambda
+0.0711730966599277
+CV inner loop, CV rep: 7
+best_alpha
+0.216
+best_lambda
+0.0324474738299447
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.126624566118239
+CV inner loop, CV rep: 4
+best_alpha
+1
+best_lambda
+0.0206785299480679
+CV inner loop, CV rep: 8
+best_alpha
+0.027
+best_lambda
+0.0451461147700609
+Class: Colorectal_Cancer
+CV repetition number: 9
+CV inner loop, CV rep: 9
+best_alpha
+0.216
+best_lambda
+0.0286739963281753
+CV inner loop, CV rep: 5
+best_alpha
+0.343
+best_lambda
+0.0271684903436284
+CV inner loop, CV rep: 7
+best_alpha
+0.512
+best_lambda
+0.0343921885858765
+CV inner loop, CV rep: 3
+best_alpha
+0.729
+best_lambda
+0.0294052844783227
+CV inner loop, CV rep: 6
+best_alpha
+0.064
+best_lambda
+0.0401622711229966
+best_alpha
+0.125
+best_lambda
+0.0328104420954165
+CV inner loop, CV rep: 9
+best_alpha
+0.008
+best_lambda
+0.068303268811009
+Class: Colorectal_Cancer
+CV repetition number: 10
+CV inner loop, CV rep: 10
+CV inner loop, CV rep: 2
+best_alpha
+0.064
+best_lambda
+0.0584859236716335
+CV inner loop, CV rep: 8
+best_alpha
+0.008
+best_lambda
+0.048222596576227
+best_alpha
+1
+best_lambda
+0.0123093607027613
+CV inner loop, CV rep: 7
+best_alpha
+0
+best_lambda
+0.0420591862922961
+best_alpha
+0.125
+best_lambda
+0.039563415098782
+CV inner loop, CV rep: 10
+best_alpha
+0.216
+best_lambda
+0.0331615397677813
+CV inner loop, CV rep: 9
+best_alpha
+0.064
+best_lambda
+0.0504394864850893
+CV inner loop, CV rep: 6
+CV inner loop, CV rep: 8
+best_alpha
+0.125
+best_lambda
+0.0431455218655119
+CV inner loop, CV rep: 2
+best_alpha
+0
+best_lambda
+0.0627175595214606
+CV inner loop, CV rep: 7
+best_alpha
+1
+best_lambda
+0.0170662810532838
+CV inner loop, CV rep: 9
+best_alpha
+0.343
+best_lambda
+0.0385069022555699
+CV inner loop, CV rep: 3
+best_alpha
+0
+best_lambda
+0.0735236530879336
+CV inner loop, CV rep: 10
+best_alpha
+0.027
+best_lambda
+0.0458158613187281
+CV inner loop, CV rep: 8
+best_alpha
+0.729
+best_lambda
+0.0283471213108351
+CV inner loop, CV rep: 7
+best_alpha
+0.343
+best_lambda
+0.0284374858669365
+best_alpha
+0.001
+best_lambda
+0.0392055917904379
+CV inner loop, CV rep: 9
+best_alpha
+0.125
+best_lambda
+0.0487643445068047
+CV inner loop, CV rep: 6
+best_alpha
+0.343
+best_lambda
+0.0225385794394133
+best_alpha
+0
+best_lambda
+0.054590068518898
+best_alpha
+1
+best_lambda
+0.0207879551932162
+CV inner loop, CV rep: 10
+best_alpha
+0.125
+best_lambda
+0.0275928137141031
+CV inner loop, CV rep: 3
+best_alpha
+0.125
+best_lambda
+0.0340670857679969
+best_alpha
+0.125
+best_lambda
+0.04122982146518
+CV inner loop, CV rep: 9
+best_alpha
+0.343
+best_lambda
+0.0271114175525048
+CV inner loop, CV rep: 10
+best_alpha
+0.064
+best_lambda
+0.0622322295398865
+best_alpha
+0.125
+best_lambda
+0.0505616242168279
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0666839926495995
+CV inner loop, CV rep: 10
+best_alpha
+0.216
+best_lambda
+0.0384295211713346
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0530916573704877
+CV inner loop, CV rep: 10
+best_alpha
+0.027
+best_lambda
+0.0535300311661625
+CV inner loop, CV rep: 9
+best_alpha
+0.216
+best_lambda
+0.0263427063743282
+CV inner loop, CV rep: 10
+best_alpha
+0
+best_lambda
+0.0669242541704259
+CV inner loop, CV rep: 9
+best_alpha
+0
+best_lambda
+0.0379952823229451
+CV inner loop, CV rep: 10
+best_alpha
+0.216
+best_lambda
+0.0383638956959242
+best_alpha
+0
+best_lambda
+0.0663622702342985
+CV inner loop, CV rep: 10
+best_alpha
+0.008
+best_lambda
+0.0402591874782313
+There were 50 or more warnings (use warnings() to see the first 50)
+There were 50 or more warnings (use warnings() to see the first 50)There were 50 or more warnings (use warnings() to see the first 50)There were 50 or more warnings (use warnings() to see the first 50)There were 50 or more warnings (use warnings() to see the first 50)
+There were 50 or more warnings (use warnings() to see the first 50) There were 50 or more warnings (use warnings() to see the first 50)       observed
+There were 50 or more warnings (use warnings() to see the first 50) CV_rep
+ Gastric_cancer_pred
+ Ovarian_Cancer_pred
+
+1
+ Gastric_cancer
+      1                 0.5          0.04598822
+2 Gastric_cancer      1                 0.5          0.04246767
+3 Gastric_cancer      1                 0.5          0.06592161
+4 Gastric_cancer      1                 0.5          0.04192775
+5 Ovarian_Cancer      1                 0.5          0.09489502
+6 Ovarian_Cancer      1                 0.5          0.16469168
+  Lung_Cancer_pred Healthy_pred Bile_Duct_Cancer_pred Pancreatic_Cancer_pred
+1       0.50000000   0.50258452            0.03595750             0.05243169
+2       0.50000000   0.37227065            0.07500369             0.03286540
+3       0.50000000   0.01057151            0.15859239             0.53391899
+4       0.50000000   0.50000000            0.03297269             0.03497620
+5       0.09309679   0.17099574            0.02070884             0.04428084
+6       0.05751244   0.11497490            0.04666049             0.10879677
+  Breast_Cancer_pred Colorectal_Cancer_pred
+1         0.14534291             0.04448467
+2         0.05431278             0.03116507
+3         0.08240236             0.04150242
+4         0.17463769             0.03912896
+5         0.19487013             0.50000000
+6         0.16397110             0.04565232
+        observed CV_rep Gastric_cancer Ovarian_Cancer Lung_Cancer    Healthy
+1 Gastric_cancer      1            0.5     0.04598822  0.50000000 0.50258452
+2 Gastric_cancer      1            0.5     0.04246767  0.50000000 0.37227065
+3 Gastric_cancer      1            0.5     0.06592161  0.50000000 0.01057151
+4 Gastric_cancer      1            0.5     0.04192775  0.50000000 0.50000000
+5 Ovarian_Cancer      1            0.5     0.09489502  0.09309679 0.17099574
+6 Ovarian_Cancer      1            0.5     0.16469168  0.05751244 0.11497490
+  Bile_Duct_Cancer Pancreatic_Cancer Breast_Cancer Colorectal_Cancer
+1       0.03595750        0.05243169    0.14534291        0.04448467
+2       0.07500369        0.03286540    0.05431278        0.03116507
+3       0.15859239        0.53391899    0.08240236        0.04150242
+4       0.03297269        0.03497620    0.17463769        0.03912896
+5       0.02070884        0.04428084    0.19487013        0.50000000
+6       0.04666049        0.10879677    0.16397110        0.04565232
+[1] "AUC calculation with pROC package == One vs. one"
+[1] "The AUC of the first CV repetition: 0.724893797886077"
+[1] "The mean AUC of all the CV repetitions: 0.703554614118347"
+[1] "Run the multiROC and plotting for all the CV repetitions"
+There were 50 or more warnings (use warnings() to see the first 50)
+New names:
+* Specificity -> Specificity...1
+* Specificity -> Specificity...2
+* Specificity -> Specificity...3
+* Specificity -> Specificity...4
+* Specificity -> Specificity...5
+* ...
+New names:
+* Sensitivity -> Sensitivity...1
+* Sensitivity -> Sensitivity...2
+* Sensitivity -> Sensitivity...3
+* Sensitivity -> Sensitivity...4
+* Sensitivity -> Sensitivity...5
+* ...
+# A tibble: 10 × 10
+   lasso.Bile_Duct_Cancer lasso.Breast_Cancer lasso.Colorectal… lasso.Gastric_c…
+                    <dbl>               <dbl>             <dbl>            <dbl>
+ 1                  0.832               0.803             0.760            0.904
+ 2                  0.846               0.808             0.684            0.748
+ 3                  0.846               0.809             0.662            0.786
+ 4                  0.837               0.803             0.713            0.896
+ 5                  0.852               0.796             0.698            0.814
+ 6                  0.839               0.802             0.560            0.820
+ 7                  0.832               0.799             0.551            0.719
+ 8                  0.832               0.810             0.708            0.846
+ 9                  0.834               0.811             0.723            0.863
+10                  0.818               0.805             0.590            0.789
+# … with 6 more variables: lasso.Healthy <dbl>, lasso.Lung_Cancer <dbl>,
+#   lasso.Ovarian_Cancer <dbl>, lasso.Pancreatic_Cancer <dbl>,
+#   lasso.macro <dbl>, lasso.micro <dbl>
+# A tibble: 6 × 3
+  Specificity Sensitivity Group           
+        <dbl>       <dbl> <fct>           
+1       1           0     Bile_Duct_Cancer
+2       0.997       0     Bile_Duct_Cancer
+3       0.996       0.016 Bile_Duct_Cancer
+4       0.995       0.044 Bile_Duct_Cancer
+5       0.993       0.052 Bile_Duct_Cancer
+6       0.992       0.072 Bile_Duct_Cancer
+null device 
+          1 
+[1] "Mean AUC over 10 repetitions of 10-fold CV: "
+ lasso.Bile_Duct_Cancer     lasso.Breast_Cancer lasso.Colorectal_Cancer 
+              0.8369548               0.8046221               0.6649390 
+   lasso.Gastric_cancer           lasso.Healthy       lasso.Lung_Cancer 
+              0.8186214               0.8308491               0.4976289 
+   lasso.Ovarian_Cancer lasso.Pancreatic_Cancer             lasso.macro 
+              0.8213110               0.7288220               0.7504568 
+            lasso.micro 
+              0.7807660 
+  Gastric_cancer Ovarian_Cancer Lung_Cancer    Healthy Bile_Duct_Cancer
+1            0.5     0.04598822  0.50000000 0.50258452       0.03595750
+2            0.5     0.04246767  0.50000000 0.37227065       0.07500369
+3            0.5     0.06592161  0.50000000 0.01057151       0.15859239
+4            0.5     0.04192775  0.50000000 0.50000000       0.03297269
+5            0.5     0.09489502  0.09309679 0.17099574       0.02070884
+6            0.5     0.16469168  0.05751244 0.11497490       0.04666049
+  Pancreatic_Cancer Breast_Cancer Colorectal_Cancer            pred01 CV_rep
+1        0.05243169    0.14534291        0.04448467           Healthy      1
+2        0.03286540    0.05431278        0.03116507    Gastric_cancer      1
+3        0.53391899    0.08240236        0.04150242 Pancreatic_Cancer      1
+4        0.03497620    0.17463769        0.03912896    Gastric_cancer      1
+5        0.04428084    0.19487013        0.50000000    Gastric_cancer      1
+6        0.10879677    0.16397110        0.04565232    Gastric_cancer      1
+        observed
+1 Gastric_cancer
+2 Gastric_cancer
+3 Gastric_cancer
+4 Gastric_cancer
+5 Ovarian_Cancer
+6 Ovarian_Cancer
+ [1] 0.5981087 0.5981087 0.6028369 0.6028369 0.6737589 0.6406619 0.6122931
+ [8] 0.5910165 0.5697400 0.6028369
+ [1] 0.4018913 0.4018913 0.3971631 0.3971631 0.3262411 0.3593381 0.3877069
+ [8] 0.4089835 0.4302600 0.3971631
+[1] "Mean error rate over 10 repetitions of 10-fold CV: 0.609219858156028"
+[1] "Mean accuracy over 10 repetitions of 10-fold CV: 0.390780141843972"
+[1] "### for one vs rest classifier: https://stats.stackexchange.com/questions/71700/how-to-draw-roc-curve-with-three-response-variable/110550#110550"
+[1] 0.7169936
+[1] 0.5653292 0.8164557 0.5286451 0.8437402 0.8179899 0.7176017 0.8051290
+[8] 0.6410579
+[Tue Nov 23 06:26:59 2021]
+Finished job 0.
+1 of 1 steps (100%) done

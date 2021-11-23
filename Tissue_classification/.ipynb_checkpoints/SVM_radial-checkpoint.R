@@ -11,6 +11,9 @@ library(pracma)
 library(ROCR)
 library(rlist)
 library(doParallel)
+library(foreach)
+library(doRNG)
+library(rngtools)
 
 ATAC_pred <-  readRDS(snakemake@input[["input_predictions"]])
 sample_types <- read.table(snakemake@input[["input_sample_types"]], header = F, sep = " ")
@@ -30,17 +33,22 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
     
     observed_all  <- dataset$sample_type
     classes <- unique(observed_all)
-    return_tibble <- tibble(observed = rep(observed_all, k_outer_cv), 
-                            CV_rep = rep(1:k_outer_cv, each=nrow(dataset)))
     
-    for(class in 1:length(unique(observed_all))){
-        
-        message(paste("Class: ", classes[class], sep = ""))
-        observed <- ifelse(observed_all==classes[class], as.character(classes[class]), "other")
-        return_vector_for_class <- c()
-        
-        for (i in 1:k_outer_cv){ # repeated Cross-validation loop
+    rng <- RNGseq(length(unique(observed_all)) * k_outer_cv, 1234)
+    
+    cl <- makePSOCKcluster(8, outfile="")
+    registerDoParallel(cl)
+    return_tibble <- foreach(class = 1:length(unique(observed_all)), 
+                            .inorder = TRUE,
+                            .combine = "cbind",
+                            .packages = c("splitTools", "kernlab", "caret", "tidyverse")) %:% foreach(i = 1:k_outer_cv, r=rng[(class-1)*k_outer_cv + 1:k_outer_cv],
+                                                                                                     .inorder = TRUE,
+                                                                                                     .combine = "rbind",
+                                                                                                     .packages = c("splitTools", "kernlab", "caret", "tidyverse")) %dopar% { # repeated CV loop
+            rngtools::setRNG(r)
             
+            message(paste("Class: ", classes[class], sep = ""))
+            observed <- ifelse(observed_all==classes[class], as.character(classes[class]), "Other")
             message(paste("CV repetition number: ", i, sep = ""))
             set.seed(i)
             folds <- create_folds(observed, k = k_inner_cv)
@@ -53,7 +61,7 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
                 testdata  <- dataset[-fold,]
                 testdata <- testdata %>% select(-sample_type)
                 traindata <- dataset[fold,]
-                traindata$sample_type <- ifelse(traindata$sample_type==classes[class], as.character(classes[class]), "other")
+                traindata$sample_type <- ifelse(traindata$sample_type==classes[class], as.character(classes[class]), "Other")
                 traindata$sample_type <- as.factor(traindata$sample_type)
                 message(unique(traindata$sample_type))
 
@@ -69,20 +77,14 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
                                               repeats = 1, 
                                               classProbs = TRUE)
                 
-                cl <- makePSOCKcluster(10)
-                registerDoParallel(cl)
-                
                 fit <- train(sample_type ~ .,
                              data = traindata, 
                              method = "svmRadial",
                              tuneLength = 5,
                              trControl = trControl_svm,
                              preProc = c("center", "scale"),
-                             verbose=F, 
-                             allowParallel=TRUE)
+                             verbose=F)
                 
-                stopCluster(cl)
-                registerDoSEQ()
                 
                 message("besttune C")
                 message(fit$bestTune$C)
@@ -103,12 +105,15 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
                 tmp <- predict(fit2, newdata = testdata, type = "prob")[,1]
                 predicted[-fold] <- tmp
                 }
-
-            return_vector_for_class <- c(return_vector_for_class, predicted)
-        } # end of outer cv loop
-    return_tibble <- cbind(return_tibble, tibble("{classes[class]}_pred" := return_vector_for_class))
         
-    } # end of looping over classes
+            predicted = tibble("{classes[class]}_pred" := predicted)
+            return(predicted)
+    } # end of outer cv loop
+    
+    stopCluster(cl)
+    registerDoSEQ()
+    return_tibble <- cbind(tibble(observed = rep(observed_all, k_outer_cv), 
+                                 CV_rep = rep(1:k_outer_cv, each=nrow(dataset))), return_tibble)
     return(return_tibble)
 }
 

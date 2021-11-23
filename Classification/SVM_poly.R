@@ -4,6 +4,8 @@ library(pROC)
 install.packages("kernlab", repos = "http://cran.us.r-project.org")
 library(kernlab)
 library(doParallel)
+library(foreach)
+library(doRNG)
 
 ATAC_pred <-  readRDS(snakemake@input[["input_predictions"]])
 sample_types <- read.table(snakemake@input[["input_sample_types"]], header = F, sep = " ")
@@ -21,16 +23,20 @@ levels(data$sample_type01)
 cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
     
     observed  <- dataset$sample_type01
-   
-    return_tibble <- tibble(observed = observed)
     
-    for (i in 1:k_outer_cv){ # repeated Cross-validation loop
+    cl <- makePSOCKcluster(10, outfile="")
+    registerDoParallel(cl)
+    
+    return_tibble <- foreach(i = 1:k_outer_cv, 
+                            .inorder = TRUE,
+                            .options.RNG = 1985,
+                            .combine = "cbind",
+                            .packages = c("kernlab", "caret", "tidyverse")) %dorng% { # repeated Cross-validation loop
         
         message(paste("CV repetition number: ", i, sep = ""))
         set.seed(i)
         cvfolds <- cut(seq_len(nrow(dataset)), breaks = k_inner_cv, labels = F)
         cvfolds <- sample(cvfolds)
-
         predicted <- rep(NA, nrow(dataset))
 
             for (n in 1:k_inner_cv){
@@ -59,9 +65,6 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
                                               number = 10, 
                                               repeats = 1, 
                                               classProbs = TRUE)
-                
-                cl <- makePSOCKcluster(10)
-                registerDoParallel(cl)
 
                 fit <- train(sample_type01 ~ .,
                              data = traindata, 
@@ -69,12 +72,7 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
                              tuneLength = 5,
                              trControl = trControl_svm,
                              preProc = c("center", "scale"),
-                             verbose=F, 
-                             allowParallel=TRUE)
-                
-                stopCluster(cl)
-                registerDoSEQ()
-            
+                             verbose=F)
 
                 message("besttune C")
                 message(fit$bestTune$C)
@@ -98,16 +96,15 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
 
         }
         current_round_tibble <- tibble(predicted = predicted)
-        return_tibble <- cbind(return_tibble, current_round_tibble)
+        return(current_round_tibble)
         } # end of outer cv loop
     
+    stopCluster(cl)
+    registerDoSEQ()
+    
+    return_tibble <- cbind(tibble(observed = observed), return_tibble)
     return(return_tibble)
 }
-
-#numCores <- detectCores()
-#print("numCores")
-#print(numCores)
-#doMC::registerDoMc(cores = numCores)
 
 results <- cross_validation(data, k_inner_cv = 10, k_outer_cv = 10)
 

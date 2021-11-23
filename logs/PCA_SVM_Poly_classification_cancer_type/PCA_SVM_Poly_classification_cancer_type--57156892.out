@@ -1,0 +1,7074 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 20
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Tue Nov 23 06:48:58 2021]
+rule PCA_SVM_Poly_classification_cancer_type:
+    input: data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/Cancer_type_classification/PCA_SVM_poly_binomial.rds, Classification_output/ROC_plots/Cancer_type/PCA_ROC_SVM_poly_binomial.png
+    jobid: 0
+    threads: 20
+    resources: mem_mb=300000, disk_mb=1000, tmpdir=/scratch/57156892, time=11:30:00
+
+Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmp7kixzy85.SVM_poly.R
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loaded gbm 2.1.8
+Warning message:
+package ‘gbm’ was built under R version 3.6.3 
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+trying URL 'http://cran.us.r-project.org/src/contrib/kernlab_0.9-29.tar.gz'
+Content type 'application/x-gzip' length 1168376 bytes (1.1 MB)
+==================================================
+downloaded 1.1 MB
+
+* installing *source* package ‘kernlab’ ...
+** package ‘kernlab’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c brweight.cpp -o brweight.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c ctable.cpp -o ctable.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c cweight.cpp -o cweight.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dbreakpt.c -o dbreakpt.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dcauchy.c -o dcauchy.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dgpnrm.c -o dgpnrm.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dgpstep.c -o dgpstep.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dprecond.c -o dprecond.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dprsrch.c -o dprsrch.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dspcg.c -o dspcg.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dtron.c -o dtron.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dtrpcg.c -o dtrpcg.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c dtrqsol.c -o dtrqsol.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c esa.cpp -o esa.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c expdecayweight.cpp -o expdecayweight.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c inductionsort.cpp -o inductionsort.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c init.c -o init.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c kspectrumweight.cpp -o kspectrumweight.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c lcp.cpp -o lcp.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c misc.c -o misc.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c msufsort.cpp -o msufsort.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c solvebqp.c -o solvebqp.o
+x86_64-conda_cos6-linux-gnu-cc -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c stringk.c -o stringk.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c stringkernel.cpp -o stringkernel.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c svm.cpp -o svm.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c wkasailcp.cpp -o wkasailcp.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -I"/home/coroperv/miniconda3/envs/ctDNA/lib/R/include" -DNDEBUG   -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/coroperv/miniconda3/envs/ctDNA/include -I/home/coroperv/miniconda3/envs/ctDNA/include -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib  -fpic  -fvisibility-inlines-hidden  -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/coroperv/miniconda3/envs/ctDNA/include -fdebug-prefix-map=/tmp/build/80754af9/r-base_1589917437985/work=/usr/local/src/conda/r-base-3.6.1 -fdebug-prefix-map=/home/coroperv/miniconda3/envs/ctDNA=/usr/local/src/conda-prefix  -c wmsufsort.cpp -o wmsufsort.o
+x86_64-conda_cos6-linux-gnu-c++ -std=gnu++11 -shared -L/home/coroperv/miniconda3/envs/ctDNA/lib/R/lib -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,/home/coroperv/miniconda3/envs/ctDNA/lib -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib -L/home/coroperv/miniconda3/envs/ctDNA/lib -L/home/coroperv/miniconda3/envs/ctDNA/lib -Wl,-rpath-link,/home/coroperv/miniconda3/envs/ctDNA/lib -o kernlab.so brweight.o ctable.o cweight.o dbreakpt.o dcauchy.o dgpnrm.o dgpstep.o dprecond.o dprsrch.o dspcg.o dtron.o dtrpcg.o dtrqsol.o esa.o expdecayweight.o inductionsort.o init.o kspectrumweight.o lcp.o misc.o msufsort.o solvebqp.o stringk.o stringkernel.o svm.o wkasailcp.o wmsufsort.o -L/home/coroperv/miniconda3/envs/ctDNA/lib/R/lib -lRlapack -L/home/coroperv/miniconda3/envs/ctDNA/lib/R/lib -lRblas -lgfortran -lm -lgomp -lquadmath -lpthread -L/home/coroperv/miniconda3/envs/ctDNA/lib/R/lib -lR
+installing to /home/coroperv/miniconda3/envs/ctDNA/lib/R/library/00LOCK-kernlab/00new/kernlab/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (kernlab)
+
+The downloaded source packages are in
+	‘/scratch/57156892/RtmpBSmmov/downloaded_packages’
+Updating HTML index of packages in '.Library'
+Making 'packages.html' ... done
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Warning message:
+package ‘multiROC’ was built under R version 3.6.3 
+dummies-1.5.6 provided by Decision Patterns
+
+Warning message:
+package ‘dummies’ was built under R version 3.6.3 
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: gplots
+
+Attaching package: ‘gplots’
+
+The following object is masked from ‘package:stats’:
+
+    lowess
+
+# A tibble: 9 × 2
+  sample_type           n
+  <fct>             <int>
+1 Bile_Duct_Cancer     25
+2 Breast_Cancer        54
+3 Colorectal_Cancer    26
+4 Duodenal_Cancer       1
+5 Gastric_cancer       27
+6 Healthy             194
+7 Lung_Cancer          35
+8 Ovarian_Cancer       28
+9 Pancreatic_Cancer    34
+# A tibble: 8 × 2
+  sample_type           n
+  <fct>             <int>
+1 Bile_Duct_Cancer     25
+2 Breast_Cancer        54
+3 Colorectal_Cancer    26
+4 Gastric_cancer       27
+5 Healthy             194
+6 Lung_Cancer          35
+7 Ovarian_Cancer       28
+8 Pancreatic_Cancer    34
+starting worker pid=27953 on localhost:11414 at 06:49:24.805
+starting worker pid=27987 on localhost:11414 at 06:49:25.052
+starting worker pid=28021 on localhost:11414 at 06:49:25.253
+starting worker pid=28055 on localhost:11414 at 06:49:25.461
+starting worker pid=28089 on localhost:11414 at 06:49:25.665
+starting worker pid=28123 on localhost:11414 at 06:49:25.871
+starting worker pid=28157 on localhost:11414 at 06:49:26.119
+starting worker pid=28191 on localhost:11414 at 06:49:26.352
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+
+Attaching package: ‘ggplot2’
+
+Loading required package: lattice
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+
+Attaching package: ‘ggplot2’
+
+Loading required package: lattice
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+Loading required package: lattice
+
+Attaching package: ‘ggplot2’
+
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+Loading required package: lattice
+Loading required package: lattice
+
+Attaching package: ‘ggplot2’
+
+
+Attaching package: ‘ggplot2’
+
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+The following object is masked from ‘package:kernlab’:
+
+    alpha
+
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  3.1.4     ✔ purrr   0.3.4
+✔ tidyr   1.1.3     ✔ dplyr   1.0.7
+✔ readr   1.3.1     ✔ stringr 1.4.0
+✔ tibble  3.1.4     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ ggplot2::alpha() masks kernlab::alpha()
+✖ purrr::cross()   masks kernlab::cross()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+✖ purrr::lift()    masks caret::lift()
+Class: Gastric_cancer
+Class: Gastric_cancer
+CV repetition number: 3
+Class: Gastric_cancer
+Class: Gastric_cancer
+Class: Gastric_cancer
+Class: Gastric_cancer
+Class: Gastric_cancer
+CV repetition number: 8
+CV repetition number: 4
+CV repetition number: 6
+CV repetition number: 5
+CV repetition number: 1
+CV repetition number: 2
+CV inner loop, CV_rep: 3
+CV inner loop, CV_rep: 8
+CV inner loop, CV_rep: 4
+CV inner loop, CV_rep: 2
+CV inner loop, CV_rep: 6
+CV inner loop, CV_rep: 5
+CV inner loop, CV_rep: 1
+Class: Gastric_cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Gastric_cancerOther
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+Registered S3 methods overwritten by 'proxy':
+  method               from    
+  print.registry_field registry
+  print.registry_entry registry
+maximum number of iterations reached 9.782914e-06 -9.776837e-06maximum number of iterations reached 1.107193e-05 -1.106793e-05besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0001426892 -0.0001414171maximum number of iterations reached 0.0008272024 -0.0008044697maximum number of iterations reached 0.0002589074 -0.000255951CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+4
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 1.124481e-05 -1.124395e-05besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 2.268595e-05 -2.265178e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+maximum number of iterations reached 3.835266e-05 -3.828805e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+maximum number of iterations reached 1.338129e-05 -1.337242e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 2.38467e-05 -2.381202e-05maximum number of iterations reached 1.525884e-05 -1.523941e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 1.276258e-05 -1.275812e-05besttune C
+1
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+line search fails 0.02348558 -2.823948 1.011493e-05 1.42161e-07 -2.123279e-09 9.502076e-09 -2.0126e-14CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 2.813339e-05 -2.808371e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.295664e-05 -1.295066e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+line search fails 0.005080688 -2.718065 1.086332e-05 1.037315e-07 -1.837437e-09 1.089194e-08 -1.883084e-14CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 3.926158e-05 -3.918749e-05besttune C
+4
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune degree
+3
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.222263e-05 -1.222322e-05maximum number of iterations reached 1.210937e-05 -1.210615e-05maximum number of iterations reached 0.0001126292 -0.0001120815maximum number of iterations reached 1.112816e-05 -1.111758e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 0.0001231086 -0.0001220368besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 4.565976e-05 -4.552134e-05maximum number of iterations reached 1.059088e-05 -1.059492e-05maximum number of iterations reached 5.825535e-05 -5.799922e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 9.845316e-06 -9.844218e-06besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+maximum number of iterations reached 1.324831e-05 -1.324435e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 4.835284e-05 -4.821212e-05maximum number of iterations reached 1.602191e-05 -1.600966e-05maximum number of iterations reached 1.474636e-05 -1.474256e-05maximum number of iterations reached 9.673564e-06 -9.669581e-06besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+maximum number of iterations reached 0.0004709967 -0.0004628632CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 3.210787e-05 -3.205955e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0005460003 -0.0005338103maximum number of iterations reached 9.673404e-06 -9.669601e-06maximum number of iterations reached 0.0002264233 -0.0002249173maximum number of iterations reached 7.539296e-05 -7.503814e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+line search fails -0.08473919 -2.31729 1.110808e-05 1.631764e-07 -5.303626e-09 -2.273686e-09 -5.928411e-14besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+Class: Gastric_cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.001
+Class: Gastric_cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+Class: Ovarian_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+Class: Ovarian_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+Class: Ovarian_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+Class: Ovarian_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+1
+Class: Ovarian_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.606772e-05 -1.605511e-05Class: Ovarian_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherOvarian_Cancer
+maximum number of iterations reached 1.271114e-05 -1.270732e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 1.147121e-05 -1.147416e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+maximum number of iterations reached 9.620833e-06 -9.620323e-06CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 9.4876e-06 -9.485718e-06maximum number of iterations reached 2.949198e-05 -2.94802e-05maximum number of iterations reached 2.116667e-05 -2.115941e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0005876456 -0.0005735323maximum number of iterations reached 1.170579e-05 -1.16993e-05CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+2
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 9.949467e-06 -9.946371e-06CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+maximum number of iterations reached 2.097511e-05 -2.095584e-05besttune C
+2
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+maximum number of iterations reached 1.955246e-05 1.954555e-05CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+2
+besttune degree
+3
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+maximum number of iterations reached 1.174485e-05 -1.173964e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+maximum number of iterations reached 3.185515e-05 3.179026e-05besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+Gastric_cancerOther
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+10
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+Class: Ovarian_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherOvarian_Cancer
+Class: Ovarian_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+Class: Ovarian_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+Class: Ovarian_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+Class: Lung_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+Class: Lung_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+Class: Lung_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+Class: Lung_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 5.691895e-05 5.672679e-05CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+1
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+10
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+line search fails -0.03997656 -2.281383 1.15852e-05 3.465199e-07 -1.274849e-09 -1.404296e-08 -1.963556e-14besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.001
+Class: Lung_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+line search fails -0.006552844 -2.371634 1.029758e-05 2.089921e-07 -2.534413e-09 7.547766e-09 -2.45209e-14besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+Class: Lung_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+1
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherOvarian_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+10
+Class: Lung_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+Class: Lung_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+Class: Lung_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherLung_Cancer
+line search fails -0.04593464 -2.30704 1.098904e-05 1.667451e-07 -1.95545e-09 -5.804853e-09 -2.245646e-14besttune C
+1
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+Class: Lung_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+Class: Healthy
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+Class: Healthy
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherHealthy
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+line search fails -0.03462985 -2.273162 1.388228e-05 8.090547e-09 -1.758037e-09 2.075554e-09 -2.438877e-14besttune C
+4
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+line search fails -0.03949638 -0.1589792 1.337762e-05 2.732164e-08 -3.981787e-09 5.781477e-10 -5.325104e-14besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+10
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+Class: Healthy
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherHealthy
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+line search fails -0.01347068 -0.1627426 1.311915e-05 4.34848e-08 -1.909249e-09 -1.329983e-09 -2.510556e-14besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+Class: Healthy
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+line search fails -0.03357596 -2.372496 1.098286e-05 5.050328e-07 -1.628924e-09 -1.995075e-08 -2.796603e-14besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+Class: Healthy
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherHealthy
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+2
+besttune degree
+3
+besttune scale
+1
+Class: Healthy
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherHealthy
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherLung_Cancer
+line search fails -0.01889041 -0.1587341 1.529969e-05 -1.223474e-07 -4.097581e-09 1.445362e-09 -6.286854e-14line search fails -0.04693319 -0.1693696 1.104398e-05 1.69651e-08 -5.102839e-09 1.033077e-10 -5.635392e-14besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+Class: Healthy
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherHealthy
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.02914333 -0.1658686 1.132561e-05 -6.108377e-08 -3.377959e-09 5.720945e-10 -3.829241e-14besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+Class: Healthy
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.04145903 -0.1543101 1.030433e-05 8.819594e-09 -3.547773e-09 8.122742e-10 -3.655026e-14besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.03619357 -0.1670099 1.015247e-05 5.098667e-08 -4.240325e-09 -3.865631e-10 -4.306948e-14besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.01563471 -0.1800105 1.60512e-05 -1.453066e-07 -3.563161e-09 1.061859e-09 -5.734732e-14besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.04079025 -0.1605759 1.160281e-05 -3.95553e-08 -4.032617e-09 6.467604e-10 -4.681527e-14besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.0180015 -0.1664384 1.091789e-05 -9.355541e-08 -1.838754e-09 3.51561e-10 -2.01082e-14besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+Class: Healthy
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.04042557 -0.1548467 1.022869e-05 1.414211e-07 -4.954253e-09 -9.28165e-10 -5.08068e-14line search fails -0.01817084 -0.1685022 1.212317e-05 -5.923696e-08 -2.427718e-09 1.91732e-10 -2.9443e-14besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+Class: Healthy
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.008977469 -0.1753609 1.374693e-05 -1.330889e-09 -2.893406e-09 -1.861278e-09 -3.977298e-14besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.02006228 -0.1733731 1.374102e-05 -9.11107e-08 -3.17325e-09 5.94061e-10 -4.365784e-14line search fails -0.1395806 -0.006455347 1.008386e-05 4.567564e-07 -4.652179e-09 -3.972305e-09 -4.872631e-14line search fails -0.04016316 -0.161503 1.048033e-05 3.974001e-08 -3.929421e-09 5.409124e-11 -4.117947e-14besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.1168005 -0.06075249 1.035056e-05 2.807338e-07 -5.422148e-09 -1.112115e-09 -5.643446e-14besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+line search fails -0.05373972 -0.1644316 1.086263e-05 3.573479e-08 -5.257615e-09 -3.399508e-10 -5.712368e-14CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.03369445 -0.1618545 1.124713e-05 9.471712e-08 -3.400652e-09 -6.430751e-10 -3.830848e-14besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+line search fails -0.021646 -0.1615392 1.019777e-05 -8.738435e-08 -2.434953e-09 7.342997e-10 -2.489527e-14CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.02045491 -0.1767659 1.002132e-05 -9.498101e-09 -2.311511e-09 -1.785858e-13 -2.31644e-14line search fails -0.03026777 -0.1695532 1.066469e-05 -2.132078e-08 -3.110792e-09 1.006432e-10 -3.317779e-14besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.01692108 -0.1708589 1.276229e-05 -3.8403e-08 -3.081907e-09 2.633964e-10 -3.934232e-14besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.01970968 -0.1611395 1.839578e-05 -1.555974e-09 -3.441107e-09 4.667738e-10 -6.330256e-14besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.02855068 -0.1652458 1.617286e-05 2.025184e-08 -3.650009e-09 1.83617e-11 -5.903071e-14besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.02917959 -0.1615711 1.277051e-05 -2.333955e-08 -3.065979e-09 5.821844e-10 -3.91677e-14besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+line search fails -0.02015739 -0.1632561 1.079282e-05 -1.228304e-07 -2.412818e-09 9.888119e-10 -2.616257e-14line search fails -0.08894613 -0.05107884 1.038834e-05 3.016675e-07 -3.145004e-09 -2.015707e-09 -3.327944e-14line search fails -0.03039915 -0.1707201 1.239465e-05 -1.519006e-08 -3.41617e-09 -3.102935e-10 -4.233753e-14besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+Class: Bile_Duct_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 0.0002617038 -0.0002593156besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 8.476916e-05 -8.441845e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 4.981948e-05 -4.96498e-05maximum number of iterations reached 0.0005408234 -0.0005315464besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+Class: Bile_Duct_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherBile_Duct_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 0.0001939099 -0.000192685besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+Class: Bile_Duct_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0002660364 -0.0002629195CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 5.257829e-05 -5.236787e-05maximum number of iterations reached 2.670988e-05 -2.665165e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.001399398 -0.001373213maximum number of iterations reached 3.050179e-05 -3.043717e-05maximum number of iterations reached 0.0004645427 -0.000459959maximum number of iterations reached 0.0001504115 -0.0001498165maximum number of iterations reached 0.0003954507 -0.0003910484maximum number of iterations reached 1.753446e-05 -1.75249e-05maximum number of iterations reached 7.466495e-05 -7.452872e-05maximum number of iterations reached 9.331609e-05 -9.285332e-05maximum number of iterations reached 0.001856947 -0.001773222maximum number of iterations reached 3.539925e-05 -3.535931e-05maximum number of iterations reached 0.0001170674 -0.0001168318CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.352123e-05 -1.350795e-05maximum number of iterations reached 4.280503e-05 -4.269423e-05maximum number of iterations reached 1.090819e-05 -1.089985e-05besttune C
+1
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001324283 -0.0001313028maximum number of iterations reached 4.782612e-05 -4.765139e-05besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 1.061536e-05 -1.06141e-05besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+Class: Bile_Duct_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherBile_Duct_Cancer
+maximum number of iterations reachedCV inner loop, CV_rep: 10
+ 0.0004798959 -0.0004761451OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 2.29904e-05 -2.297431e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 9.793264e-06 -9.784513e-06besttune C
+1
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 6.945599e-05 -6.918324e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+maximum number of iterations reachedmaximum number of iterations reached 0.0002833767 -0.0002802945 9.649897e-06 -9.638153e-06Class: Bile_Duct_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 7.979951e-05 -7.941196e-05maximum number of iterations reached 3.13731e-05 -3.132141e-05maximum number of iterations reached 9.62778e-06 -9.622457e-06besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+maximum number of iterations reached 5.924455e-05 -5.901308e-05maximum number of iterations reached 1.453839e-05 -1.452203e-05maximum number of iterations reached 3.68798e-05 -3.680272e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 3.010967e-05 -3.007204e-05maximum number of iterations reached 4.514686e-05 -4.501151e-05besttune C
+4
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 2.612437e-05 -2.609267e-05besttune C
+1
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 1.160038e-05 -1.159161e-05maximum number of iterations reached 1.604498e-05 -1.603584e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 4.250144e-05 -4.236265e-05maximum number of iterations reached 1.313082e-05 -1.312143e-05maximum number of iterations reached 3.083261e-05 -3.076849e-05maximum number of iterations reached 7.383288e-05 -7.349317e-05maximum number of iterations reached 2.366265e-05 -2.364228e-05maximum number of iterations reached 9.352996e-06 -9.350159e-06maximum number of iterations reached 1.887672e-05 -1.884974e-05besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+maximum number of iterations reached 0.0004843297 -0.0004750371Class: Bile_Duct_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.435507e-05 -1.434294e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+maximum number of iterations reached 1.864189e-05 -1.861893e-05maximum number of iterations reached 7.451151e-05 -7.42825e-05CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 3.225923e-05 -3.219355e-05maximum number of iterations reached 2.643325e-05 -2.638173e-05besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 1.0337e-05 -1.033191e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 8.373344e-05 -8.33086e-05maximum number of iterations reached 6.821747e-05 -6.801058e-05besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 2.348227e-05 -2.343867e-05maximum number of iterations reached 1.228789e-05 -1.227804e-05besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 8.478632e-05 -8.435426e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0001673766 -0.0001669636maximum number of iterations reached 0.000191919 -0.0001906646maximum number of iterations reached 0.003805611 -0.003629809maximum number of iterations reached 0.001252332 -0.0012223maximum number of iterations reached 0.00519628 -0.004883346maximum number of iterations reached 0.0003752433 -0.0003682148maximum number of iterations reached 0.0001519242 -0.000151409maximum number of iterations reached 0.0002309964 -0.0002287932maximum number of iterations reached 0.0002248125 -0.000223569maximum number of iterations reached 0.0001704311 -0.0001694056maximum number of iterations reached 5.511784e-05 -5.497919e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0002140136 -0.0002121918maximum number of iterations reached 3.283196e-05 -3.275024e-05maximum number of iterations reached 1.549383e-05 -1.547742e-05maximum number of iterations reached 7.282353e-05 -7.245904e-05maximum number of iterations reached 5.25854e-05 -5.23962e-05maximum number of iterations reached 1.798509e-05 -1.796527e-05maximum number of iterations reached 3.166444e-05 -3.160807e-05maximum number of iterations reached 0.0001201648 -0.0001195017besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 3.516807e-05 -3.508198e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 3.429478e-05 -3.421856e-05maximum number of iterations reached 1.674748e-05 -1.673877e-05maximum number of iterations reached 0.0001108035 -0.0001101493besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+line search fails -0.09017137 0.00713799 1.029218e-05 3.131681e-07 -2.417186e-09 -2.037282e-09 -2.551613e-14maximum number of iterations reached 3.639784e-05 -3.630307e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.565997e-05 -1.56448e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+maximum number of iterations reached 1.06541e-05 -1.064568e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001418792 -0.0001409093besttune C
+1
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 9.924092e-06 -9.918243e-06maximum number of iterations reached 4.577849e-05 -4.563933e-05besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 6.450398e-05 -6.42628e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 2.663629e-05 -2.659375e-05maximum number of iterations reached 9.266916e-06 -9.259225e-06besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 1.416548e-05 -1.415637e-05CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 1.53215e-05 -1.530062e-05besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.1
+maximum number of iterations reached 1.078794e-05 -1.077963e-05maximum number of iterations reached 1.009693e-05 -1.009616e-05maximum number of iterations reached 0.0002027258 -0.0002008704besttune C
+4
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.000235074 -0.0002324508CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 2.060487e-05 -2.057725e-05maximum number of iterations reached 1.47053e-05 -1.469085e-05besttune C
+1
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 9.731246e-06 -9.726481e-06CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001161541 -0.0001154763besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+maximum number of iterations reached 9.900564e-06 -9.89535e-06CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.080422e-05 -1.079705e-05maximum number of iterations reached 1.41437e-05 -1.414195e-05maximum number of iterations reached 1.244886e-05 -1.244343e-05besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.000546625 -0.0005356446besttune C
+4
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 9.432239e-06 -9.427826e-06CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001885595 -0.0001864425maximum number of iterations reached 0.000173088 -0.0001714679maximum number of iterations reached 0.0002906226 -0.0002895352besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 1.010097e-05 -1.00941e-05maximum number of iterations reached 9.626119e-06 -9.614495e-06CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 3.779313e-05 -3.773579e-05maximum number of iterations reached 1.839174e-05 -1.836838e-05maximum number of iterations reached 9.732879e-06 -9.728261e-06maximum number of iterations reached 0.0004504055 -0.0004420558maximum number of iterations reached 7.875175e-05 -7.837397e-05maximum number of iterations reached 0.0003564021 -0.0003513299besttune C
+1
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 5.143669e-05 -5.128359e-05maximum number of iterations reached 2.305453e-05 -2.302187e-05maximum number of iterations reached 0.0006566512 -0.0006440383maximum number of iterations reached 3.189729e-05 -3.182915e-05besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+OtherBile_Duct_Cancer
+maximum number of iterations reached 9.646335e-06 -9.635047e-06maximum number of iterations reached 9.754664e-06 -9.747121e-06maximum number of iterations reached 1.867041e-05 -1.865494e-05maximum number of iterations reached 4.938266e-05 -4.926628e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 4.987511e-05 -4.975211e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 0.0002085006 -0.0002067532besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.16845e-05 -1.167527e-05besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+maximum number of iterations reached 1.783593e-05 -1.781963e-05maximum number of iterations reached 0.0005982226 -0.0005872844CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 3.409985e-05 -3.401809e-05maximum number of iterations reached 0.0001943006 -0.0001930325maximum number of iterations reached 3.407331e-05 -3.401332e-05maximum number of iterations reached 0.0003357503 -0.0003310592besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+maximum number of iterations reached 1.862141e-05 -1.860471e-05maximum number of iterations reached 3.201862e-05 -3.194288e-05maximum number of iterations reached 0.0002177829 -0.0002151344CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 2.528172e-05 -2.523359e-05maximum number of iterations reached 0.001396649 -0.001348416maximum number of iterations reached 3.042827e-05 -3.040046e-05maximum number of iterations reached 9.399345e-06 -9.39222e-06besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+maximum number of iterations reached 0.0004423788 -0.000438948CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 4.206944e-05 -4.192463e-05maximum number of iterations reached 0.0001926177 -0.0001905046maximum number of iterations reached 0.0001281767 -0.0001274456besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 5.296614e-05 -5.27899e-05maximum number of iterations reached 3.434558e-05 -3.428776e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 2.701403e-05 -2.695601e-05besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 3.143644e-05 -3.138447e-05besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0001619165 -0.0001606442maximum number of iterations reached 0.0001940623 -0.0001927879maximum number of iterations reached 7.462353e-05 -7.427621e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 7.290491e-05 -7.263519e-05maximum number of iterations reached 3.81409e-05 -3.808345e-05maximum number of iterations reached 6.208757e-05 -6.194113e-05besttune C
+2
+besttune degree
+2
+besttune scale
+0.1
+maximum number of iterations reached 1.116868e-05 -1.116192e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+1
+maximum number of iterations reached 9.553839e-05 -9.491323e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 9.324697e-06 -9.324999e-06maximum number of iterations reached 1.925815e-05 -1.924185e-05maximum number of iterations reached 1.439413e-05 -1.438447e-05maximum number of iterations reached 5.222139e-05 -5.204652e-05maximum number of iterations reached 1.828273e-05 -1.826971e-05maximum number of iterations reached 1.216242e-05 -1.214852e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.00021326 -0.0002121549maximum number of iterations reached 7.418413e-05 -7.379988e-05maximum number of iterations reached 1.557075e-05 -1.554946e-05maximum number of iterations reached 2.430404e-05 -2.425133e-05maximum number of iterations reached 2.178105e-05 -2.175339e-05besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 9.568092e-06 -9.559773e-06maximum number of iterations reached 5.484859e-05 -5.465446e-05maximum number of iterations reached 4.250417e-05 -4.239555e-05besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+maximum number of iterations reached 3.105982e-05 -3.100313e-05maximum number of iterations reached 3.161256e-05 -3.156639e-05besttune C
+1
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+maximum number of iterations reached 6.306284e-05 -6.288309e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.062079e-05 -1.061402e-05maximum number of iterations reached 2.233052e-05 -2.22983e-05Class: Bile_Duct_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherHealthy
+maximum number of iterations reached 6.757085e-05 -6.730041e-05maximum number of iterations reached 1.426561e-05 -1.4258e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+maximum number of iterations reached 1.490008e-05 -1.489011e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001717044 -0.0001707101maximum number of iterations reached 2.04204e-05 -2.038748e-05maximum number of iterations reached 9.864855e-05 -9.803592e-05maximum number of iterations reached 1.254351e-05 -1.253853e-05maximum number of iterations reached 6.43465e-05 -6.412137e-05maximum number of iterations reached 2.30755e-05 -2.304903e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.247828e-05 -1.247299e-05maximum number of iterations reached 0.0001752232 -0.0001744769CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 2.974755e-05 -2.969656e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.000372257 -0.0003675465maximum number of iterations reached 4.415959e-05 -4.402023e-05maximum number of iterations reached 1.213462e-05 -1.212566e-05maximum number of iterations reached 2.592527e-05 -2.588916e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 3.068832e-05 -3.063818e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+maximum number of iterations reached 0.0005833416 -0.0005699523Class: Bile_Duct_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherBile_Duct_Cancer
+maximum number of iterations reached 9.722835e-06 -9.717505e-06maximum number of iterations reached 1.538723e-05 -1.536822e-05maximum number of iterations reached 9.554152e-06 -9.549509e-06maximum number of iterations reached 7.960605e-05 -7.924555e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001448322 -0.0001442699maximum number of iterations reached 1.98557e-05 -1.982482e-05maximum number of iterations reached 0.000213235 -0.0002106628maximum number of iterations reached 1.766022e-05 -1.763822e-05maximum number of iterations reached 1.03361e-05 -1.032892e-05maximum number of iterations reached 1.066965e-05 -1.066503e-05maximum number of iterations reached 7.41802e-05 -7.388535e-05maximum number of iterations reached 5.858218e-05 -5.837058e-05besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 2.771938e-05 -2.76732e-05maximum number of iterations reached 1.386661e-05 -1.386441e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+maximum number of iterations reached 1.740905e-05 -1.739701e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+Class: Bile_Duct_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0007604732 -0.0007477419maximum number of iterations reached 9.779524e-06 -9.778805e-06maximum number of iterations reached 2.923382e-05 -2.91851e-05maximum number of iterations reached 7.078333e-05 -7.047601e-05maximum number of iterations reached 2.131412e-05 -2.128962e-05maximum number of iterations reached 1.384771e-05 -1.383641e-05maximum number of iterations reached 2.447658e-05 -2.44367e-05maximum number of iterations reached 2.132946e-05 -2.130369e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+maximum number of iterations reached 0.0002037586 -0.0002012578besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+Class: Bile_Duct_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.33504e-05 -1.3335e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 3.168571e-05 -3.164107e-05maximum number of iterations reached 6.012264e-05 -5.999634e-05maximum number of iterations reached 0.000199879 -0.0001983528maximum number of iterations reached 1.572471e-05 -1.571219e-05maximum number of iterations reached 1.116368e-05 -1.115385e-05maximum number of iterations reached 6.935231e-05 -6.897824e-05maximum number of iterations reached 9.74958e-05 -9.694007e-05besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+maximum number of iterations reached 1.940543e-05 -1.938485e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+Class: Pancreatic_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 3.73233e-05 -3.726161e-05maximum number of iterations reached 0.0006280245 -0.0006218305besttune C
+2
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 0.0001651091 -0.0001644623maximum number of iterations reached 3.280318e-05 -3.271144e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 4.224119e-05 -4.209986e-05maximum number of iterations reached 3.812619e-05 -3.803592e-05maximum number of iterations reached 1.359737e-05 -1.359082e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 8.998222e-05 -8.964347e-05besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+maximum number of iterations reached 2.038078e-05 -2.036054e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0003049877 -0.0003006121maximum number of iterations reached 1.770197e-05 -1.768605e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.000402525 -0.0003953668besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+Class: Pancreatic_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+Class: Pancreatic_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherPancreatic_Cancer
+maximum number of iterations reached 9.411829e-05 -9.353961e-05maximum number of iterations reached 2.684732e-05 -2.681192e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.751274e-05 -1.748679e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 1.693148e-05 -1.691834e-05maximum number of iterations reached 6.629448e-05 -6.600856e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 2.202377e-05 -2.20082e-05maximum number of iterations reached 9.61587e-05 -9.59014e-05maximum number of iterations reached 9.28844e-06 -9.284843e-06maximum number of iterations reached 0.0007879722 -0.0007719971maximum number of iterations reached 1.399526e-05 -1.397719e-05maximum number of iterations reached 1.708787e-05 -1.706504e-05maximum number of iterations reached 3.442384e-05 -3.434905e-05maximum number of iterations reached 0.0003409254 -0.0003356886maximum number of iterations reached 0.0001792973 -0.0001782596besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+maximum number of iterations reached 5.351177e-05 5.333793e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 2.116811e-05 -2.113497e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 0.0006561742 -0.0006454786maximum number of iterations reached 1.32832e-05 -1.327616e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001889116 -0.0001869205besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.162172e-05 -1.160909e-05Class: Pancreatic_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherPancreatic_Cancer
+maximum number of iterations reached 0.0001194679 -0.0001185341maximum number of iterations reached 1.119815e-05 -1.119355e-05maximum number of iterations reached 2.871623e-05 -2.864312e-05besttune C
+1
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 0.0002381467 -0.0002349127maximum number of iterations reached 9.81359e-05 -9.758694e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 4.592225e-05 -4.58047e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 3.965277e-05 -3.958296e-05maximum number of iterations reached 2.3525e-05 -2.34887e-05maximum number of iterations reached 2.522743e-05 -2.519369e-05maximum number of iterations reached 2.387935e-05 -2.383089e-05maximum number of iterations reached 1.678789e-05 -1.676824e-05maximum number of iterations reached 0.0001894099 -0.0001878097maximum number of iterations reached 9.856248e-06 -9.85003e-06maximum number of iterations reached 7.651603e-05 -7.62593e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.147087e-05 -1.14666e-05maximum number of iterations reached 0.0002241467 -0.0002220746maximum number of iterations reached 0.0007279791 -0.0007215882maximum number of iterations reached 0.0001661493 -0.0001653852maximum number of iterations reached 9.339589e-06 -9.330459e-06maximum number of iterations reached 0.0001024512 -0.0001019356maximum number of iterations reached 0.0001195193 -0.0001191252maximum number of iterations reached 0.0002980163 -0.0002955359maximum number of iterations reached 3.06564e-05 -3.061454e-05maximum number of iterations reached 6.616789e-05 -6.596208e-05besttune C
+CV inner loop, CV_rep: 10
+0.25
+besttune degree
+1
+besttune scale
+0.001
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.00122206 0.001180703maximum number of iterations reached 0.0004318209 0.0004255364maximum number of iterations reached 0.0004699534 0.0004637227maximum number of iterations reached 0.0007374448 0.0007212638maximum number of iterations reached 9.678109e-05 -9.618384e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 2.108507e-05 -2.105195e-05maximum number of iterations reached 1.533681e-05 -1.531609e-05besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 9.573973e-06 -9.567558e-06maximum number of iterations reached 6.782411e-05 -6.762465e-05besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 6.153572e-05 -6.135371e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 9.402276e-05 -9.355155e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+maximum number of iterations reached 1.529937e-05 -1.528554e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.468219e-05 -1.467387e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 9.710991e-05 -9.652192e-05maximum number of iterations reached 0.0001465513 -0.000145894maximum number of iterations reached 3.468625e-05 -3.46586e-05maximum number of iterations reached 1.957457e-05 -1.954637e-05maximum number of iterations reached 3.42972e-05 -3.420683e-05maximum number of iterations reached 5.747333e-05 -5.730964e-05maximum number of iterations reached 0.0004374125 -0.0004335127maximum number of iterations reached 1.180052e-05 -1.17939e-05maximum number of iterations reached 0.0005201781 -0.0005119809maximum number of iterations reached 0.0001375938 -0.0001369204maximum number of iterations reached 0.000729237 -0.0007133499maximum number of iterations reached 1.825202e-05 -1.82351e-05maximum number of iterations reached 4.810515e-05 -4.795342e-05besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+maximum number of iterations reached 1.757272e-05 -1.754447e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0004118351 -0.0004043121maximum number of iterations reached 4.912892e-05 4.898178e-05maximum number of iterations reached 1.439907e-05 -1.438535e-05maximum number of iterations reached 0.0003090372 -0.0003064175maximum number of iterations reached 6.107019e-05 -6.08295e-05besttune C
+4
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001344446 -0.000133374CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001085573 -0.0001081197maximum number of iterations reached 2.892021e-05 -2.890035e-05maximum number of iterations reached 5.451355e-05 -5.435824e-05besttune C
+2
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 8.302384e-05 -8.276019e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.026882e-05 1.027363e-05maximum number of iterations reached 7.723196e-05 7.687551e-05maximum number of iterations reached 0.000306233 0.0003023416besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 5.634722e-05 -5.618914e-05maximum number of iterations reached 9.293909e-06 -9.288361e-06CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 0.0001831616 -0.0001822005maximum number of iterations reached 0.0002506362 -0.0002484778maximum number of iterations reached 1.201367e-05 -1.200567e-05maximum number of iterations reached 5.252736e-05 -5.233872e-05besttune C
+0.25
+besttune degree
+1
+besttune C
+besttune scale
+0.25
+0.001
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0007985277 0.0007807291maximum number of iterations reached -2.812584e-05 -2.825919e-05maximum number of iterations reached 7.962078e-05 7.920254e-05maximum number of iterations reached 0.0003644123 0.0003588335maximum number of iterations reached 0.0006959936 0.00068989CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.117279e-05 1.117399e-05maximum number of iterations reached 5.273438e-05 5.255798e-05maximum number of iterations reached 9.915279e-06 -9.908358e-06CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.746179e-05 1.744944e-05besttune C
+1
+besttune degree
+1
+besttune scale
+10
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 2.289132e-05 -2.285149e-05maximum number of iterations reached 4.007875e-05 -4.002833e-05maximum number of iterations reached 9.010688e-05 -8.971274e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.000150197 -0.0001489364maximum number of iterations reached 1.109706e-05 -1.109094e-05maximum number of iterations reached 1.208362e-05 -1.207563e-05maximum number of iterations reached 1.263087e-05 1.262501e-05besttune C
+1
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.223129e-05 -1.221718e-05maximum number of iterations reached 5.368268e-05 5.347385e-05maximum number of iterations reached 2.422588e-05 -2.418756e-05maximum number of iterations reached 0.0002267984 -0.0002256823maximum number of iterations reached 2.241093e-05 -2.238401e-05besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 2.252259e-05 -2.250382e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 2.845682e-05 2.842108e-05besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.573382e-05 1.573422e-05maximum number of iterations reached 9.032761e-05 8.983554e-05maximum number of iterations reached 0.0002113656 0.0002099441CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.580356e-05 1.579723e-05maximum number of iterations reached 0.0001828271 0.0001812582besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 2.81859e-05 2.817355e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001174854 -0.0001166506CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0004172023 0.0004120936maximum number of iterations reached 0.0005279841 0.0005221801maximum number of iterations reached 0.0001659525 0.000164742maximum number of iterations reached 6.346222e-05 6.330486e-05maximum number of iterations reached 0.000226307 0.0002253397maximum number of iterations reached 3.471313e-05 3.464763e-05maximum number of iterations reached 7.314482e-05 7.287913e-05maximum number of iterations reached 3.402191e-05 3.396514e-05maximum number of iterations reached 6.635076e-05 6.612681e-05maximum number of iterations reached 0.0007690825 0.0007527294maximum number of iterations reached 1.470216e-05 1.469168e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 2.097036e-05 -2.093977e-05besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.0001054252 -0.0001048871besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.521445e-05 -1.519922e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 0.0001197313 -0.0001192929CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.001193141 -0.001154889besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 9.541288e-06 -9.533346e-06besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.409919e-05 -1.408755e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 0.0003366317 -0.0003313242maximum number of iterations reached 1.550571e-05 1.54951e-05maximum number of iterations reached 3.351284e-05 -3.343904e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+maximum number of iterations reached 0.0002030145 -0.0002009904CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 0.0002846469 -0.0002818896maximum number of iterations reached 0.0004347799 -0.0004277547maximum number of iterations reached 1.885402e-05 -1.883202e-05maximum number of iterations reached 0.0001254934 -0.000124798maximum number of iterations reached 0.0001513994 -0.0001504319maximum number of iterations reached 1.160015e-05 1.159329e-05maximum number of iterations reached 1.275145e-05 -1.27503e-05maximum number of iterations reached 1.947e-05 -1.945727e-05besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 9.425498e-06 -9.424113e-06CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0009188907 -0.0009024883besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+maximum number of iterations reached 0.002740974 -0.002614316maximum number of iterations reached 2.307746e-05 -2.304743e-05maximum number of iterations reached 0.000150335 -0.0001495182maximum number of iterations reached 3.761507e-05 -3.755381e-05maximum number of iterations reached 0.001122303 -0.0010983maximum number of iterations reached 3.275024e-05 -3.268281e-05maximum number of iterations reached 0.0005618818 -0.0005516151maximum number of iterations reached 2.197461e-05 2.193812e-05maximum number of iterations reached 0.0007222095 -0.0007061171CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 2.615693e-05 -2.612237e-05CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 1.675442e-05 -1.675005e-05maximum number of iterations reached 1.226041e-05 -1.22526e-05maximum number of iterations reached 2.707317e-05 -2.703357e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+maximum number of iterations reached 9.919149e-06 -9.917593e-06Class: Pancreatic_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherPancreatic_Cancer
+maximum number of iterations reached 9.447726e-06 -9.44354e-06maximum number of iterations reached 0.0003753249 -0.0003692673besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 5.584427e-05 -5.564455e-05Class: Pancreatic_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.848058e-05 1.846721e-05besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 2.011826e-05 -2.009134e-05besttune C
+2
+besttune degree
+1
+besttune scale
+10
+Class: Pancreatic_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.683606e-05 1.682186e-05besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 2.662782e-05 -2.657946e-05maximum number of iterations reached 8.656343e-05 -8.617659e-05maximum number of iterations reached 9.386154e-06 -9.379547e-06maximum number of iterations reached 0.000365741 0.000360763besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 0.0003383041 -0.0003354092maximum number of iterations reached 0.0001022079 -0.0001016209besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 3.25067e-05 3.24639e-05besttune C
+1
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 9.878949e-06 9.877761e-06maximum number of iterations reached 0.0001766895 0.0001751188CV inner loop, CV_rep: 10
+OtherBile_Duct_Cancer
+maximum number of iterations reached 0.000871704 0.0008563127CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.697027e-05 1.694641e-05besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 5.433462e-05 5.422718e-05maximum number of iterations reached 1.471723e-05 1.470915e-05maximum number of iterations reached 0.0001456072 -0.0001443916CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.000376072 0.0003710943maximum number of iterations reached 0.001316873 0.001280862maximum number of iterations reached 2.024923e-05 2.022515e-05maximum number of iterations reached 9.301265e-05 9.247642e-05maximum number of iterations reached 2.463795e-05 2.460067e-05maximum number of iterations reached 1.015855e-05 1.015366e-05maximum number of iterations reached 0.0001776041 0.0001767239CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 2.088108e-05 2.084964e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.095646e-05 1.094982e-05besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.001
+Class: Pancreatic_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 3.3788e-05 3.373332e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+maximum number of iterations reached 1.67324e-05 1.671872e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 0.0001354718 0.0001345306besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 8.2866e-05 8.26654e-05maximum number of iterations reached 0.000146984 0.0001462505maximum number of iterations reached 3.45295e-05 3.447435e-05maximum number of iterations reached 0.0002398434 0.0002386592CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 0.0002212307 0.0002187367maximum number of iterations reached 0.0003428223 0.0003385702maximum number of iterations reached 1.290229e-05 1.289102e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.08823e-05 1.088926e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0002377861 0.0002361054maximum number of iterations reached 6.03651e-05 6.02667e-05maximum number of iterations reached 0.001922521 0.001887135maximum number of iterations reached 0.0005208333 0.0005143464maximum number of iterations reached 3.108063e-05 3.103147e-05maximum number of iterations reached 3.503454e-05 3.494938e-05maximum number of iterations reached 1.542819e-05 1.54215e-05maximum number of iterations reached 1.164099e-05 1.162991e-05maximum number of iterations reached 3.343538e-05 3.336667e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 9.831741e-06 9.828298e-06besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.455664e-05 1.454055e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 9.383542e-06 9.379727e-06CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+Class: Pancreatic_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0001735206 0.0001723222maximum number of iterations reached 0.0004162835 0.0004101271maximum number of iterations reached 0.0003948629 0.0003878456CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+10
+Class: Pancreatic_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.287686e-05 1.286581e-05maximum number of iterations reached 4.87785e-05 4.864993e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 9.28853e-05 9.230228e-05besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+Class: Breast_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherBreast_Cancer
+maximum number of iterations reached 1.552363e-05 1.550589e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 5.093305e-05 5.083182e-05maximum number of iterations reached 0.001661394 0.001612422maximum number of iterations reached 2.975429e-05 2.971017e-05maximum number of iterations reached 0.0002187091 0.0002161303besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 0.000176657 0.0001749444CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0007549197 0.0007401214maximum number of iterations reached 0.0002673379 0.0002638956maximum number of iterations reached 2.084777e-05 2.082394e-05maximum number of iterations reached 7.885956e-05 7.848514e-05besttune C
+1
+besttune degree
+3
+besttune scale
+10
+maximum number of iterations reached 1.182663e-05 1.181964e-05maximum number of iterations reached 1.443348e-05 1.442579e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 9.983064e-06 9.975287e-06CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 5.170013e-05 5.153049e-05Class: Breast_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 5.538637e-05 5.523076e-05maximum number of iterations reached 6.333429e-05 6.309307e-05maximum number of iterations reached 2.296868e-05 2.295593e-05maximum number of iterations reached 0.0006091055 0.000602153maximum number of iterations reached 0.0001028162 0.0001022268maximum number of iterations reached 8.194497e-05 8.157716e-05besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 0.0001010508 0.0001005975CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0001268317 0.0001260646maximum number of iterations reached 0.0002504408 0.0002480737CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0001790922 0.0001774968maximum number of iterations reached 0.0006539154 0.000645598maximum number of iterations reached 0.000118979 0.0001184045maximum number of iterations reached 0.00138966 0.001348426maximum number of iterations reached 0.0001372825 0.0001367702CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 2.563558e-05 2.560886e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0005625731 0.00055262maximum number of iterations reached 1.098638e-05 1.098247e-05maximum number of iterations reached 0.0005509487 0.0005408814maximum number of iterations reached 6.312348e-05 6.28838e-05maximum number of iterations reached 2.213838e-05 2.211261e-05maximum number of iterations reached 0.0001339743 0.0001329151maximum number of iterations reached 1.889557e-05 1.888771e-05besttune C
+4
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 0.0008161493 0.0007975048CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 4.189026e-05 4.178039e-05CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 1.137535e-05 1.136918e-05maximum number of iterations reached 2.21651e-05 2.213364e-05maximum number of iterations reached 1.063447e-05 1.062856e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 7.185055e-05 7.152442e-05maximum number of iterations reached 1.705567e-05 1.704229e-05maximum number of iterations reached 2.780676e-05 2.777004e-05line search fails -0.004698583 2.434187 -1.118997e-05 -2.039807e-07 9.061644e-10 1.1236e-08 -1.243188e-14maximum number of iterations reached 1.265289e-05 1.265036e-05maximum number of iterations reached 1.151498e-05 1.15079e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0003654159 0.0003601404maximum number of iterations reached 2.740367e-05 2.737278e-05maximum number of iterations reached 1.152324e-05 1.151816e-05maximum number of iterations reached 0.001363138 0.001331593maximum number of iterations reached 0.001960333 0.001901988maximum number of iterations reached 0.0001197472 0.0001190093besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0006159444 0.0006034403maximum number of iterations reached 0.0005387779 0.0005291547maximum number of iterations reached 0.0005099204 0.000506548maximum number of iterations reached 4.39934e-05 4.386925e-05maximum number of iterations reached 7.304673e-05 7.269178e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0004601074 0.0004543954CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 9.165145e-05 9.163415e-05maximum number of iterations reached 9.474268e-06 9.468445e-06maximum number of iterations reached 4.378479e-05 4.366345e-05maximum number of iterations reached 0.0001150991 0.00011437maximum number of iterations reached 0.0003764064 0.0003718187maximum number of iterations reached 0.0001950669 0.0001932744maximum number of iterations reached 0.0001883636 0.0001866331CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.680832e-05 1.679816e-05maximum number of iterations reached 2.281282e-05 2.27824e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.001468774 0.001445795maximum number of iterations reached 0.0001159573 0.0001153624CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 0.0001783274 0.000177161CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.118909e-05 1.117699e-05besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+line search fails -0.01643058 -1.828409 1.24192e-05 8.677056e-07 -1.478328e-09 -1.788125e-08 -3.38753e-14besttune C
+2
+besttune degree
+3
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.620451e-05 1.618808e-05besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+line search fails -0.0280048 -1.77055 1.060545e-05 3.760353e-07 -1.335161e-09 -5.779402e-09 -1.633325e-14CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.29478e-05 1.293809e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.001064144 0.001035722CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 0.0005615622 0.0005506871besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0004607726 0.000457301maximum number of iterations reached 3.307222e-05 3.301291e-05maximum number of iterations reached 0.001707665 0.001649125CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.096557e-05 1.095998e-05besttune C
+1
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+Class: Breast_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+maximum number of iterations reached 1.227985e-05 1.227176e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+Class: Breast_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0005300314 0.0005222789maximum number of iterations reached 0.0003114835 0.0003066439maximum number of iterations reached 0.002231495 0.002170594maximum number of iterations reached 0.003625793 0.003488035maximum number of iterations reached 0.0001884391 0.0001874146maximum number of iterations reached 2.369664e-05 2.367665e-05maximum number of iterations reached 0.000754245 0.0007383705CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+Class: Breast_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+line search fails -0.009851763 -1.825447 1.910488e-05 6.723232e-07 -1.430848e-09 -8.904521e-09 -3.332288e-14besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+line search fails -0.01029277 -1.862371 -1.112667e-05 4.244766e-07 1.372586e-09 -1.398753e-08 -2.120969e-14besttune C
+2
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 1.188265e-05 1.187481e-05CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+Class: Breast_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+maximum number of iterations reached 2.026765e-05 2.024479e-05CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 1.021057e-05 1.020542e-05maximum number of iterations reached 1.090551e-05 1.090217e-05besttune C
+4
+besttune degree
+3
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 2.620197e-05 2.615646e-05besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.1
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 4.699901e-05 4.685737e-05CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+maximum number of iterations reached 0.0001125985 0.0001120539CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+maximum number of iterations reached 0.001802044 0.001760626maximum number of iterations reached 0.001079518 0.001061524CV inner loop, CV_rep: 10
+OtherPancreatic_Cancer
+maximum number of iterations reached 2.543621e-05 2.540582e-05besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+maximum number of iterations reached 1.389325e-05 1.388637e-05besttune C
+0.5
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+line search fails -0.07027005 -1.559198 1.071252e-05 1.192386e-07 -2.917727e-09 6.483407e-09 -3.048314e-14maximum number of iterations reached 7.146123e-05 7.111066e-05maximum number of iterations reached 0.0001754421 0.0001742479maximum number of iterations reached 0.00211723 0.002037399maximum number of iterations reached 0.001162417 0.001145112Class: Breast_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0001639241 0.0001625966maximum number of iterations reached 6.128209e-05 6.108943e-05maximum number of iterations reached 0.001141589 0.00112308maximum number of iterations reached 0.0003416322 0.0003387577maximum number of iterations reached 0.0001245813 0.0001237577maximum number of iterations reached 0.0003135253 0.0003108609maximum number of iterations reached 4.354924e-05 4.343266e-05Class: Breast_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+line search fails -0.02704575 -1.857664 1.144892e-05 -9.67089e-09 -1.478256e-09 2.216183e-09 -1.694587e-14CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+line search fails -0.0101991 -1.906952 -1.350432e-05 6.155796e-07 1.226215e-09 -1.902535e-08 -2.827082e-14line search fails -0.03146124 -1.771538 1.44038e-05 1.376362e-07 -2.135989e-09 3.037779e-09 -3.034825e-14besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+10
+Class: Breast_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+line search fails -0.01123667 -1.877108 1.484842e-05 7.26031e-07 -1.112887e-09 -1.461134e-08 -2.71329e-14CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+Class: Breast_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+line search fails -0.02877333 -1.778334 1.867133e-05 2.985954e-07 -2.068049e-09 -3.658126e-09 -3.970553e-14besttune C
+1
+besttune degree
+2
+besttune scale
+1
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+1
+line search fails -0.05118931 -1.532975 1.334569e-05 3.242394e-08 -2.708694e-09 5.838858e-09 -3.596008e-14CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+1
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+line search fails -0.01478259 -1.899589 -1.210221e-05 6.34279e-07 2.368719e-09 -2.10668e-08 -4.202897e-14line search fails -0.02517717 -1.803914 1.283282e-05 2.284425e-07 -1.367694e-09 -2.496441e-09 -1.812166e-14besttune C
+2
+besttune degree
+3
+besttune scale
+0.1
+besttune C
+2
+besttune degree
+2
+besttune scale
+1
+Class: Colorectal_Cancer
+CV repetition number: 1
+CV inner loop, CV_rep: 1
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+Class: Colorectal_Cancer
+CV repetition number: 2
+CV inner loop, CV_rep: 2
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+Class: Colorectal_Cancer
+CV repetition number: 3
+CV inner loop, CV_rep: 3
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+Class: Colorectal_Cancer
+CV repetition number: 4
+CV inner loop, CV_rep: 4
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+Class: Colorectal_Cancer
+CV repetition number: 5
+CV inner loop, CV_rep: 5
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.001
+Class: Colorectal_Cancer
+CV repetition number: 6
+CV inner loop, CV_rep: 6
+OtherColorectal_Cancer
+line search fails -0.03189557 -1.683882 1.237159e-05 -4.824965e-08 -1.226491e-09 3.498355e-09 -1.534244e-14CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+1
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.001
+maximum number of iterations reached 1.012351e-05 -1.012779e-05CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+1
+Class: Colorectal_Cancer
+CV repetition number: 7
+CV inner loop, CV_rep: 7
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+Class: Colorectal_Cancer
+CV repetition number: 8
+CV inner loop, CV_rep: 8
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherBreast_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+10
+line search fails -0.09438224 -1.354971 1.097039e-05 3.91826e-07 -3.626933e-09 -1.978052e-09 -4.056393e-14besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+Class: Colorectal_Cancer
+CV repetition number: 9
+CV inner loop, CV_rep: 9
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+1
+Class: Colorectal_Cancer
+CV repetition number: 10
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.74023e-05 -1.739444e-05CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV_rep: 10
+OtherColorectal_Cancer
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+There were 36 warnings (use warnings() to see them)
+There were 35 warnings (use warnings() to see them)
+There were 43 warnings (use warnings() to see them)
+There were 16 warnings (use warnings() to see them)
+There were 16 warnings (use warnings() to see them)There were 24 warnings (use warnings() to see them)
+There were 27 warnings (use warnings() to see them)
+There were 16 warnings (use warnings() to see them)
+
+[1] "AUC calculation with pROC package == One vs. one"
+[1] "The AUC of the first CV repetition: 0.613440064945963"
+[1] "The mean AUC of all the CV repetitions: 0.613156659351268"
+[1] "Run the multiROC and plotting for all the CV repetitions"
+There were 50 or more warnings (use warnings() to see the first 50)
+New names:
+* Specificity -> Specificity...1
+* Specificity -> Specificity...2
+* Specificity -> Specificity...3
+* Specificity -> Specificity...4
+* Specificity -> Specificity...5
+* ...
+New names:
+* Sensitivity -> Sensitivity...1
+* Sensitivity -> Sensitivity...2
+* Sensitivity -> Sensitivity...3
+* Sensitivity -> Sensitivity...4
+* Sensitivity -> Sensitivity...5
+* ...
+# A tibble: 10 × 10
+   lasso.Bile_Duct_Cancer lasso.Breast_Cancer lasso.Colorectal… lasso.Gastric_c…
+                    <dbl>               <dbl>             <dbl>            <dbl>
+ 1                  0.742               0.686             0.811            0.688
+ 2                  0.596               0.756             0.846            0.639
+ 3                  0.665               0.770             0.813            0.672
+ 4                  0.758               0.711             0.782            0.722
+ 5                  0.729               0.787             0.780            0.694
+ 6                  0.656               0.758             0.761            0.703
+ 7                  0.732               0.718             0.775            0.677
+ 8                  0.677               0.738             0.764            0.716
+ 9                  0.749               0.776             0.738            0.631
+10                  0.703               0.806             0.773            0.682
+# … with 6 more variables: lasso.Healthy <dbl>, lasso.Lung_Cancer <dbl>,
+#   lasso.Ovarian_Cancer <dbl>, lasso.Pancreatic_Cancer <dbl>,
+#   lasso.macro <dbl>, lasso.micro <dbl>
+# A tibble: 6 × 3
+  Specificity Sensitivity Group           
+        <dbl>       <dbl> <fct>           
+1       1           0     Bile_Duct_Cancer
+2       0.997       0     Bile_Duct_Cancer
+3       0.995       0     Bile_Duct_Cancer
+4       0.993       0.012 Bile_Duct_Cancer
+5       0.991       0.012 Bile_Duct_Cancer
+6       0.989       0.028 Bile_Duct_Cancer
+null device 
+          1 
+[1] "Mean AUC over 10 repetitions of 10-fold CV: "
+ lasso.Bile_Duct_Cancer     lasso.Breast_Cancer lasso.Colorectal_Cancer 
+              0.7007035               0.7506574               0.7843829 
+   lasso.Gastric_cancer           lasso.Healthy       lasso.Lung_Cancer 
+              0.6824168               0.8639153               0.6057069 
+   lasso.Ovarian_Cancer lasso.Pancreatic_Cancer             lasso.macro 
+              0.1814286               0.3235975               0.6115930 
+            lasso.micro 
+              0.6482708 
+ [1] 0.9574468 0.9408983 0.9550827 0.9621749 0.9527187 0.9432624 0.9550827
+ [8] 0.9527187 0.9527187 0.9432624
+ [1] 0.04255319 0.05910165 0.04491726 0.03782506 0.04728132 0.05673759
+ [7] 0.04491726 0.04728132 0.04728132 0.05673759
+[1] "Mean error rate over 10 repetitions of 10-fold CV: 0.951536643026005"
+[1] "Mean accuracy over 10 repetitions of 10-fold CV: 0.0484633569739953"
+[1] "### for one vs rest classifier: https://stats.stackexchange.com/questions/71700/how-to-draw-roc-curve-with-three-response-variable/110550#110550"
+[1] 0.6088232
+[1] 0.6817247 0.2056962 0.6038292 0.8525863 0.7025126 0.2451989 0.8059319
+[8] 0.7731060
+[Tue Nov 23 13:32:15 2021]
+Finished job 0.
+1 of 1 steps (100%) done

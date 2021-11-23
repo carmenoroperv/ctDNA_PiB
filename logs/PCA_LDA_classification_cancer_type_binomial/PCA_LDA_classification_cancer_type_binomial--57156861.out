@@ -1,0 +1,1280 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 8
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Tue Nov 23 04:49:58 2021]
+rule PCA_LDA_classification_cancer_type_binomial:
+    input: data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/Cancer_type_classification/PCA_LDA_binomial.rds, Classification_output/ROC_plots/Cancer_type/PCA_ROC_LDA_binomial.png
+    jobid: 0
+    threads: 8
+    resources: mem_mb=300000, disk_mb=1000, tmpdir=/scratch/57156861, time=11:30:00
+
+Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmptu6xt1zp.LDA_binomial.R
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+dummies-1.5.6 provided by Decision Patterns
+
+Warning message:
+package ‘dummies’ was built under R version 3.6.3 
+Warning message:
+package ‘multiROC’ was built under R version 3.6.3 
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+[1] Gastric_cancer    Ovarian_Cancer    Lung_Cancer       Healthy          
+[5] Bile_Duct_Cancer  Pancreatic_Cancer Duodenal_Cancer   Breast_Cancer    
+[9] Colorectal_Cancer
+9 Levels: Bile_Duct_Cancer Breast_Cancer Colorectal_Cancer ... Pancreatic_Cancer
+# A tibble: 9 × 2
+  sample_type           n
+  <fct>             <int>
+1 Bile_Duct_Cancer     25
+2 Breast_Cancer        54
+3 Colorectal_Cancer    26
+4 Duodenal_Cancer       1
+5 Gastric_cancer       27
+6 Healthy             194
+7 Lung_Cancer          35
+8 Ovarian_Cancer       28
+9 Pancreatic_Cancer    34
+[1] Gastric_cancer    Ovarian_Cancer    Lung_Cancer       Healthy          
+[5] Bile_Duct_Cancer  Pancreatic_Cancer Breast_Cancer     Colorectal_Cancer
+9 Levels: Bile_Duct_Cancer Breast_Cancer Colorectal_Cancer ... Pancreatic_Cancer
+starting worker pid=24422 on localhost:11854 at 04:50:00.281
+starting worker pid=24444 on localhost:11854 at 04:50:00.479
+starting worker pid=24466 on localhost:11854 at 04:50:00.678
+starting worker pid=24488 on localhost:11854 at 04:50:00.877
+starting worker pid=24510 on localhost:11854 at 04:50:01.075
+starting worker pid=24532 on localhost:11854 at 04:50:01.271
+starting worker pid=24554 on localhost:11854 at 04:50:01.466
+starting worker pid=24576 on localhost:11854 at 04:50:01.663
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1     ✔ purrr   0.3.4
+✔ tibble  3.1.4     ✔ dplyr   1.0.7
+✔ tidyr   1.1.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::select() masks MASS::select()
+Class: Gastric_cancer
+CV repetition number: 6
+Class: Gastric_cancer
+CV repetition number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 4
+Class: Gastric_cancer
+Class: Gastric_cancer
+CV repetition number: 8
+CV repetition number: 3
+Class: Gastric_cancer
+CV repetition number: 5
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 3
+Class: Gastric_cancer
+CV repetition number: 1
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 1
+Class: Gastric_cancer
+CV repetition number: 7
+CV inner loop, CV rep number: 7
+Class: Gastric_cancer
+CV repetition number: 2
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 2
+Class: Gastric_cancer
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV repetition number: 9
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 2
+Class: Gastric_cancer
+CV repetition number: 10
+Class: Ovarian_Cancer
+CV repetition number: 1
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+Class: Ovarian_Cancer
+CV repetition number: 2
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+Class: Ovarian_Cancer
+CV repetition number: 3
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 3
+Class: Ovarian_Cancer
+CV repetition number: 4
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 1
+Class: Ovarian_Cancer
+CV repetition number: 5
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+Class: Ovarian_Cancer
+CV repetition number: 6
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 10
+Class: Ovarian_Cancer
+CV repetition number: 7
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 7
+Class: Ovarian_Cancer
+CV repetition number: 8
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 3
+Class: Ovarian_Cancer
+CV repetition number: 9
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+Class: Ovarian_Cancer
+CV repetition number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+Class: Lung_Cancer
+CV repetition number: 1
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 4
+Class: Lung_Cancer
+CV repetition number: 2
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 6
+Class: Lung_Cancer
+CV repetition number: 3
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 2
+Class: Lung_Cancer
+CV repetition number: 4
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+Class: Lung_Cancer
+CV repetition number: 5
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+Class: Lung_Cancer
+CV repetition number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+Class: Lung_Cancer
+CV repetition number: 7
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 2
+Class: Lung_Cancer
+CV repetition number: 8
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 7
+Class: Lung_Cancer
+CV repetition number: 9
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 5
+Class: Lung_Cancer
+CV repetition number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+Class: Healthy
+CV repetition number: 1
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+Class: Healthy
+CV repetition number: 2
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 5
+Class: Healthy
+CV repetition number: 3
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 7
+Class: Healthy
+CV repetition number: 4
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 1
+Class: Healthy
+CV repetition number: 5
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 4
+Class: Healthy
+CV repetition number: 6
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+Class: Healthy
+CV repetition number: 7
+CV inner loop, CV rep number: 7
+Class: Healthy
+CV repetition number: 8
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 4
+Class: Healthy
+CV repetition number: 9
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+Class: Bile_Duct_Cancer
+CV repetition number: 1
+CV inner loop, CV rep number: 1
+Class: Healthy
+CV repetition number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 9
+Class: Bile_Duct_Cancer
+CV repetition number: 2
+CV inner loop, CV rep number: 2
+Class: Bile_Duct_Cancer
+CV repetition number: 3
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 2
+Class: Bile_Duct_Cancer
+CV inner loop, CV rep number: 1
+CV repetition number: 4
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+Class: Bile_Duct_Cancer
+CV repetition number: 5
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 1
+Class: Bile_Duct_Cancer
+CV repetition number: 6
+CV inner loop, CV rep number: 6
+Class: Bile_Duct_Cancer
+CV repetition number: 7
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 5
+Class: Bile_Duct_Cancer
+CV repetition number: 8
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+Class: Bile_Duct_Cancer
+CV inner loop, CV rep number: 7
+CV repetition number: 9
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 8
+Class: Bile_Duct_Cancer
+CV repetition number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 9
+Class: Pancreatic_Cancer
+CV repetition number: 1
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 5
+Class: Pancreatic_Cancer
+CV repetition number: 2
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 8
+Class: Pancreatic_Cancer
+CV repetition number: 3
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+Class: Pancreatic_Cancer
+CV repetition number: 4
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 9
+Class: Pancreatic_Cancer
+CV repetition number: 5
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 9
+Class: Pancreatic_Cancer
+CV repetition number: 6
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+Class: Pancreatic_Cancer
+CV repetition number: 7
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+Class: Pancreatic_Cancer
+CV repetition number: 8
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 6
+Class: Pancreatic_Cancer
+CV repetition number: 9
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+Class: Pancreatic_Cancer
+CV repetition number: 10
+CV inner loop, CV rep number: 10
+Class: Breast_Cancer
+CV repetition number: 1
+CV inner loop, CV rep number: 1
+Class: Breast_Cancer
+CV inner loop, CV rep number: 8
+CV repetition number: 2
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 7
+Class: Breast_Cancer
+CV repetition number: 3
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 7
+Class: Breast_Cancer
+CV repetition number: 4
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 1
+Class: Breast_Cancer
+CV repetition number: 5
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+Class: Breast_Cancer
+CV repetition number: 6
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 3
+Class: Breast_Cancer
+CV repetition number: 7
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 6
+Class: Breast_Cancer
+CV repetition number: 8
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 6
+Class: Breast_Cancer
+CV repetition number: 9
+CV inner loop, CV rep number: 9
+Class: Breast_Cancer
+CV repetition number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 8
+Class: Colorectal_Cancer
+CV repetition number: 2
+CV inner loop, CV rep number: 2
+Class: Colorectal_Cancer
+CV repetition number: 1
+CV inner loop, CV rep number: 1
+Class: Colorectal_Cancer
+CV repetition number: 3
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 9
+Class: Colorectal_Cancer
+CV repetition number: 4
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 8
+Class: Colorectal_Cancer
+CV repetition number: 5
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+Class: Colorectal_Cancer
+CV inner loop, CV rep number: 1
+CV repetition number: 6
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 6
+Class: Colorectal_Cancer
+CV repetition number: 7
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 6
+Class: Colorectal_Cancer
+CV repetition number: 8
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 7
+Class: Colorectal_Cancer
+CV repetition number: 9
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 7
+Class: Colorectal_Cancer
+CV repetition number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 7
+[1] "AUC calculation with pROC package == One vs. one"
+[1] "The AUC of the first CV repetition: 0.739556334579167"
+[1] "The mean AUC of all the CV repetitions: 0.739319229897715"
+[1] "Run the multiROC and plotting for all the CV repetitions"
+There were 50 or more warnings (use warnings() to see the first 50)
+New names:
+* Specificity -> Specificity...1
+* Specificity -> Specificity...2
+* Specificity -> Specificity...3
+* Specificity -> Specificity...4
+* Specificity -> Specificity...5
+* ...
+New names:
+* Sensitivity -> Sensitivity...1
+* Sensitivity -> Sensitivity...2
+* Sensitivity -> Sensitivity...3
+* Sensitivity -> Sensitivity...4
+* Sensitivity -> Sensitivity...5
+* ...
+# A tibble: 10 × 10
+   lasso.Bile_Duct_Cancer lasso.Breast_Cancer lasso.Colorectal… lasso.Gastric_c…
+                    <dbl>               <dbl>             <dbl>            <dbl>
+ 1                  0.820               0.797             0.777            0.712
+ 2                  0.797               0.792             0.821            0.707
+ 3                  0.823               0.769             0.819            0.752
+ 4                  0.794               0.793             0.800            0.680
+ 5                  0.831               0.780             0.833            0.679
+ 6                  0.837               0.788             0.803            0.746
+ 7                  0.809               0.784             0.803            0.727
+ 8                  0.817               0.790             0.803            0.707
+ 9                  0.822               0.788             0.762            0.697
+10                  0.817               0.789             0.809            0.703
+# … with 6 more variables: lasso.Healthy <dbl>, lasso.Lung_Cancer <dbl>,
+#   lasso.Ovarian_Cancer <dbl>, lasso.Pancreatic_Cancer <dbl>,
+#   lasso.macro <dbl>, lasso.micro <dbl>
+# A tibble: 6 × 3
+  Specificity Sensitivity Group           
+        <dbl>       <dbl> <fct>           
+1       1               0 Bile_Duct_Cancer
+2       0.997           0 Bile_Duct_Cancer
+3       0.995           0 Bile_Duct_Cancer
+4       0.992           0 Bile_Duct_Cancer
+5       0.990           0 Bile_Duct_Cancer
+6       0.987           0 Bile_Duct_Cancer
+null device 
+          1 
+[1] "Mean AUC over 10 repetitions of 10-fold CV: "
+ lasso.Bile_Duct_Cancer     lasso.Breast_Cancer lasso.Colorectal_Cancer 
+              0.8166734               0.7869869               0.8029161 
+   lasso.Gastric_cancer           lasso.Healthy       lasso.Lung_Cancer 
+              0.7109708               0.8553032               0.6662813 
+   lasso.Ovarian_Cancer lasso.Pancreatic_Cancer             lasso.macro 
+              0.8117269               0.7143883               0.7706429 
+            lasso.micro 
+              0.8256972 
+  Gastric_cancer Ovarian_Cancer  Lung_Cancer    Healthy Bile_Duct_Cancer
+1   0.0012297236    0.005572261 4.653819e-05 0.65687664     0.0025868727
+2   0.0008238733    0.005183471 8.751163e-05 0.63853725     0.0431009599
+3   0.0001519595    0.006004268 1.027574e-06 0.02755258     0.6907689152
+4   0.0017930040    0.003565665 4.584626e-05 0.85276737     0.0020784126
+5   0.0006586322    0.040491763 2.771839e-03 0.25738472     0.0008106294
+6   0.0001367841    0.368776395 1.539829e-04 0.12754051     0.0078979262
+  Pancreatic_Cancer Breast_Cancer Colorectal_Cancer            pred01 CV_rep
+1       0.004317134   0.102763265      7.426463e-05           Healthy      1
+2       0.002961893   0.006039108      2.738199e-05           Healthy      1
+3       0.997042844   0.016701925      5.438933e-04 Pancreatic_Cancer      1
+4       0.002780035   0.040823918      4.580449e-04           Healthy      1
+5       0.004877978   0.167935939      6.054232e-04           Healthy      1
+6       0.108641291   0.125976591      7.676668e-05    Ovarian_Cancer      1
+        observed
+1 Gastric_cancer
+2 Gastric_cancer
+3 Gastric_cancer
+4 Gastric_cancer
+5 Ovarian_Cancer
+6 Ovarian_Cancer
+ [1] 0.3900709 0.3971631 0.4089835 0.3995272 0.3971631 0.4066194 0.4066194
+ [8] 0.3924350 0.4184397 0.4113475
+ [1] 0.6099291 0.6028369 0.5910165 0.6004728 0.6028369 0.5933806 0.5933806
+ [8] 0.6075650 0.5815603 0.5886525
+[1] "Mean error rate over 10 repetitions of 10-fold CV: 0.402836879432624"
+[1] "Mean accuracy over 10 repetitions of 10-fold CV: 0.597163120567376"
+[Tue Nov 23 04:50:27 2021]
+Finished job 0.
+1 of 1 steps (100%) done

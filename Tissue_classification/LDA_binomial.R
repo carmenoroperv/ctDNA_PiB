@@ -7,9 +7,9 @@ library(multiROC)
 library(doParallel)
 library(foreach)
 library(doRNG)
+library(rngtools)
 
 data <- readRDS(snakemake@input[["input_predictions"]])
-
 sample_types <- read.table(snakemake@input[["input_sample_types"]], header = F, sep = " ")
 colnames(sample_types) <- c("sample", "sample_type")
 
@@ -28,18 +28,22 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
     y_all <- dataset$sample_type
     classes <- unique(y_all)
     
+    rng <- RNGseq(length(unique(y_all)) * k_outer_cv, 1234)
+    
     cl <- makePSOCKcluster(8, outfile="")
     registerDoParallel(cl)
     return_tibble <- foreach(class = 1:length(unique(y_all)), 
                             .inorder = TRUE,
-                            .options.RNG = 1985,
                             .combine = "cbind",
-                            .packages = c("splitTools", "MASS", "tidyverse")) %dorng% {
-        message(paste("Class: ", classes[class], sep = ""))
-        y <- ifelse(y_all==classes[class], 1, 0)
-        return_vector_for_class <- c()
-    
-        for (i in 1:k_outer_cv){ # repeated Cross-validation loop
+                            .packages = c("splitTools", "MASS", "tidyverse")) %:% foreach(i = 1:k_outer_cv, r=rng[(class-1)*k_outer_cv + 1:k_outer_cv],
+                                                                                          .inorder = TRUE,
+                                                                                          .combine = "rbind",
+                                                                                          .packages = c("splitTools", "MASS", "tidyverse")) %dopar% {
+
+        
+            rngtools::setRNG(r)
+            y <- ifelse(y_all==classes[class], 1, 0)
+            message(paste("Class: ", classes[class], sep = ""))
             message(paste("CV repetition number: ", i, sep = ""))
             set.seed(i)
             folds <- create_folds(y, k = k_inner_cv)
@@ -59,10 +63,10 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
                 predicted[-fold] <- tmp
                 }
             
-            return_vector_for_class <- c(return_vector_for_class, predicted)
+            predicted = tibble("{classes[class]}_pred" := predicted)
+            return(predicted)
         }       
-        return(tibble("{classes[class]}_pred" := return_vector_for_class))
-    }
+    
     stopCluster(cl)
     registerDoSEQ()
     
