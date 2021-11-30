@@ -1,0 +1,59 @@
+#####WILDCARDS########
+
+
+
+
+
+SUFFIX = ["_CONTROLS", "_gaussian_smooth_CONTROLS", "_gaussian_smooth_trimmed_CONTROLS", "_sliding_mean_CONTROLS", "_sliding_mean_trimmed_CONTROLS"]
+
+STD = ["TRUE", "FALSE"]
+
+METHOD = ["LASSO", "RIDGE"]
+
+
+
+######INPUT###########
+INPUT_TRAIN_DATA = expand("data/data_rds_format/sum_control_ATAC_bin_rm{suffix}.rds", suffix = SUFFIX)
+INPUT_TEST_DATA = expand("data/cases_controls/cases_controls_rds_format/all_samples_normalized{suffix}.rds", suffix = SUFFIX)
+ATAC_INPUT =  "../data/ATACseq_250kb_bins.txt"
+
+######OUTPUT##########
+LASSO_RIDGE_CORR = expand("Summed_control/Correlation_tables/{method}_{std}_corr_{suffix}.csv", method = METHOD, suffix = SUFFIX, std = STD)
+LASSO_RIDGE_PLOTS_SUMMED = expand("Summed_control/Correlation_plots/{method}_{std}_corr_{suffix}.png", method = METHOD, suffix = SUFFIX, std = STD)
+LASSO_RIDGE_PLOTS_INDIV = expand("Summed_control/Correlation_plots/{method}_{std}_corr_{suffix}.png", method = METHOD, suffix = SUFFIX, std = STD)
+
+BOOSTING_CORR = expand("Summed_control/Correlation_tables/boosting_corr_{suffix}.csv", suffix = SUFFIX)
+BOOSTING_PLOTS = expand("Summed_control/Correlation_plots/boosting_corr_{suffix}.png", suffix = SUFFIX)
+
+
+
+rule all:
+    input: LASSO_RIDGE_CORR, LASSO_RIDGE_PLOTS_SUMMED, LASSO_RIDGE_PLOTS_INDIV
+
+rule Lasso_and_ridge_summed_controls:
+    input: 
+        input_train = "data/data_rds_format/sum_control_{suffix}.rds"
+        input_test = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_{suffix}.rds"
+        ATAC_input = ATAC_INPUT
+    params: 
+        STD = "{STD}"
+    output: 
+        lasso_ridge_corr = expand("Summed_control/Correlation_tables/{method}_{std}_corr_{suffix}.csv", method = METHOD, suffix = SUFFIX, std = STD)
+        lasso_ridge_plot_summed = expand("Summed_control/Correlation_plots/{method}_{std}_corr_{suffix}.csv", method = METHOD, suffix = SUFFIX, std = STD)
+        lasso_ridge_plot_indiv = expand("Summed_control/Correlation_plots/{method}_{std}_corr_{suffix}.csv", method = METHOD, suffix = SUFFIX, std = STD)
+    script: 
+        "Summed_control/Lasso_and_ridge.R"
+        
+        
+
+rule Boosting_summed_controls:
+    input: 
+        input_train = "data/data_rds_format/sum_control_{suffix}.rds"
+        input_test = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_{suffix}.rds"
+        ATAC_input = ATAC_INPUT
+    output: 
+        boosting_corr = expand("Summed_control/Correlation_tables/Boosting_corr_{suffix}.csv", method = METHOD, suffix = SUFFIX, std = STD)
+        boosting_plot_summed = expand("Summed_control/Correlation_plots/Boosting_corr_{suffix}.csv", method = METHOD, suffix = SUFFIX, std = STD)
+        boosting_plot_indiv = expand("Summed_control/Correlation_plots/Boosting_corr_{suffix}.csv", method = METHOD, suffix = SUFFIX, std = STD)
+    script: 
+        "Summed_control/Boosting.R"

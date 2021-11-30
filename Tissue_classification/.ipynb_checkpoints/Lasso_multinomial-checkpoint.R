@@ -41,10 +41,16 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
                             .combine = "rbind",
                             .packages = c("splitTools", "glmnetUtils", "tidyverse")) %dorng% { # repeated Cross-validation loop
         
-        get_cvm <- function(model) {
-            index <- match(model$lambda.min, model$lambda)
-            model$cvm[index]
-        }
+        get_model_params <- function(fit) {
+              alpha <- fit$alpha
+              lambdaMin <- sapply(fit$modlist, `[[`, "lambda.min")
+              lambdaSE <- sapply(fit$modlist, `[[`, "lambda.1se")
+              error <- sapply(fit$modlist, function(mod) {min(mod$cvm)})
+              best <- which.min(error)
+              data.frame(alpha = alpha[best], lambdaMin = lambdaMin[best],
+                         lambdaSE = lambdaSE[best], error = error[best])
+            }
+        
         message(paste("CV repetition number: ", i, sep = ""))
         set.seed(i)
         folds <- create_folds(y, k = k_inner_cv)
@@ -68,30 +74,18 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
             ########### nested CV to find best alpha and lambda on train folds ###########
             set.seed(0) # alpha
             lasso_cva <- cva.glmnet(traindata, train_y, nfolds = 10, family = "multinomial")
-            enet_performance <- data.frame(alpha = lasso_cva$alpha)
-            models <- lasso_cva$modlist
-            enet_performance$cvm <- vapply(models, get_cvm, numeric(1))
-            minix <- which.min(enet_performance$cvm)
-            best_alpha <- lasso_cva$alpha[minix]
-
-            set.seed(0) # lambda
-            lasso_cv <- cv.glmnet(traindata, 
-                                  train_y, 
-                                  alpha = best_alpha, 
-                                  standardize = TRUE, 
-                                  nfolds = 10, 
-                                  family = "multinomial")
-
-            lambda_cv <- lasso_cv$lambda.min
+            best_params <- get_model_params(lasso_cva)
+            best_alpha <- best_params$alpha
+            best_lambda_min <- best_params$lambdaMin 
             
             message("best_alpha")
             message(best_alpha)
             message("best_lambda")
-            message(lambda_cv)
+            message(best_lambda_min)
             ####################################################################
 
-            fit       <- glmnet(traindata, train_y, family = "multinomial", alpha = best_alpha, lambda = lambda_cv)
-            tmp       <- predict(fit, s=lambda_cv, testdata, type = "response")
+            fit       <- glmnet(traindata, train_y, family = "multinomial", alpha = best_alpha, lambda = best_lambda_min)
+            tmp       <- predict(fit, s=best_lambda_min, testdata, type = "response")
 
             
             tmp <- as.data.frame(tmp[, , ], row.names = NULL)

@@ -51,16 +51,16 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
             message(paste("Class: ", classes[class], sep = ""))
             y <- ifelse(y_all==classes[class], 1, 0)
             
-            get_cvm <- function(model) {
-                index <- match(model$lambda.min, model$lambda)
-                model$cvm[index]
-            }
-            
             message(paste("CV repetition number: ", i, sep = ""))
             set.seed(i)
             folds <- create_folds(y, k = k_inner_cv)
 
             predicted <- rep(NA, nrow(data))
+        
+            get_cvm <- function(model) {
+                index <- match(model$lambda.min, model$lambda)
+                model$cvm[index]
+            }
                                 
             for (fold in folds){
                 message(paste("CV inner loop, CV rep: ", i, sep = ""))

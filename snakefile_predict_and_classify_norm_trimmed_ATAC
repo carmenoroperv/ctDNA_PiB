@@ -1,0 +1,204 @@
+####### WILDCARCDS ########
+MODELS_BINOMIAL = ["Lasso", "LDA", "Boosting", "SVM_linear", "SVM_poly", "SVM_radial"]
+MODELS_MULTINOMIAL = ["Lasso", "LDA", "Boosting"]
+CLASSES = ["Bile_Duct_Cancer", "Breast_Cancer", "Colorectal_Cancer", "Gastric_cancer", "Healthy", "Lung_Cancer", "Ovarian_Cancer", "Pancreatic_Cancer"]
+
+########## INPUT ##########
+INPUT_ATAC = "data/ATACseq_250kb_bins.rds"
+INPUT_TRAIN_DATA = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CONTROLS.rds"
+INPUT_SAMPLE_TYPES = "data/sample_types.txt"
+
+INPUT_ATAC_PRED_TRAIN = "data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds" 
+INPUT_ATAC_PRED_TEST_CONTROLS = "data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds" 
+INPUT_ATAC_PRED_TEST_CASES = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds" 
+INPUT_FORMAT = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed.rds"
+INPUT_STANDARDIZE = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
+
+OUTPUT_BINOMIAL = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_Full_data_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES)
+OUTPUT_BINOMIAL_PCA = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_PCA_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES)
+
+OUTPUT_MULTINOMIAL = expand("Classification_output/Multinomial_models_output/{model_multinomial}_Predictions_Full_data.rds", model_multinomial = MODELS_MULTINOMIAL)
+OUTPUT_MULTINOMIAL_PCA = expand("Classification_output/Multinomial_models_output/{model_multinomial}_Predictions_PCA.rds", model_multinomial = MODELS_MULTINOMIAL)
+
+########## RULES ##########
+
+rule all:
+    input: OUTPUT_BINOMIAL_PCA, OUTPUT_MULTINOMIAL_PCA, OUTPUT_BINOMIAL, OUTPUT_MULTINOMIAL
+
+
+rule splitting_final:
+    input: 
+        input_atac = INPUT_ATAC,
+        input_train_data = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CONTROLS.rds"
+    output: 
+        train_data_output = "data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds", 
+        test_data_output = "data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds" 
+    conda: 
+        "conda_envs/ctDNA.yml"
+    log:
+        notebook = "logs/processed_notebooks/train_20_predict_80/splitting/splitting_normalized_trimmed.r.ipynb"  
+    notebook: 
+        "Splitting.r.ipynb"
+
+
+##########################################
+#ATAC prediction
+##########################################
+
+#Input files should be the output files from the splitting final, one for the test data and one for the train data
+
+rule ATAC_pred:
+    input: 
+        input_train = "data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds",
+        input_test_controls = "data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds",
+        input_test_cases = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds",
+        input_atac = INPUT_ATAC
+    output:  
+        output_pred = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed.rds",
+        output_model = "Trained_models/train_20_predict_80_models/Lasso_models/lasso_normalized_trimmed.rds"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    log:
+        notebook = "logs/processed_notebooks/train_20_predict_80/processed_Lasso_reg_TRUE_normalized_trimmed.r.ipynb"  
+    notebook: 
+        "ATAC_pred_models/Train_20_predict_80_and_cases_models/Lasso_regression/Lasso_reg_TRUE.r.ipynb"
+
+
+############################### FORMATTING #####################################
+
+rule format:
+#should take the input fron both ATAC_pred rules
+    input:
+        input = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed.rds"
+    output: 
+        output_formatted_pred = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    notebook: 
+        "prep_formatting_normalizing/Format_ATAC_predictions.r.ipynb"
+    
+
+############################### STANDARDIZING #####################################
+
+rule standardize:
+    input:
+        input_file = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
+    output: 
+        output_formatted_pred = "data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    notebook: 
+        "prep_formatting_normalizing/Standardizing_ATAC_predictions.r.ipynb"
+
+
+############################### PCA #####################################
+
+rule PCA:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds"
+    output: 
+        output_pca = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds"
+    threads: 1
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    log: 
+        notebook = "logs/processed_notebooks/PCA.r.ipynb"
+    notebook: 
+        "PCA.r.ipynb"
+
+##########################################
+#Classification
+##########################################
+
+############################### BINOMIAL #####################################
+
+rule binomial_classification:
+    input: 
+        input_predictions =  "data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Binomial_models_output/{model_binomial}_Predictions_Full_data_{class_type}.rds"
+    threads: 10
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    params: 
+        class_type = "{class_type}"
+    script: 
+        "Classification/Classification_binomial_all/{wildcards.model_binomial}.R"
+        
+        
+rule PCA_binomial_classification:
+    input: 
+        input_predictions =  "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Binomial_models_output/{model_binomial}_Predictions_PCA_{class_type}.rds"
+    threads: 10
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    params: 
+        class_type = "{class_type}"
+    script: 
+        "Classification/Classification_binomial_all/{wildcards.model_binomial}.R"
+
+
+############################### MULTINOMIAL #####################################
+
+rule multinomial_classification:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Multinomial_models_output/{model_multinomial}_Predictions_Full_data.rds"
+    threads: 10
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    params: 
+        class_type = "{model_multinomial}"
+    script: 
+        "Classification/Classification_multinomial/{wildcards.model_multinomial}_multinomial.R"
+
+rule PCA_multinomial_classification:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Multinomial_models_output/{model_multinomial}_Predictions_PCA.rds"
+    threads: 10
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    params: 
+        class_type = "{model_multinomial}"
+    script: 
+        "Classification/Classification_multinomial/{wildcards.model_multinomial}_multinomial.R"
+
+
+rule get_observed_cancer_types:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        observed = "Classification_output/Observed_cancer_types.rds"
+    threads: 1
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    script: 
+        "Classification/get_observed_cancer_types.R"
+
+
+
+rule combine_binomial_cancer_type_predictions:
+    input: 
+        binomial_pred_full_data = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_Full_data_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES),
+        binomial_pred_PCA = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_PCA_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES),
+        observed = "Classification_output/Observed_cancer_types.rds"
+    output: 
+        cancer_type_predictions = "Classification_output/Binomial_models_output/Combined_cancer_type_predictions/{model_binomial}_cancer_type_Predictions_combined_Full_data.rds",
+        cancer_type_predictions_PCA = "Classification_output/Binomial_models_output/Combined_cancer_type_predictions/{model_binomial}_cancer_type_Predictions_combined_PCA.rds"
+    threads: 1
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    params: 
+        model = "{model_binomial}"
+    script: 
+        "Classification/combine_binomial_cancer_type_predictions.R"

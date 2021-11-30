@@ -1,0 +1,726 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Sun Nov 28 18:50:44 2021]
+rule binomial_classification:
+    input: data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/Binomial_models_output/SVM_linear_Predictions_Full_data_Gastric_cancer.rds
+    jobid: 0
+    wildcards: model_binomial=SVM_linear, class_type=Gastric_cancer
+    threads: 10
+    resources: mem_mb=200000, disk_mb=1000, tmpdir=/scratch/57523765, time=20:00:00
+
+Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmphazl2qyf.SVM_linear.R
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/411837606499b7823565885a8a388b12
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+Warning: unable to access index for repository http://cran.us.r-project.org/src/contrib/kernlab_0.9-29.tar.gz/src/contrib:
+  cannot open URL 'http://cran.us.r-project.org/src/contrib/kernlab_0.9-29.tar.gz/src/contrib/PACKAGES'
+Warning message:
+package ‘kernlab’ is not available (for R version 3.6.1) 
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Warning: unable to access index for repository http://cran.us.r-project.org/src/contrib/splitTools_0.3.1.tar.gz/src/contrib:
+  cannot open URL 'http://cran.us.r-project.org/src/contrib/splitTools_0.3.1.tar.gz/src/contrib/PACKAGES'
+Warning message:
+package ‘splitTools’ is not available (for R version 3.6.1) 
+Gastric_cancerOvarian_CancerLung_CancerBile_Duct_CancerPancreatic_CancerDuodenal_CancerBreast_CancerColorectal_Cancer
+[1] "Sample_type levels"
+[1] "Cancer" "Other" 
+starting worker pid=17664 on localhost:11170 at 18:50:56.097
+starting worker pid=17688 on localhost:11170 at 18:50:56.445
+starting worker pid=17712 on localhost:11170 at 18:50:56.792
+starting worker pid=17736 on localhost:11170 at 18:50:57.142
+starting worker pid=17760 on localhost:11170 at 18:50:57.460
+starting worker pid=17784 on localhost:11170 at 18:50:57.810
+starting worker pid=17808 on localhost:11170 at 18:50:58.160
+starting worker pid=17832 on localhost:11170 at 18:50:58.509
+starting worker pid=17856 on localhost:11170 at 18:50:58.858
+starting worker pid=17880 on localhost:11170 at 18:50:59.209
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: lattice
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Loading required package: ggplot2
+Loading required package: lattice
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Loading required package: ggplot2
+Loading required package: lattice
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Loading required package: ggplot2
+Loading required package: lattice
+Loading required package: ggplot2
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: lattice
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Loading required package: ggplot2
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+Loading required package: pkgmaker
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: registry
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Loading required package: pkgmaker
+Loading required package: registry
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Loading required package: foreach
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Loading required package: pkgmaker
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+Loading required package: registry
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+Loading required package: pkgmaker
+Loading required package: registry
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: pkgmaker
+Loading required package: registry
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Gastric_cancer
+Gastric_cancer
+Gastric_cancer
+Gastric_cancer
+Gastric_cancer
+Gastric_cancer
+CV repetition number: 3
+CV repetition number: 1
+Gastric_cancer
+Gastric_cancer
+CV repetition number: 2
+CV repetition number: 7
+CV repetition number: 5
+Gastric_cancer
+CV repetition number: 6
+CV repetition number: 4
+Gastric_cancer
+CV repetition number: 9
+CV repetition number: 10
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 7
+CV repetition number: 8
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 8
+besttune C
+0.4
+besttune C
+2
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+0.4
+besttune C
+0.1
+besttune C
+0.5
+besttune C
+0.5
+besttune C
+0.4
+besttune C
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.5
+besttune C
+0.5
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+0.2
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+CV inner loop, CV rep number: 10
+besttune C
+1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+1
+besttune C
+0.5
+besttune C
+0.2
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune C
+0.1
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.01
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.1
+besttune C
+0.1
+besttune C
+0.01
+besttune C
+0.01
+besttune C
+0.4
+besttune C
+0.1
+besttune C
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune C
+1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10

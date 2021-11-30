@@ -1,0 +1,634 @@
+
+##########INPUT##########
+INPUT_ATAC = "data/ATACseq_250kb_bins.rds"
+INPUT_TRAIN_DATA = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CONTROLS.rds"
+INPUT_SAMPLE_TYPES = "data/sample_types.txt"
+
+
+INPUT_ATAC_PRED_TEST_CASES = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds"
+
+
+
+
+
+#########################################################################################################
+########## INPUT_ATAC_PRED ##########
+INPUT_ATAC_PRED_TRAIN = "data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds"
+INPUT_ATAC_PRED_TEST_CONTROLS = "data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds"
+
+
+########## INPUT_FORMAT ##########
+INPUT_FORMAT = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed.rds"
+
+########## INPUT_STANDARDIZE ##########
+INPUT_STANDARDIZE = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
+
+########## INPUT_LASSO ##########
+INPUT_LASSO =  "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds"
+
+########## INPUT_LDA ############
+INPUT_LDA = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds"
+
+########## INPUT_BOOSTING ##########
+INPUT_BOOSTING = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds"
+
+########## INPUT_LINEAR_SVM ##########
+INPUT_SVM = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds"
+#########################################################################################################
+
+
+
+
+
+
+########## OUTPUT CANCER /HEALTHY #########
+LASSO_OUTPUT_FINAL = "Classification_output/Lasso_normalized_trimmed.rds"
+LDA_OUTPUT_FINAL = "Classification_output/LDA_normalized_trimmed.rds"
+BOOSTING_OUTPUT_FINAL = "Classification_output/Boosting_normalized_trimmed.rds"
+BOOSTING_ROC_PLOT = "Classification_output/ROC_plots/ROC_Boosting.png"
+SVM_LINEAR_OUTPUT_FINAL = "Classification_output/SVM_linear_normalized_trimmed.rds"
+SVM_RADIAL_OUTPUT_FINAL = "Classification_output/SVM_radial_normalized_trimmed.rds"
+SVM_POLY_OUTPUT_FINAL = "Classification_output/SVM_poly_normalized_trimmed.rds"
+SVM_POLY_ROC_PLOT = "Classification_output/ROC_plots/ROC_SVM_poly.png"
+SVM_RADIAL_ROC_PLOT = "Classification_output/ROC_plots/ROC_SVM_radial.png"
+SVM_LINEAR_ROC_PLOT = "Classification_output/ROC_plots/ROC_SVM_linear.png"
+
+PCA_LASSO_OUTPUT_FINAL = "Classification_output/PCA_Lasso_normalized_trimmed.rds"
+PCA_LDA_OUTPUT_FINAL = "Classification_output/PCA_LDA_normalized_trimmed.rds"
+PCA_BOOSTING_OUTPUT_FINAL = "Classification_output/PCA_Boosting_normalized_trimmed.rds"
+PCA_SVM_LINEAR_OUTPUT_FINAL = "Classification_output/PCA_SVM_linear_normalized_trimmed.rds"
+PCA_SVM_RADIAL_OUTPUT_FINAL = "Classification_output/PCA_SVM_radial_normalized_trimmed.rds"
+PCA_SVM_POLY_OUTPUT_FINAL = "Classification_output/PCA_SVM_poly_normalized_trimmed.rds"
+PCA_SVM_POLY_ROC_PLOT = "Classification_output/ROC_plots/ROC_PCA_SVM_radial.png"
+
+########## OUTPUT CANCER /HEALTHY #########
+
+CANCER_TYPE_LASSO_MULTINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/Lasso_multinomial.rds"
+LASSO_CANCER_TYPE_MULTINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/ROC_lasso_multinomial.png"
+CANCER_TYPE_LASSO_BINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/Lasso_binomial.rds"
+LASSO_CANCER_TYPE_BINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/ROC_lasso_binomial.png"
+
+CANCER_TYPE_LDA_MULTINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/LDA_multinomial.rds"
+LDA_CANCER_TYPE_MULTINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/ROC_LDA_multinomial.png"
+CANCER_TYPE_LDA_BINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/LDA_binomial.rds", 
+LDA_CANCER_TYPE_BINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/ROC_LDA_binomial.png"
+
+CANCER_TYPE_BOOSTING_MULTINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/Boosting_multinomial.rds"
+BOOSTING_CANCER_TYPE_MULTINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/ROC_boosting_multinomial.png"
+#CANCER_TYPE_BOOSTING_BINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/Boosting_binomial.rds"
+#BOOSTING_CANCER_TYPE_BINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/ROC_Boosting_binomial.png"
+
+#CANCER_TYPE_SVM_LINEAR_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/SVM_linear_binomial.rds"
+#CANCER_TYPE_SVM_RADIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/SVM_radial_binomial.rds"
+#CANCER_TYPE_SVM_POLY_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/SVM_poly_binomial.rds"
+#SVM_LINEAR_CANCER_TYPE_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/ROC_SVM_linear_binomial.png"
+#SVM_RADIAL_CANCER_TYPE_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/ROC_SVM_radial_binomial.png"
+#SVM_POLY_CANCER_TYPE_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/ROC_SVM_poly_binomial.png"
+
+PCA_CANCER_TYPE_LASSO_MULTINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/PCA_Lasso_multinomial.rds"
+PCA_CANCER_TYPE_LASSO_BINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/PCA_Lasso_binomial.rds"
+PCA_CANCER_TYPE_LDA_MULTINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/PCA_LDA_multinomial.rds"
+PCA_CANCER_TYPE_LDA_BINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/PCA_LDA_binomial.rds"
+PCA_CANCER_TYPE_BOOSTING_MULTINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/PCA_Boosting_multinomial.rds"
+PCA_CANCER_TYPE_BOOSTING_BINOMIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/PCA_Boosting_binomial.rds"
+PCA_CANCER_TYPE_SVM_LINEAR_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/PCA_SVM_linear_binomial.rds"
+PCA_CANCER_TYPE_SVM_RADIAL_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/PCA_SVM_radial_binomial.rds"
+PCA_CANCER_TYPE_SVM_POLY_OUTPUT_FINAL = "Classification_output/Cancer_type_classification/PCA_SVM_poly_binomial.rds"
+
+
+PCA_LASSO_CANCER_TYPE_MULTINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/PCA_ROC_lasso_multinomial.png"
+PCA_LASSO_CANCER_TYPE_BINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/PCA_ROC_lasso_binomial.png"
+PCA_LDA_CANCER_TYPE_MULTINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/PCA_ROC_LDA_multinomial.png"
+PCA_LDA_CANCER_TYPE_BINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/PCA_ROC_LDA_binomial.png"
+PCA_BOOSTING_CANCER_TYPE_MULTINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/PCA_ROC_Boosting_multinomial.png"
+PCA_BOOSTING_CANCER_TYPE_BINOMIAL_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/PCA_ROC_Boosting_binomial.png"
+PCA_SVM_LINEAR_CANCER_TYPE_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/PCA_ROC_SVM_linear_binomial.png"
+PCA_SVM_RADIAL_CANCER_TYPE_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/PCA_ROC_SVM_radial_binomial.png"
+PCA_SVM_POLY_CANCER_TYPE_ROC_PLOT = "Classification_output/ROC_plots/Cancer_type/PCA_ROC_SVM_poly_binomial.png"
+
+
+########## RULES ##########
+
+rule all:
+    input: LASSO_OUTPUT_FINAL, LDA_OUTPUT_FINAL, BOOSTING_OUTPUT_FINAL, BOOSTING_ROC_PLOT, SVM_LINEAR_OUTPUT_FINAL, SVM_RADIAL_OUTPUT_FINAL, SVM_POLY_OUTPUT_FINAL,SVM_POLY_ROC_PLOT, SVM_RADIAL_ROC_PLOT, SVM_LINEAR_ROC_PLOT, PCA_LASSO_OUTPUT_FINAL, PCA_LDA_OUTPUT_FINAL, PCA_BOOSTING_OUTPUT_FINAL, PCA_SVM_LINEAR_OUTPUT_FINAL, PCA_SVM_RADIAL_OUTPUT_FINAL, PCA_SVM_POLY_OUTPUT_FINAL, PCA_SVM_POLY_ROC_PLOT, CANCER_TYPE_LASSO_MULTINOMIAL_OUTPUT_FINAL, LASSO_CANCER_TYPE_MULTINOMIAL_ROC_PLOT, CANCER_TYPE_LASSO_BINOMIAL_OUTPUT_FINAL, LASSO_CANCER_TYPE_BINOMIAL_ROC_PLOT, CANCER_TYPE_LDA_MULTINOMIAL_OUTPUT_FINAL, LDA_CANCER_TYPE_MULTINOMIAL_ROC_PLOT, CANCER_TYPE_LDA_BINOMIAL_OUTPUT_FINAL, LDA_CANCER_TYPE_BINOMIAL_ROC_PLOT, CANCER_TYPE_BOOSTING_MULTINOMIAL_OUTPUT_FINAL, BOOSTING_CANCER_TYPE_MULTINOMIAL_ROC_PLOT, PCA_CANCER_TYPE_LASSO_MULTINOMIAL_OUTPUT_FINAL, PCA_CANCER_TYPE_LASSO_BINOMIAL_OUTPUT_FINAL, PCA_CANCER_TYPE_LDA_MULTINOMIAL_OUTPUT_FINAL, PCA_CANCER_TYPE_LDA_BINOMIAL_OUTPUT_FINAL, PCA_CANCER_TYPE_BOOSTING_MULTINOMIAL_OUTPUT_FINAL, PCA_CANCER_TYPE_BOOSTING_BINOMIAL_OUTPUT_FINAL, PCA_CANCER_TYPE_SVM_LINEAR_OUTPUT_FINAL, PCA_CANCER_TYPE_SVM_RADIAL_OUTPUT_FINAL, PCA_CANCER_TYPE_SVM_POLY_OUTPUT_FINAL, PCA_LASSO_CANCER_TYPE_MULTINOMIAL_ROC_PLOT, PCA_LASSO_CANCER_TYPE_BINOMIAL_ROC_PLOT, PCA_LDA_CANCER_TYPE_MULTINOMIAL_ROC_PLOT, PCA_LDA_CANCER_TYPE_BINOMIAL_ROC_PLOT, PCA_BOOSTING_CANCER_TYPE_MULTINOMIAL_ROC_PLOT, PCA_BOOSTING_CANCER_TYPE_BINOMIAL_ROC_PLOT, PCA_SVM_LINEAR_CANCER_TYPE_ROC_PLOT, PCA_SVM_RADIAL_CANCER_TYPE_ROC_PLOT, PCA_SVM_POLY_CANCER_TYPE_ROC_PLOT
+
+
+rule splitting_final:
+    input: 
+        input_atac = INPUT_ATAC,
+        input_train_data = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CONTROLS.rds"
+    output: 
+        train_data_output = "data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds", 
+        test_data_output = "data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds" 
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    log:
+        notebook = "logs/processed_notebooks/train_20_predict_80/splitting/splitting_normalized_trimmed.r.ipynb"  
+    notebook: 
+        "Splitting.r.ipynb"
+
+
+##########################################
+#ATAC prediction
+##########################################
+
+#Input files should be the output files from the splitting final, one for the test data and one for the train data
+
+rule ATAC_pred:
+    input: 
+        input_train = "data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds",
+        input_test_controls = "data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds",
+        input_test_cases = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds",
+        input_atac = INPUT_ATAC
+    output:  
+        output_pred = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed.rds",
+        output_model = "Trained_models/train_20_predict_80_models/Lasso_models/lasso_normalized_trimmed.rds"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    log:
+        notebook = "logs/processed_notebooks/train_20_predict_80/processed_Lasso_reg_TRUE_normalized_trimmed.r.ipynb"  
+    notebook: 
+        "ATAC_pred_models/Train_20_predict_80_and_cases_models/Lasso_regression/Lasso_reg_TRUE.r.ipynb"
+
+
+############################### FORMATTING #####################################
+
+rule format:
+#should take the input fron both ATAC_pred rules
+    input:
+        input = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed.rds"
+    output: 
+        output_formatted_pred = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
+    notebook: 
+        "prep_formatting_normalizing/Format_ATAC_predictions.r.ipynb"
+    
+
+############################### STANDARDIZING #####################################
+
+rule standardize:
+    input:
+        input_file = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
+    output: 
+        output_formatted_pred = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds"
+    notebook: 
+        "prep_formatting_normalizing/Standardizing_ATAC_predictions.r.ipynb"
+        
+
+
+##########################################
+#Classification - Case/Control#
+##########################################
+
+############################### LASSO #####################################
+
+rule Lasso_classification:
+    input: 
+        input_predictions =  "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        lasso_output = "Classification_output/Lasso_normalized_trimmed.rds"
+    log: 
+        notebook = "logs/processed_notebooks/Classification/Lasso_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "Classification/Lasso.r.ipynb"
+
+
+############################### LDA #####################################
+
+rule LDA:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        LDA_output = "Classification_output/LDA_normalized_trimmed.rds"
+    log: 
+        notebook = "logs/processed_notebooks/Classification/LDA_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "Classification/LDA.r.ipynb"
+        
+
+############################### BOOSTING #####################################
+
+rule boosting:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        boosting_output = "Classification_output/Boosting_normalized_trimmed.rds", 
+        boosting_roc = BOOSTING_ROC_PLOT
+    threads: 10
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Boosting_normalized_trimmed.r.ipynb" 
+    script: 
+        "Classification/Boosting.R"
+        
+
+############################### SVM #####################################
+
+rule SVM_Linear:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/SVM_linear_normalized_trimmed.rds", 
+        SVM_roc = SVM_LINEAR_ROC_PLOT
+    threads: 5
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/SVM_linear_normalized_trimmed.r.ipynb" 
+    script: 
+        "Classification/SVM_linear.R"
+        
+rule SVM_Radial:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/SVM_radial_normalized_trimmed.rds", 
+        SVM_roc = SVM_RADIAL_ROC_PLOT
+    threads: 5
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/SVM_radial_normalized_trimmed.r.ipynb" 
+    script: 
+        "Classification/SVM_radial.R"
+
+rule SVM_Poly:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/SVM_poly_normalized_trimmed.rds",
+        SVM_roc = SVM_POLY_ROC_PLOT
+    threads: 10
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/SVM_poly_normalized_trimmed.r.ipynb" 
+    script: 
+        "Classification/SVM_poly.R"
+        
+        
+############################### PCA CLASSIFICATION #####################################
+
+
+rule PCA:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds"
+    output: 
+        output_pca = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/PCA.r.ipynb"
+    notebook: 
+        "PCA.r.ipynb"
+
+
+############################### PCA BOOSTING #####################################
+
+rule PCA_boosting:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        boosting_output = "Classification_output/PCA_Boosting_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_Boosting_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "Classification/PCA_classification/PCA_Boosting.r.ipynb"
+        
+        
+############################### PCA LASSO #####################################
+
+rule PCA_Lasso_classification:
+    input: 
+        input_predictions =  "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        lasso_output = "Classification_output/PCA_Lasso_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_Lasso_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "Classification/PCA_classification/PCA_Lasso.r.ipynb"
+
+
+############################### PCA LDA #####################################
+
+rule PCA_LDA:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        LDA_output = "Classification_output/PCA_LDA_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_LDA_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "Classification/PCA_classification/PCA_LDA.r.ipynb"
+
+############################### PCA SVM #####################################
+
+rule PCA_SVM_Linear:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/PCA_SVM_linear_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_SVM_linear_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "Classification/PCA_classification/PCA_SVM_linear.r.ipynb"
+        
+rule PCA_SVM_Radial:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/PCA_SVM_radial_normalized_trimmed.rds"
+    threads: 5
+    log: 
+        notebook = "logs/processed_notebooks/Classification/PCA_SVM_radial_normalized_trimmed.r.ipynb" 
+    notebook: 
+        "Classification/PCA_classification/PCA_SVM_radial.r.ipynb"
+
+rule PCA_SVM_Poly:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/PCA_SVM_poly_normalized_trimmed.rds",
+        SVM_roc = PCA_SVM_POLY_ROC_PLOT
+    threads: 10
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/PCA_SVM_poly_normalized_trimmed.r.ipynb" 
+    script: 
+        "Classification/PCA_classification/PCA_SVM_poly.R"
+        
+
+
+
+
+##########################################
+#Classification - Cancer type#
+##########################################
+
+############################### LASSO #####################################
+
+rule Lasso_classification_cancer_type_multinomial:
+    input: 
+        input_predictions =  "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        lasso_output = "Classification_output/Cancer_type_classification/Lasso_multinomial.rds", 
+        lasso_roc = LASSO_CANCER_TYPE_MULTINOMIAL_ROC_PLOT
+    threads: 10
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/Lasso_multinomial.r.ipynb"
+    script: 
+        "Tissue_classification/Lasso_multinomial.R"
+
+rule Lasso_classification_cancer_type_binomial:
+    input: 
+        input_predictions =  "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        lasso_output = "Classification_output/Cancer_type_classification/Lasso_binomial.rds", 
+        lasso_roc = LASSO_CANCER_TYPE_BINOMIAL_ROC_PLOT
+    threads: 8
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/Lasso_binomial.r.ipynb"
+    script: 
+        "Tissue_classification/Lasso_binomial.R"
+
+
+############################### LDA #####################################
+
+rule LDA_classification_cancer_type_multinomial:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        LDA_output = "Classification_output/Cancer_type_classification/LDA_multinomial.rds", 
+        LDA_roc = LDA_CANCER_TYPE_MULTINOMIAL_ROC_PLOT
+    threads: 10
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/LDA_multinomial.r.ipynb" 
+    script: 
+        "Tissue_classification/LDA_multinomial.R"
+        
+
+rule LDA_classification_cancer_type_binomial:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        LDA_output = "Classification_output/Cancer_type_classification/LDA_binomial.rds", 
+        LDA_roc = LDA_CANCER_TYPE_BINOMIAL_ROC_PLOT
+    threads: 8
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/LDA_multinomial.r.ipynb" 
+    script: 
+        "Tissue_classification/LDA_binomial.R"
+        
+
+############################### BOOSTING #####################################
+
+rule boosting_classification_cancer_type_multinomial:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        boosting_output = "Classification_output/Cancer_type_classification/Boosting_multinomial.rds", 
+        boosting_roc = BOOSTING_CANCER_TYPE_MULTINOMIAL_ROC_PLOT
+    threads: 10
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/Boosting_multinomial.r.ipynb" 
+    script: 
+        "Tissue_classification/Boosting_multinomial.R"
+        
+        
+#rule boosting_classification_cancer_type_binomial:
+#    input: 
+#        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+#        input_sample_types = INPUT_SAMPLE_TYPES
+#    output: 
+#        boosting_output = "Classification_output/Cancer_type_classification/Boosting_binomial.rds", 
+#        boosting_roc = BOOSTING_CANCER_TYPE_BINOMIAL_ROC_PLOT
+#    threads: 8
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/Boosting_binomial.r.ipynb" 
+#    script: 
+#        "Tissue_classification/Boosting_binomial.R"     
+        
+
+############################### SVM #####################################
+
+#rule SVM_Linear_classification_cancer_type:
+#    input: 
+#        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+#        input_sample_types = INPUT_SAMPLE_TYPES
+#    output: 
+#        SVM_output = "Classification_output/Cancer_type_classification/SVM_linear_binomial.rds", 
+#        SVM_roc = SVM_LINEAR_CANCER_TYPE_ROC_PLOT
+#    threads: 8
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/SVM_linear.r.ipynb" 
+#    script: 
+#        "Tissue_classification/SVM_linear.R"
+        
+#rule SVM_Radial_classification_cancer_type:
+#    input: 
+#        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+#        input_sample_types = INPUT_SAMPLE_TYPES
+#    output: 
+#        SVM_output = "Classification_output/Cancer_type_classification/SVM_radial_binomial.rds", 
+#        SVM_roc = SVM_RADIAL_CANCER_TYPE_ROC_PLOT
+#    threads: 8
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/SVM_radial.r.ipynb" 
+#    script: 
+#        "Tissue_classification/SVM_radial.R"
+
+#rule SVM_Poly_classification_cancer_type:
+#    input: 
+#        input_predictions = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted_standardized.rds",
+#        input_sample_types = INPUT_SAMPLE_TYPES
+#    output: 
+#        SVM_output = "Classification_output/Cancer_type_classification/SVM_poly_binomial.rds", 
+#        SVM_roc = SVM_POLY_CANCER_TYPE_ROC_PLOT
+#    threads: 8
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/SVM_poly.r.ipynb" 
+#    script: 
+#        "Tissue_classification/SVM_poly.R"
+        
+        
+############################### PCA CLASSIFICATION #####################################
+
+############################### PCA BOOSTING #####################################
+
+rule PCA_boosting_classification_cancer_type_multinomial:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        boosting_output = "Classification_output/Cancer_type_classification/PCA_Boosting_multinomial.rds", 
+        boosting_roc = PCA_BOOSTING_CANCER_TYPE_MULTINOMIAL_ROC_PLOT
+    threads: 20
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/PCA_Boosting_multinomial.r.ipynb" 
+    script: 
+        "Tissue_classification/Boosting_multinomial.R"
+        
+
+rule PCA_boosting_classification_cancer_type_binomial:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        boosting_output = "Classification_output/Cancer_type_classification/PCA_Boosting_binomial.rds", 
+        boosting_roc = PCA_BOOSTING_CANCER_TYPE_BINOMIAL_ROC_PLOT
+    threads: 20
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/Boosting_binomial.r.ipynb" 
+    script: 
+        "Tissue_classification/Boosting_binomial.R"     
+        
+        
+        
+############################### PCA LASSO #####################################
+
+rule PCA_Lasso_classification_cancer_type_multinomial:
+    input: 
+        input_predictions =  "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        lasso_output = "Classification_output/Cancer_type_classification/PCA_Lasso_multinomial.rds", 
+        lasso_roc = PCA_LASSO_CANCER_TYPE_MULTINOMIAL_ROC_PLOT
+    threads: 20
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/Lasso_multinomial.r.ipynb"
+    script: 
+        "Tissue_classification/Lasso_multinomial.R"
+
+rule PCA_Lasso_classification_cancer_type_binomial:
+    input: 
+        input_predictions =  "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        lasso_output = "Classification_output/Cancer_type_classification/PCA_Lasso_binomial.rds", 
+        lasso_roc = PCA_LASSO_CANCER_TYPE_BINOMIAL_ROC_PLOT
+    threads: 20
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/Lasso_binomial.r.ipynb"
+    script: 
+        "Tissue_classification/Lasso_binomial.R"
+
+############################### PCA LDA #####################################
+
+rule PCA_LDA_classification_cancer_type_multinomial:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        LDA_output = "Classification_output/Cancer_type_classification/PCA_LDA_multinomial.rds", 
+        LDA_roc = PCA_LDA_CANCER_TYPE_MULTINOMIAL_ROC_PLOT
+    threads: 10
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/LDA_multinomial.r.ipynb" 
+    script: 
+        "Tissue_classification/LDA_multinomial.R"
+        
+
+rule PCA_LDA_classification_cancer_type_binomial:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        LDA_output = "Classification_output/Cancer_type_classification/PCA_LDA_binomial.rds", 
+        LDA_roc = PCA_LDA_CANCER_TYPE_BINOMIAL_ROC_PLOT
+    threads: 8
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/LDA_multinomial.r.ipynb" 
+    script: 
+        "Tissue_classification/LDA_binomial.R"
+
+############################### PCA SVM #####################################
+
+rule PCA_SVM_Linear_classification_cancer_type:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/Cancer_type_classification/PCA_SVM_linear_binomial.rds", 
+        SVM_roc = PCA_SVM_LINEAR_CANCER_TYPE_ROC_PLOT
+    threads: 20
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/SVM_linear.r.ipynb" 
+    script: 
+        "Tissue_classification/SVM_linear.R"
+        
+rule PCA_SVM_Radial_classification_cancer_type:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/Cancer_type_classification/PCA_SVM_radial_binomial.rds", 
+        SVM_roc = PCA_SVM_RADIAL_CANCER_TYPE_ROC_PLOT
+    threads: 20
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/SVM_radial.r.ipynb" 
+    script: 
+        "Tissue_classification/SVM_radial.R"
+
+rule PCA_SVM_Poly_classification_cancer_type:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        SVM_output = "Classification_output/Cancer_type_classification/PCA_SVM_poly_binomial.rds", 
+        SVM_roc = PCA_SVM_POLY_CANCER_TYPE_ROC_PLOT
+    threads: 20
+    #log: 
+    #    notebook = "logs/processed_notebooks/Classification/Cancer_type_classification/SVM_poly.r.ipynb" 
+    script: 
+        "Tissue_classification/SVM_poly.R"

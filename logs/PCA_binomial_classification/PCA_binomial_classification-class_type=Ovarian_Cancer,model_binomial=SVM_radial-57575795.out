@@ -1,0 +1,1112 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Mon Nov 29 23:26:02 2021]
+rule PCA_binomial_classification:
+    input: data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/Binomial_models_output/SVM_radial_Predictions_PCA_Ovarian_Cancer.rds
+    jobid: 0
+    wildcards: model_binomial=SVM_radial, class_type=Ovarian_Cancer
+    threads: 10
+    resources: mem_mb=200000, disk_mb=1000, tmpdir=/scratch/57575795, time=20:00:00
+
+Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpeqku7yea.SVM_radial.R
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/411837606499b7823565885a8a388b12
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+Warning: unable to access index for repository http://cran.us.r-project.org/src/contrib/kernlab_0.9-29.tar.gz/src/contrib:
+  cannot open URL 'http://cran.us.r-project.org/src/contrib/kernlab_0.9-29.tar.gz/src/contrib/PACKAGES'
+Warning message:
+package ‘kernlab’ is not available (for R version 3.6.1) 
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Warning: unable to access index for repository http://cran.us.r-project.org/src/contrib/splitTools_0.3.1.tar.gz/src/contrib:
+  cannot open URL 'http://cran.us.r-project.org/src/contrib/splitTools_0.3.1.tar.gz/src/contrib/PACKAGES'
+Warning message:
+package ‘splitTools’ is not available (for R version 3.6.1) 
+Gastric_cancerOvarian_CancerLung_CancerBile_Duct_CancerPancreatic_CancerDuodenal_CancerBreast_CancerColorectal_Cancer
+[1] "Sample_type levels"
+[1] "Cancer" "Other" 
+starting worker pid=59840 on localhost:11746 at 23:26:07.367
+starting worker pid=59873 on localhost:11746 at 23:26:07.611
+starting worker pid=59954 on localhost:11746 at 23:26:07.851
+starting worker pid=59978 on localhost:11746 at 23:26:15.657
+starting worker pid=60021 on localhost:11746 at 23:26:15.905
+starting worker pid=60045 on localhost:11746 at 23:26:16.146
+starting worker pid=60079 on localhost:11746 at 23:26:16.393
+starting worker pid=60129 on localhost:11746 at 23:26:16.639
+starting worker pid=60172 on localhost:11746 at 23:26:16.883
+starting worker pid=60213 on localhost:11746 at 23:26:17.168
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: rngtools
+Loading required package: foreach
+Loading required package: pkgmaker
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: registry
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: pkgmaker
+Loading required package: foreach
+Loading required package: registry
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: pkgmaker
+Loading required package: foreach
+Loading required package: registry
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+
+Attaching package: ‘pkgmaker’
+
+Loading required package: pkgmaker
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+
+Attaching package: ‘kernlab’
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+
+Attaching package: ‘kernlab’
+
+Loading required package: foreach
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: pkgmaker
+Loading required package: rngtools
+Loading required package: registry
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Ovarian_Cancer
+CV repetition number: 1
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+CV repetition number: 10
+Ovarian_Cancer
+CV repetition number: 9
+CV repetition number: 2
+CV repetition number: 3
+CV repetition number: 4
+CV repetition number: 6
+CV repetition number: 5
+CV repetition number: 7
+CV repetition number: 8
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 7
+besttune C
+4
+besttune sigma
+0.0464777863097859
+besttune C
+0.5
+besttune sigma
+0.0376506950945214
+besttune C
+2
+besttune sigma
+0.0459848793485644
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.052548112547642
+besttune C
+4
+besttune sigma
+0.0466670964938627
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0496818987501407
+besttune C
+0.5
+besttune sigma
+0.0440739097037825
+besttune C
+2
+besttune sigma
+0.0417821682410687
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune sigma
+0.0459204695143114
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0483441608541334
+besttune C
+4
+besttune sigma
+0.0389682560799848
+besttune C
+0.5
+besttune sigma
+0.0411728549340642
+besttune C
+2
+besttune sigma
+0.0480083417625489
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0469724071511415
+besttune C
+4
+besttune sigma
+0.0387031603103697
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0423297800415465
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune sigma
+0.0343521045541814
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune sigma
+0.0414331582955548
+besttune C
+4
+besttune sigma
+0.0368859183711555
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune sigma
+0.0379123327714423
+besttune C
+4
+besttune sigma
+0.0382058085006551
+besttune C
+4
+besttune sigma
+0.0511481113731907
+besttune C
+0.25
+besttune sigma
+0.0457118022498609
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0541668380600229
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0455644352515971
+besttune C
+0.5
+besttune sigma
+0.035459011987318
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune sigma
+0.0383891577253177
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune sigma
+0.0337165918459725
+besttune C
+0.25
+besttune sigma
+0.0422846723366729
+besttune C
+0.5
+besttune sigma
+0.0536961614407603
+besttune C
+4
+besttune sigma
+0.0423991896845154
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune sigma
+0.0419718684257711
+besttune C
+CV inner loop, CV rep number: 10
+besttune C
+CV inner loop, CV rep number: 10
+besttune C
+besttune C
+4
+4
+0.5
+0.5
+besttune sigma
+0.0360423446606703
+besttune sigma
+besttune sigma
+0.043694807092209
+besttune sigma
+0.0437297918369993
+0.0458075292472547
+besttune C
+2
+besttune sigma
+0.0378225671371683
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0398169569221288
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0485077412760222
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0564985636949605
+besttune C
+4
+besttune sigma
+0.0439018735763294
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0509475252491152
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0456322194725659
+besttune C
+0.5
+besttune sigma
+0.0427943157902573
+besttune C
+2
+besttune sigma
+0.044080118018494
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0531272668522216
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune sigma
+0.0453702766749894
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0399921095937467
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0383218126596137
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0511197173881141
+besttune C
+2
+besttune sigma
+0.0546905196883228
+besttune C
+4
+besttune sigma
+0.0418414559555405
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0369051616862182
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+1
+besttune sigma
+0.0593791058002175
+besttune C
+4
+besttune sigma
+0.0512638624480769
+besttune C
+4
+besttune sigma
+0.0544059291155916
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune sigma
+0.041544522725397
+besttune C
+4
+besttune sigma
+0.0398414908651976
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0459136253220239
+CV inner loop, CV rep number: 10
+besttune C
+1
+besttune sigma
+0.0405760839812135
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0352051900356194
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0533403004896984
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0406187558837372
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0422507385132904
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.048607256336502
+CV inner loop, CV rep number: 10
+besttune C
+1
+besttune sigma
+0.0436777674919188
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0457913373877189
+besttune C
+0.25
+besttune sigma
+0.0448791108999904
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.036576398020617
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0386386953300557
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0384860235442375
+besttune C
+4
+besttune sigma
+0.0479986738704438
+besttune C
+4
+besttune sigma
+0.0429298610245512
+besttune C
+1
+besttune sigma
+0.0382619465853903
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune sigma
+0.0492992023213613
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0360265969184205
+besttune C
+4
+besttune sigma
+0.0517843986781084
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune sigma
+0.055554463203433
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.045781589564806
+besttune C
+2
+besttune sigma
+0.0502029392290161
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0432124336389723
+besttune C
+0.5
+besttune sigma
+0.0464192280058002
+besttune C
+4
+besttune sigma
+0.0442367866704562
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0467798949263382
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0433359605428039
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0409787168058592
+besttune C
+4
+besttune sigma
+0.0456815646842222
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0450501118952924
+besttune C
+4
+besttune sigma
+0.0437763573689562
+besttune C
+1
+besttune sigma
+0.0482484113198686
+besttune C
+4
+besttune sigma
+0.0362326150595633
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune sigma
+0.0425314407644197
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+besttune C
+besttune C
+0.25
+besttune C
+4
+besttune sigma
+2
+0.5
+besttune sigma
+0.0380841395162912
+besttune sigma
+besttune sigma
+0.0441412021601955
+0.0464684952208664
+0.0488985449575502
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune sigma
+0.0515094640102686
+besttune C
+0.5
+besttune sigma
+0.0441669095478913
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune sigma
+0.0414273881934932
+besttune C
+4
+besttune sigma
+0.061713057215175
+[1] "Results: "
+  observed CV_rep {class_type}_pred
+1    Other      1       0.068953055
+2    Other      1       0.008066211
+3    Other      1       0.078636206
+4    Other      1       0.011545867
+5   Cancer      1       0.294256291
+6   Cancer      1       0.792461793
+[Mon Nov 29 23:31:13 2021]
+Finished job 0.
+1 of 1 steps (100%) done

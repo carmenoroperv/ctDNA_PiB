@@ -1,0 +1,1312 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Mon Nov 29 23:25:02 2021]
+rule PCA_binomial_classification:
+    input: data/ATAC_predictions_train_20_predict_80/PCA_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/Binomial_models_output/SVM_poly_Predictions_PCA_Ovarian_Cancer.rds
+    jobid: 0
+    wildcards: model_binomial=SVM_poly, class_type=Ovarian_Cancer
+    threads: 10
+    resources: mem_mb=200000, disk_mb=1000, tmpdir=/scratch/57575790, time=20:00:00
+
+Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpz5u824q7.SVM_poly.R
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/411837606499b7823565885a8a388b12
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: lattice
+
+Attaching package: ‘caret’
+
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+Warning: unable to access index for repository http://cran.us.r-project.org/src/contrib/kernlab_0.9-29.tar.gz/src/contrib:
+  cannot open URL 'http://cran.us.r-project.org/src/contrib/kernlab_0.9-29.tar.gz/src/contrib/PACKAGES'
+Warning message:
+package ‘kernlab’ is not available (for R version 3.6.1) 
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Warning: unable to access index for repository http://cran.us.r-project.org/src/contrib/splitTools_0.3.1.tar.gz/src/contrib:
+  cannot open URL 'http://cran.us.r-project.org/src/contrib/splitTools_0.3.1.tar.gz/src/contrib/PACKAGES'
+Warning message:
+package ‘splitTools’ is not available (for R version 3.6.1) 
+Gastric_cancerOvarian_CancerLung_CancerBile_Duct_CancerPancreatic_CancerDuodenal_CancerBreast_CancerColorectal_Cancer
+[1] "Sample_type levels"
+[1] "Cancer" "Other" 
+starting worker pid=29316 on localhost:11321 at 23:25:10.230
+starting worker pid=29340 on localhost:11321 at 23:25:10.538
+starting worker pid=29365 on localhost:11321 at 23:25:10.846
+starting worker pid=29391 on localhost:11321 at 23:25:11.156
+starting worker pid=29415 on localhost:11321 at 23:25:11.469
+starting worker pid=29439 on localhost:11321 at 23:25:11.775
+starting worker pid=29463 on localhost:11321 at 23:25:12.081
+starting worker pid=29487 on localhost:11321 at 23:25:12.388
+starting worker pid=29512 on localhost:11321 at 23:25:12.698
+starting worker pid=29538 on localhost:11321 at 23:25:13.008
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: lattice
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Loading required package: ggplot2
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+✔ tibble  2.1.1       ✔ purrr   0.3.2  
+✔ tidyr   0.8.3       ✔ dplyr   0.8.0.1
+✔ readr   1.3.1       ✔ stringr 1.4.0  
+✔ tibble  2.1.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ purrr::lift()   masks caret::lift()
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: foreach
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: foreach
+Loading required package: pkgmaker
+
+Attaching package: ‘kernlab’
+
+
+Attaching package: ‘foreach’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: rngtools
+Loading required package: registry
+Loading required package: foreach
+Loading required package: pkgmaker
+
+Attaching package: ‘foreach’
+
+Loading required package: registry
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+
+Attaching package: ‘kernlab’
+
+Loading required package: registry
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+
+Attaching package: ‘kernlab’
+
+Loading required package: foreach
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+
+Attaching package: ‘kernlab’
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+
+Attaching package: ‘foreach’
+
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: pkgmaker
+Loading required package: rngtools
+
+Attaching package: ‘kernlab’
+
+Loading required package: foreach
+The following object is masked from ‘package:purrr’:
+
+    cross
+
+The following object is masked from ‘package:ggplot2’:
+
+    alpha
+
+Loading required package: foreach
+Loading required package: foreach
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘foreach’
+
+Loading required package: foreach
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: registry
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+
+Attaching package: ‘pkgmaker’
+
+Loading required package: rngtools
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: rngtools
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: pkgmaker
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: pkgmaker
+Loading required package: registry
+Loading required package: registry
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+Ovarian_Cancer
+CV repetition number: 1
+CV repetition number: 3
+Ovarian_Cancer
+Ovarian_Cancer
+CV repetition number: 2
+Ovarian_Cancer
+CV repetition number: 5
+Ovarian_Cancer
+CV repetition number: 9
+CV repetition number: 4
+CV repetition number: 6
+CV repetition number: 7
+CV repetition number: 8
+CV repetition number: 10
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 2.056639e-05 -2.05255e-05maximum number of iterations reached 2.115203e-05 -2.112026e-05maximum number of iterations reached 1.863566e-05 -1.860864e-05maximum number of iterations reached 1.401332e-05 -1.39953e-05maximum number of iterations reached 1.577255e-05 -1.575249e-05maximum number of iterations reached 3.473202e-05 -3.463731e-05maximum number of iterations reached 1.482434e-05 -1.480873e-05maximum number of iterations reached 1.098656e-05 -1.097581e-05maximum number of iterations reached 6.131094e-05 -6.111072e-05maximum number of iterations reached 9.811573e-06 -9.802798e-06maximum number of iterations reached 6.891597e-05 -6.868861e-05maximum number of iterations reached 1.063836e-05 -1.0629e-05besttune C
+4
+besttune degree
+2
+besttune scale
+1
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 1.132517e-05 -1.131016e-05maximum number of iterations reached 2.362562e-05 -2.356872e-05maximum number of iterations reached 0.0001276412 -0.0001268955maximum number of iterations reached 3.187219e-05 -3.180199e-05maximum number of iterations reached 1.623373e-05 -1.621251e-05maximum number of iterations reached 1.469296e-05 -1.466887e-05maximum number of iterations reached 1.526341e-05 -1.524037e-05maximum number of iterations reached 2.043424e-05 -2.039886e-05maximum number of iterations reached 0.0001721367 -0.0001711056maximum number of iterations reached 1.590522e-05 -1.587189e-05maximum number of iterations reached 9.657867e-06 -9.64696e-06maximum number of iterations reached 2.495931e-05 -2.489907e-05maximum number of iterations reached 9.703994e-06 -9.699149e-06maximum number of iterations reached 0.0001639436 -0.0001627453maximum number of iterations reached 1.219919e-05 -1.218212e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.01
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 9.947923e-06 -9.934182e-06besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 1.054621e-05 -1.053638e-05maximum number of iterations reached 1.133572e-05 -1.133004e-05CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 2.129444e-05 -2.126606e-05maximum number of iterations reached 1.15083e-05 -1.149035e-05CV inner loop, CV rep number: 10
+maximum number of iterations reached 2.788085e-05 -2.785541e-05maximum number of iterations reached 0.000148792 -0.0001481894maximum number of iterations reached 1.390152e-05 -1.388356e-05maximum number of iterations reached 1.077796e-05 -1.075132e-05maximum number of iterations reached 0.0001511924 -0.0001504491CV inner loop, CV rep number: 10
+maximum number of iterations reached 7.903395e-05 -7.871881e-05maximum number of iterations reached 5.787318e-05 -5.765732e-05maximum number of iterations reached 1.376231e-05 -1.374456e-05maximum number of iterations reached 1.963873e-05 -1.961041e-05maximum number of iterations reached 2.486013e-05 -2.481051e-05maximum number of iterations reached 1.94542e-05 -1.94202e-05maximum number of iterations reached 1.875029e-05 -1.872164e-05maximum number of iterations reached 1.174209e-05 -1.172075e-05maximum number of iterations reached 1.08684e-05 -1.085673e-05maximum number of iterations reached 9.290029e-06 -9.278136e-06maximum number of iterations reached 0.0002108308 -0.0002096585maximum number of iterations reached 2.779493e-05 -2.771244e-05maximum number of iterations reached 1.025707e-05 -1.024482e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV rep number: 10
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 3.054671e-05 -3.04909e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 2.576974e-05 -2.574013e-05maximum number of iterations reached 9.795239e-06 -9.780401e-06CV inner loop, CV rep number: 10
+maximum number of iterations reached 3.984458e-05 -3.973848e-05maximum number of iterations reached 9.447732e-06 -9.433316e-06maximum number of iterations reached -0.0003407637 0.0003457176maximum number of iterations reached 2.729043e-05 -2.724442e-05maximum number of iterations reached 2.165847e-05 -2.164359e-05maximum number of iterations reached 0.0002858915 -0.0002835942maximum number of iterations reached 0.0001637262 -0.0001630533maximum number of iterations reached 1.797e-05 -1.794379e-05maximum number of iterations reached 5.964096e-05 -5.946923e-05CV inner loop, CV rep number: 10
+maximum number of iterations reached 1.862034e-05 -1.859495e-05maximum number of iterations reached 0.000115013 -0.0001144314maximum number of iterations reachedmaximum number of iterations reached  0.00029761761.182679e-05  -0.000294844-1.181398e-05maximum number of iterations reached 2.27206e-05 -2.268225e-05maximum number of iterations reached 2.155066e-05 -2.151146e-05maximum number of iterations reached 2.263582e-05 -2.26124e-05maximum number of iterations reached 1.101971e-05 -1.100639e-05maximum number of iterations reached 1.57546e-05 -1.573873e-05maximum number of iterations reached 3.60293e-05 -3.59397e-05maximum number of iterations reached 3.296821e-05 -3.287303e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 0.0003067418 -0.0003034879maximum number of iterations reached 0.002676702 -0.002607983besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.001
+maximum number of iterations reached 1.555705e-05 -1.553943e-05maximum number of iterations reached 0.0005273249 -0.0005207684besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+maximum number of iterations reached 1.799374e-05 -1.79668e-05maximum number of iterations reached 1.623013e-05 -1.620037e-05maximum number of iterations reached 0.001066161 -0.001045111CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.5
+besttune degree
+3
+besttune scale
+0.1
+maximum number of iterations reached 2.022746e-05 -2.018886e-05besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 2.900668e-05 -2.895321e-05besttune C
+0.5
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 1.378914e-05 -1.378243e-05maximum number of iterations reached 4.862644e-05 -4.848475e-05maximum number of iterations reached 0.0002326936 -0.0002304449maximum number of iterations reached 1.416387e-05 -1.414982e-05maximum number of iterations reached 3.548406e-05 -3.539143e-05maximum number of iterations reached 2.675148e-05 -2.66886e-05maximum number of iterations reached 7.124735e-05 -7.106587e-05maximum number of iterations reached 2.481162e-05 -2.47609e-05maximum number of iterations reached 3.758143e-05 -3.749881e-05maximum number of iterations reached 1.21275e-05 -1.211013e-05maximum number of iterations reached 1.422187e-05 -1.420228e-05maximum number of iterations reached 2.92355e-05 -2.917151e-05maximum number of iterations reached 5.500655e-05 -5.489262e-05maximum number of iterations reached 6.405003e-05 -6.381497e-05maximum number of iterations reached 1.10068e-05 -1.098964e-05maximum number of iterations reached 0.0001378562 -0.0001372476maximum number of iterations reached 1.818834e-05 -1.815775e-05maximum number of iterations reached 8.847936e-05 -8.80055e-05maximum number of iterations reached 0.0001823253 -0.0001808884besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 0.0002222575 -0.0002203599besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.845537e-05 -1.842309e-05maximum number of iterations reached 1.095959e-05 -1.094545e-05maximum number of iterations reached 0.0001406029 -0.0001400697maximum number of iterations reached 3.026734e-05 -3.023089e-05maximum number of iterations reached 4.709031e-05 -4.694243e-05CV inner loop, CV rep number: 10
+maximum number of iterations reached 6.58239e-05 -6.551509e-05maximum number of iterations reached 2.792961e-05 -2.784884e-05CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 0.0001764102 -0.000175372maximum number of iterations reached 9.911501e-06 -9.904761e-06CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 0.0005196517 -0.0005122384besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+maximum number of iterations reached 1.096484e-05 -1.09553e-05CV inner loop, CV rep number: 10
+maximum number of iterations reached 7.113667e-05 -7.095743e-05maximum number of iterations reached 0.0001430879 -0.0001423493maximum number of iterations reached 0.0004833286 -0.0004764377maximum number of iterations reached 9.206636e-05 -9.152759e-05maximum number of iterations reached 0.0001362974 -0.0001354735maximum number of iterations reached 1.795737e-05 -1.794375e-05maximum number of iterations reached 0.0001200481 -0.0001193639maximum number of iterations reached 3.96517e-05 -3.95552e-05maximum number of iterations reached 0.0003946009 -0.0003887755maximum number of iterations reached 2.034997e-05 -2.031114e-05maximum number of iterations reached 0.0008004301 -0.0007858757maximum number of iterations reached 3.214173e-05 -3.209078e-05maximum number of iterations reached 1.302444e-05 -1.300496e-05maximum number of iterations reached 0.0001007731 -0.0001002832maximum number of iterations reached 0.001529445 -0.00148629maximum number of iterations reached 7.113569e-05 -7.087713e-05maximum number of iterations reached 0.0002475646 -0.0002451125maximum number of iterations reached 2.138368e-05 -2.135343e-05besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 0.0005828115 -0.000575772CV inner loop, CV rep number: 10
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+maximum number of iterations reached 2.042629e-05 -2.038499e-05CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 0.0001259706 -0.000125499CV inner loop, CV rep number: 10
+maximum number of iterations reached 6.966047e-05 -6.942382e-05CV inner loop, CV rep number: 10
+maximum number of iterations reached 9.590848e-06 -9.579062e-06maximum number of iterations reached 1.624627e-05 -1.621136e-05maximum number of iterations reached 1.829765e-05 -1.827176e-05maximum number of iterations reached 1.739215e-05 -1.736822e-05maximum number of iterations reached 9.359387e-06 -9.341901e-06maximum number of iterations reached 1.280133e-05 -1.278116e-05maximum number of iterations reached 1.107872e-05 -1.106196e-05maximum number of iterations reached 9.321033e-06 -9.307158e-06maximum number of iterations reached 1.168584e-05 -1.167715e-05maximum number of iterations reached 9.779726e-06 -9.765588e-06maximum number of iterations reached 9.379252e-05 -9.347549e-05maximum number of iterations reached 2.376429e-05 -2.371972e-05maximum number of iterations reached 3.721735e-05 -3.713945e-05maximum number of iterations reached 4.249938e-05 -4.237613e-05maximum number of iterations reached 2.301277e-05 -2.29735e-05maximum number of iterations reached 0.0004880688 besttune C
+-0.00048116321
+besttune degree
+3
+besttune scale
+1
+maximum number of iterations reached 7.236218e-05 -7.198553e-05besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV rep number: 10
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+4
+besttune degree
+2
+besttune scale
+0.01
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 1.171457e-05 -1.170305e-05besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 6.999154e-05 -6.979604e-05besttune C
+0.25
+besttune degree
+2
+besttune scale
+1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 4.179009e-05 -4.167158e-05CV inner loop, CV rep number: 10
+maximum number of iterations reached 1.182432e-05 -1.181232e-05maximum number of iterations reached 0.0002468103 -0.0002441815maximum number of iterations reached 3.319052e-05 -3.310925e-05maximum number of iterations reached 9.973127e-05 -9.931448e-05maximum number of iterations reached 1.555424e-05 -1.553418e-05maximum number of iterations reached 1.879969e-05 -1.876947e-05maximum number of iterations reached 1.283427e-05 -1.280364e-05maximum number of iterations reachedmaximum number of iterations reached 1.2767e-05 -1.275199e-05 1.422758e-05 -1.420582e-05maximum number of iterations reached 0.0001278069 -0.0001270255maximum number of iterations reached 0.0002110717 -0.0002096607besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+besttune C
+1
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+2
+besttune scale
+10
+besttune C
+2
+besttune degree
+2
+besttune scale
+1
+besttune C
+4
+besttune degree
+2
+besttune scale
+10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 1.514105e-05 -1.51204e-05CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+maximum number of iterations reached 1.112e-05 -1.110582e-05CV inner loop, CV rep number: 10
+maximum number of iterations reached 1.785128e-05 -1.782779e-05maximum number of iterations reached 0.0005157248 -0.0005089548maximum number of iterations reached 1.278463e-05 -1.277186e-05maximum number of iterations reached 0.0001230021 -0.0001221755maximum number of iterations reached 2.823698e-05 -2.817341e-05maximum number of iterations reached 1.108846e-05 -1.107439e-05maximum number of iterations reached 0.0002067074 -0.0002052359maximum number of iterations reached 1.122284e-05 -1.120635e-05maximum number of iterations reached 6.836796e-05 -6.807838e-05maximum number of iterations reached 0.0001365735 -0.0001359818maximum number of iterations reached 0.0003141586 -0.0003112564maximum number of iterations reached 0.0001046691 -0.0001041856besttune C
+0.25
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+1
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+maximum number of iterations reached 3.523556e-05 -3.514724e-05maximum number of iterations reached 1.47276e-05 -1.471098e-05maximum number of iterations reached 2.015096e-05 -2.011212e-05maximum number of iterations reached 9.342037e-06 -9.333853e-06maximum number of iterations reached 2.748677e-05 -2.741402e-05maximum number of iterations reached 3.305256e-05 -3.297077e-05besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+maximum number of iterations reached 0.000111387 -0.0001109026besttune C
+0.5
+besttune degree
+1
+besttune scale
+1
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+2
+besttune degree
+3
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+1
+[1] "Results: "
+  observed CV_rep {class_type}_pred
+1    Other      1        0.11892532
+2    Other      1        0.10477694
+3    Other      1        0.11267470
+4    Other      1        0.07874389
+5   Cancer      1        0.12967921
+6   Cancer      1        0.19027351
+[Tue Nov 30 00:01:56 2021]
+Finished job 0.
+1 of 1 steps (100%) done

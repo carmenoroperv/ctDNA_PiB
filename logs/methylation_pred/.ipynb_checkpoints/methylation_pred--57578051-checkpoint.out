@@ -1,0 +1,41 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Tue Nov 30 08:38:59 2021]
+rule methylation_pred:
+    input: data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds, data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds, data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds, data/methylation/methylation_preprocessed_FILTERED.rds
+    output: data/Methylation_predictions_train_20_predict_80/Methylation_pred_lasso_normalized_trimmed.rds, Trained_models/Methylation_models/train_20_predict_80_models/Lasso_models/lasso_normalized_trimmed.rds
+    log: logs/processed_notebooks/train_20_predict_80_methylation/processed_Lasso_reg_TRUE_normalized_trimmed.r.ipynb
+    jobid: 0
+    resources: mem_mb=200000, disk_mb=11137, tmpdir=/scratch/57578051, time=20:00:00
+
+jupyter-nbconvert --log-level ERROR --execute --output /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/logs/processed_notebooks/train_20_predict_80_methylation/processed_Lasso_reg_TRUE_normalized_trimmed.r.ipynb --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpk9cxpvxc.Lasso_reg_TRUE.r.ipynb
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/411837606499b7823565885a8a388b12
+trying URL 'https://cran.r-project.org/src/contrib/glmnetUtils_1.1.8.tar.gz'
+Content type 'application/x-gzip' length 57060 bytes (55 KB)
+==================================================
+downloaded 55 KB
+
+* installing *source* package ‘glmnetUtils’ ...
+** package ‘glmnetUtils’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (glmnetUtils)
+
+The downloaded source packages are in
+	‘/scratch/57578051/RtmpwBvWij/downloaded_packages’
+[Tue Nov 30 09:50:30 2021]
+Finished job 0.
+1 of 1 steps (100%) done

@@ -1,0 +1,17 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Wed Nov 24 23:40:05 2021]
+rule standardize:
+    input: data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds
+    output: data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds
+    jobid: 0
+    resources: mem_mb=300000, disk_mb=1000, tmpdir=/scratch/57289796, time=24:00:00
+
+jupyter-nbconvert --log-level ERROR --execute  --to notebook --ExecutePreprocessor.timeout=-1 /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmpinbhrlo1.Standardizing_ATAC_predictions.r.ipynb
+[Wed Nov 24 23:40:14 2021]
+Finished job 0.
+1 of 1 steps (100%) done

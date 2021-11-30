@@ -1,0 +1,1009 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 10
+Rules claiming more threads will be scaled down.
+Select jobs to execute...
+
+[Mon Nov 29 22:49:37 2021]
+rule binomial_classification:
+    input: data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds, data/sample_types.txt
+    output: Classification_output/Binomial_models_output/Lasso_Predictions_Full_data_Pancreatic_Cancer.rds
+    jobid: 0
+    wildcards: model_binomial=Lasso, class_type=Pancreatic_Cancer
+    threads: 10
+    resources: mem_mb=200000, disk_mb=1000, tmpdir=/scratch/57574920, time=20:00:00
+
+Rscript --vanilla /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/scripts/tmp14bknpsl.Lasso.R
+Activating conda environment: /faststorage/project/DELFI1/Workspaces/CarmenAndAnika/.snakemake/conda/411837606499b7823565885a8a388b12
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Type 'citation("pROC")' for a citation.
+
+Attaching package: ‘pROC’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, smooth, var
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following object is masked from ‘package:tidyr’:
+
+    expand
+
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loaded glmnet 2.0-16
+
+
+Attaching package: ‘glmnet’
+
+The following object is masked from ‘package:pROC’:
+
+    auc
+
+
+Attaching package: ‘glmnetUtils’
+
+The following objects are masked from ‘package:glmnet’:
+
+    cv.glmnet, glmnet
+
+Warning message:
+package ‘glmnetUtils’ was built under R version 3.6.3 
+Warning: unable to access index for repository http://cran.us.r-project.org/src/contrib/splitTools_0.3.1.tar.gz/src/contrib:
+  cannot open URL 'http://cran.us.r-project.org/src/contrib/splitTools_0.3.1.tar.gz/src/contrib/PACKAGES'
+Warning message:
+package ‘splitTools’ is not available (for R version 3.6.1) 
+Warning message:
+package ‘multiROC’ was built under R version 3.6.3 
+dummies-1.5.6 provided by Decision Patterns
+
+Warning message:
+package ‘dummies’ was built under R version 3.6.3 
+Loading required package: gplots
+
+Attaching package: ‘gplots’
+
+The following object is masked from ‘package:stats’:
+
+    lowess
+
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Gastric_cancerOvarian_CancerLung_CancerBile_Duct_CancerPancreatic_CancerDuodenal_CancerBreast_CancerColorectal_Cancer
+[1] "Sample_type levels"
+[1] "Cancer" "Other" 
+starting worker pid=26081 on localhost:11691 at 22:49:55.051
+starting worker pid=26105 on localhost:11691 at 22:49:55.679
+starting worker pid=26129 on localhost:11691 at 22:49:56.035
+starting worker pid=26153 on localhost:11691 at 22:49:56.353
+starting worker pid=26177 on localhost:11691 at 22:49:56.670
+starting worker pid=26201 on localhost:11691 at 22:49:56.991
+starting worker pid=26225 on localhost:11691 at 22:49:57.311
+starting worker pid=26249 on localhost:11691 at 22:49:57.637
+starting worker pid=26273 on localhost:11691 at 22:49:57.952
+starting worker pid=26297 on localhost:11691 at 22:49:58.287
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Loading required package: foreach
+Loading required package: foreach
+Loading required package: foreach
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+
+Attaching package: ‘foreach’
+
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Loading required package: rngtools
+Loading required package: rngtools
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+Loading required package: pkgmaker
+Loading required package: pkgmaker
+Loading required package: pkgmaker
+Loading required package: registry
+Loading required package: registry
+Loading required package: registry
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+Registered S3 method overwritten by 'rvest':
+  method            from
+  read_xml.response xml2
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+✔ ggplot2 3.1.1       ✔ purrr   0.3.2  
+✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+✔ tidyr   0.8.3       ✔ stringr 1.4.0  
+✔ readr   1.3.1       ✔ forcats 0.4.0  
+Loading required package: foreach
+Loading required package: foreach
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: rngtools
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: pkgmaker
+Loading required package: registry
+Loading required package: registry
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: foreach
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Loading required package: foreach
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: rngtools
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+
+Attaching package: ‘foreach’
+
+Loading required package: foreach
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: pkgmaker
+Loading required package: foreach
+Loading required package: rngtools
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: registry
+
+Attaching package: ‘foreach’
+
+The following objects are masked from ‘package:purrr’:
+
+    accumulate, when
+
+Loading required package: pkgmaker
+Loading required package: rngtools
+Loading required package: rngtools
+Loading required package: pkgmaker
+Loading required package: registry
+Loading required package: pkgmaker
+Loading required package: registry
+Loading required package: registry
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+
+Attaching package: ‘pkgmaker’
+
+The following object is masked from ‘package:base’:
+
+    isFALSE
+
+Pancreatic_Cancer
+Pancreatic_Cancer
+Pancreatic_Cancer
+Pancreatic_Cancer
+CV repetition number: 1
+Pancreatic_Cancer
+Pancreatic_Cancer
+Pancreatic_Cancer
+CV repetition number: 7
+CV repetition number: 2
+Pancreatic_Cancer
+Pancreatic_Cancer
+CV repetition number: 3
+Pancreatic_Cancer
+CV repetition number: 4
+CV repetition number: 5
+CV repetition number: 6
+CV repetition number: 9
+CV repetition number: 8
+CV repetition number: 10
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 7
+CV inner loop, CV rep number: 2
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 4
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 6
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 8
+CV inner loop, CV rep number: 10
+best_alpha
+0.027
+best_lambda
+0.599829202442579
+CV inner loop, CV rep number: 8
+best_alpha
+0.125
+best_lambda
+0.17441620158489
+CV inner loop, CV rep number: 6
+best_alpha
+0.512
+best_lambda
+0.0513506578095734
+CV inner loop, CV rep number: 4
+best_alpha
+0.064
+best_lambda
+0.300618992310732
+CV inner loop, CV rep number: 2
+best_alpha
+0
+best_lambda
+7.78019482274848
+best_alpha
+0.001
+best_lambda
+4.68373574388385
+CV inner loop, CV rep number: 1
+CV inner loop, CV rep number: 10
+best_alpha
+0
+best_lambda
+8.13135297973367
+CV inner loop, CV rep number: 9
+best_alpha
+0.125
+best_lambda
+0.204615497225602
+CV inner loop, CV rep number: 7
+best_alpha
+0
+best_lambda
+6.12308835862009
+CV inner loop, CV rep number: 3
+best_alpha
+0
+best_lambda
+9.26512913304187
+CV inner loop, CV rep number: 5
+best_alpha
+0
+best_lambda
+8.72044611786251
+CV inner loop, CV rep number: 6
+best_alpha
+0
+best_lambda
+6.09617437395075
+CV inner loop, CV rep number: 8
+best_alpha
+0
+best_lambda
+8.273148589943
+CV inner loop, CV rep number: 10
+best_alpha
+0.027
+best_lambda
+0.616703074344589
+CV inner loop, CV rep number: 1
+best_alpha
+0.125
+best_lambda
+0.144421207142746
+CV inner loop, CV rep number: 9
+best_alpha
+0
+best_lambda
+7.5884858773724
+CV inner loop, CV rep number: 2
+best_alpha
+0.001
+best_lambda
+4.63607161615747
+CV inner loop, CV rep number: 7
+best_alpha
+0
+best_lambda
+6.39948259987445
+CV inner loop, CV rep number: 4
+best_alpha
+0.125
+best_lambda
+0.14845438882678
+CV inner loop, CV rep number: 3
+best_alpha
+0.001
+best_lambda
+4.36273009494665
+CV inner loop, CV rep number: 5
+best_alpha
+0.008
+best_lambda
+1.48143329947678
+CV inner loop, CV rep number: 6
+best_alpha
+0.125
+best_lambda
+0.139259004043272
+CV inner loop, CV rep number: 10
+best_alpha
+0
+best_lambda
+6.73087275007298
+CV inner loop, CV rep number: 8
+best_alpha
+1
+best_lambda
+0.0219925296391647
+CV inner loop, CV rep number: 1
+best_alpha
+0
+best_lambda
+5.83415811579483
+CV inner loop, CV rep number: 4
+best_alpha
+0
+best_lambda
+7.34586561894264
+best_alpha
+0
+best_lambda
+5.78166941228396
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 5
+best_alpha
+0.216
+best_lambda
+0.110674099097788
+CV inner loop, CV rep number: 7
+best_alpha
+0
+best_lambda
+9.11659338821805
+CV inner loop, CV rep number: 2
+best_alpha
+0.216
+best_lambda
+0.0840092164724845
+CV inner loop, CV rep number: 3
+best_alpha
+0
+best_lambda
+8.25663461179344
+CV inner loop, CV rep number: 10
+best_alpha
+0
+best_lambda
+5.18430339309778
+CV inner loop, CV rep number: 6
+best_alpha
+0
+best_lambda
+5.89758838021118
+CV inner loop, CV rep number: 1
+best_alpha
+0.008
+best_lambda
+1.50309414535913
+CV inner loop, CV rep number: 8
+best_alpha
+0.008
+best_lambda
+1.61585740987794
+CV inner loop, CV rep number: 5
+best_alpha
+0
+best_lambda
+4.92540290260065
+best_alpha
+0.008
+best_lambda
+1.49972224578561
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 4
+best_alpha
+0
+best_lambda
+6.76108728310779
+CV inner loop, CV rep number: 7
+best_alpha
+0
+best_lambda
+6.77454844658865
+best_alpha
+0.512
+best_lambda
+0.0561350242980588
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 2
+best_alpha
+0.512
+best_lambda
+0.0493321720828768
+CV inner loop, CV rep number: 10
+best_alpha
+0.064
+best_lambda
+0.261680866516978
+CV inner loop, CV rep number: 6
+best_alpha
+0.001
+best_lambda
+4.26963128335634
+CV inner loop, CV rep number: 1
+best_alpha
+0
+best_lambda
+7.91680835335907
+CV inner loop, CV rep number: 9
+best_alpha
+0.008
+best_lambda
+1.39416676452443
+CV inner loop, CV rep number: 8
+best_alpha
+0.008
+best_lambda
+1.70202443180004
+CV inner loop, CV rep number: 7
+best_alpha
+0
+best_lambda
+7.11817051636915
+CV inner loop, CV rep number: 5
+best_alpha
+0.125
+best_lambda
+0.13995909588045
+CV inner loop, CV rep number: 2
+best_alpha
+0
+best_lambda
+8.30944543244454
+CV inner loop, CV rep number: 4
+best_alpha
+0
+best_lambda
+7.54119192626906
+CV inner loop, CV rep number: 3
+best_alpha
+0.125
+best_lambda
+0.130423909859517
+CV inner loop, CV rep number: 10
+best_alpha
+0.008
+best_lambda
+1.54632355508726
+CV inner loop, CV rep number: 6
+best_alpha
+0.125
+best_lambda
+0.16950465975919
+CV inner loop, CV rep number: 7
+best_alpha
+0
+best_lambda
+9.27247979825905
+best_alpha
+0.216
+best_lambda
+0.093460204366942
+CV inner loop, CV rep number: 5
+CV inner loop, CV rep number: 4
+best_alpha
+0
+best_lambda
+7.27789400781363
+CV inner loop, CV rep number: 1
+best_alpha
+0.008
+best_lambda
+1.65358605843689
+CV inner loop, CV rep number: 3
+best_alpha
+0
+best_lambda
+9.48559751875227
+CV inner loop, CV rep number: 8
+best_alpha
+0
+best_lambda
+8.10075553290977
+CV inner loop, CV rep number: 9
+best_alpha
+0
+best_lambda
+7.15679090258669
+CV inner loop, CV rep number: 2
+best_alpha
+0.027
+best_lambda
+0.678583245596633
+CV inner loop, CV rep number: 10
+best_alpha
+0
+best_lambda
+8.88117402006833
+CV inner loop, CV rep number: 6
+best_alpha
+0.064
+best_lambda
+0.357550151277922
+CV inner loop, CV rep number: 5
+best_alpha
+0.216
+best_lambda
+0.127901466045001
+CV inner loop, CV rep number: 1
+best_alpha
+0.008
+best_lambda
+1.26392107196144
+CV inner loop, CV rep number: 4
+best_alpha
+0
+best_alpha
+best_lambda
+0.001
+7.46141271452512
+best_lambda
+5.47589614642171
+CV inner loop, CV rep number: 9
+CV inner loop, CV rep number: 2
+best_alpha
+0.001
+best_lambda
+5.53128456412966
+CV inner loop, CV rep number: 7
+best_alpha
+0.001
+best_lambda
+5.38465664242356
+best_alpha
+0
+best_lambda
+6.7721958333612
+CV inner loop, CV rep number: 3
+CV inner loop, CV rep number: 8
+best_alpha
+0.125
+best_lambda
+0.104782616612189
+CV inner loop, CV rep number: 10
+best_alpha
+0
+best_lambda
+6.51529588083569
+CV inner loop, CV rep number: 6
+best_alpha
+0.064
+best_lambda
+0.287235998707778
+CV inner loop, CV rep number: 9
+best_alpha
+0.064
+best_lambda
+0.298118923203777
+CV inner loop, CV rep number: 5
+best_alpha
+0.027
+best_lambda
+0.633970666158566
+CV inner loop, CV rep number: 1
+best_alpha
+0.343
+best_lambda
+0.101117207030884
+CV inner loop, CV rep number: 4
+best_alpha
+0.125
+best_lambda
+0.181080901269215
+CV inner loop, CV rep number: 8
+best_alpha
+0.001
+best_lambda
+3.55176760803012
+CV inner loop, CV rep number: 7
+best_alpha
+0.001
+best_lambda
+4.83661012568233
+CV inner loop, CV rep number: 2
+best_alpha
+0.064
+best_lambda
+0.319581558477528
+CV inner loop, CV rep number: 3
+best_alpha
+0
+best_lambda
+8.43523205523537
+CV inner loop, CV rep number: 10
+best_alpha
+0.027
+best_lambda
+0.626133745541789
+CV inner loop, CV rep number: 6
+best_alpha
+0.125
+best_lambda
+0.159245357261203
+CV inner loop, CV rep number: 9
+best_alpha
+1
+best_lambda
+0.0341546813057051
+CV inner loop, CV rep number: 4
+best_alpha
+0.216
+best_lambda
+0.101506638198536
+CV inner loop, CV rep number: 5
+best_alpha
+0.216
+best_lambda
+0.152402240926003
+CV inner loop, CV rep number: 7
+best_alpha
+0.343
+best_lambda
+0.0679499497609848
+CV inner loop, CV rep number: 8
+best_alpha
+0
+best_lambda
+6.40789019968186
+CV inner loop, CV rep number: 1
+best_alpha
+0
+best_lambda
+7.36908249272343
+CV inner loop, CV rep number: 2
+best_alpha
+0.125
+best_lambda
+0.173642813545451
+CV inner loop, CV rep number: 3
+best_alpha
+0
+best_lambda
+7.18459555003757
+best_alpha
+0.125
+best_lambda
+0.165306134842061
+best_alpha
+0
+best_lambda
+8.87289711411815
+best_alpha
+0
+best_lambda
+8.2504610478236
+best_alpha
+0.064
+best_lambda
+0.32257444137117
+best_alpha
+0.125
+best_lambda
+0.16088497423915
+best_alpha
+0.064
+best_lambda
+0.280970618662023
+best_alpha
+0.008
+best_lambda
+1.5743246793825
+best_alpha
+0
+best_lambda
+5.91350804238374
+best_alpha
+0.008
+best_lambda
+1.32667655170203
+Warning message:
+Warning message:
+package ‘glmnetUtils’ was built under R version 3.6.3 
+[1]package ‘glmnetUtils’ was built under R version 3.6.3 
+ "Results: "Warning message:
+
+package ‘glmnetUtils’ was built under R version 3.6.3 
+Warning message:
+package ‘glmnetUtils’ was built under R version 3.6.3 
+Warning message:
+package ‘glmnetUtils’ was built under R version 3.6.3 
+Warning message:
+Warning message:
+Warning message:
+Warning message:
+Warning message:
+package ‘glmnetUtils’ was built under R version 3.6.3 
+package ‘glmnetUtils’ was built under R version 3.6.3 
+package ‘glmnetUtils’ was built under R version 3.6.3 
+package ‘glmnetUtils’ was built under R version 3.6.3 
+package ‘glmnetUtils’ was built under R version 3.6.3 
+  observed CV_rep {class_type}_pred
+1    Other      1         0.9277585
+2    Other      1         0.8859616
+3    Other      1         0.2796751
+4    Other      1         0.9464119
+5    Other      1         0.9300622
+6    Other      1         0.9808013
+[Mon Nov 29 23:18:58 2021]
+Finished job 0.
+1 of 1 steps (100%) done
