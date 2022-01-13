@@ -1,0 +1,79 @@
+
+############################ WILDCARDS ############################
+PERCENTAGE = ["0.5", "0.8"]
+SUFFIX = ["CONTROLS", "gaussian_smooth_CONTROLS", "gaussian_smooth_trimmed_CONTROLS", "trimmed_CONTROLS"]
+###################################################################
+
+############################ INPUT ##############################
+INPUT_ATAC = "data/ATACseq_250kb_bins.txt"
+
+INPUT_LASSO_TRAIN_DATA = expand("data/20_80_splits_group_by_ind/80_all_samples_normalized_{suffix}.rds", suffix = SUFFIX)
+INPUT_LASSO_TEST_DATA =  expand("data/20_80_splits_group_by_ind/20_all_samples_normalized_{suffix}.rds", suffix = SUFFIX)
+#################################################################
+
+
+############################ OUTPUT ##############################
+OUTPUT_files = expand("data/experiment_ATAC_predictions/traindata_splits_diff_percentages/{suffix}_split_{percentage}.rds", percentage = PERCENTAGE, suffix = SUFFIX)
+OUTPUT_LASSO_PRED_FINAL = expand("data/experiment_ATAC_predictions/ATAC_predictions/ATAC_pred_lasso_experiment_{suffix}_{percentage}.rds", percentage = PERCENTAGE, suffix = SUFFIX)
+OUTPUT_MODEL_FINAL = expand("Trained_models/experiment_models/Lasso_models/lasso_{suffix}_{percentage}.rds", percentage = PERCENTAGE, suffix = SUFFIX)
+##################################################################
+
+####################### std FALSE OUTPUT #########################
+OUTPUT_PRED_std_FALSE = expand("data/experiment_ATAC_predictions/ATAC_predictions/ATAC_pred_lasso_experiment_gaussian_smooth_CONTROLS_std_FALSE_{percentage}.rds", percentage = PERCENTAGE)
+OUTPUT_MODEL_std_FALSE = expand("Trained_models/experiment_models/Lasso_models/lasso_gaussian_smooth_CONTROLS_std_FALSE_{percentage}.rds", percentage = PERCENTAGE)
+##################################################################
+
+#########RULES############
+rule all: 
+	input: OUTPUT_files, OUTPUT_LASSO_PRED_FINAL, OUTPUT_MODEL_FINAL, OUTPUT_PRED_std_FALSE, OUTPUT_MODEL_std_FALSE
+
+####
+
+rule splitting: 
+	input: 
+		input_atac = INPUT_ATAC,
+		input_train_data = "data/20_80_splits_group_by_ind/80_all_samples_normalized_{suffix}.rds"
+	params: 
+		percentage = "{percentage}"
+	output: 
+		output_file = "data/experiment_ATAC_predictions/traindata_splits_diff_percentages/{suffix}_split_{percentage}.rds"
+	conda: 
+		"conda_envs/ctDNA_conda_env.yml" 
+	log:
+		notebook = "logs/processed_notebooks/experiments/splitting_80_to_smaller_{suffix}_{percentage}.r.ipynb"  
+	notebook: 
+		"20_80_experiments/Data_splitting_from_80_to_smaller.r.ipynb"
+
+#####
+
+rule ATAC_predictions:
+	input: 
+		input_train = "data/experiment_ATAC_predictions/traindata_splits_diff_percentages/{suffix}_split_{percentage}.rds",
+		input_test = "data/20_80_splits_group_by_ind/20_all_samples_normalized_{suffix}.rds",
+		input_atac = INPUT_ATAC
+	output:  
+		output_pred = "data/experiment_ATAC_predictions/ATAC_predictions/ATAC_pred_lasso_experiment_{suffix}_{percentage}.rds",
+		output_model = "Trained_models/experiment_models/Lasso_models/lasso_{suffix}_{percentage}.rds"
+	threads: 5
+	conda: 
+		"conda_envs/ctDNA_conda_env.yml" 
+	log:
+		notebook = "logs/processed_notebooks/experiments/processed_Lasso_{suffix}_{percentage}.r.ipynb"  
+	notebook: 
+		"20_80_experiments/all_samples_Lasso_reg_TRUE.r.ipynb"
+
+rule ATAC_predictions_FALSE: 
+	input: 
+		input_train = "data/experiment_ATAC_predictions/traindata_splits_diff_percentages/gaussian_smooth_CONTROLS_split_{percentage}.rds",
+		input_test = "data/20_80_splits_group_by_ind/20_all_samples_normalized_gaussian_smooth_CONTROLS.rds",
+		input_atac = INPUT_ATAC
+	output: 
+		output_pred = "data/experiment_ATAC_predictions/ATAC_predictions/ATAC_pred_lasso_experiment_gaussian_smooth_CONTROLS_std_FALSE_{percentage}.rds",
+		output_model = "Trained_models/experiment_models/Lasso_models/lasso_gaussian_smooth_CONTROLS_std_FALSE_{percentage}.rds"
+	threads: 5
+	conda: 
+		"conda_envs/ctDNA_conda_env.yml" 
+	log:
+		notebook = "logs/processed_notebooks/experiments/processed_gaussian_smooth_CONTROLS_std_FALSE_{percentage}.r.ipynb"  
+	notebook: 
+		"20_80_experiments/all_samples_Smooth_gaussian_10_Lasso_reg_FALSE.r.ipynb"

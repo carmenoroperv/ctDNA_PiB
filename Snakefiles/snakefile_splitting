@@ -30,6 +30,6 @@ rule splitting:
 		OUTPUT_trim_LASSO_DATA_80_20 = "data/20_80_splits/80_20_all_samples_normalized_gaussian_smooth_trimmed_CONTROLS.rds"
 	threads: 3
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	notebook:
 		"20_80_experiments/Data_splitting_20_80.r.ipynb"

@@ -21,7 +21,7 @@ rule format_to_rds_cases_controls:
 		output_filename = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_{wildcard_cases_controls}.rds"
 	threads: 3
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	notebook:
 		"data_to_rds_format.r.ipynb"
 
@@ -33,7 +33,7 @@ rule format_to_rds_all_samples:
 		output_filename = "data/data_rds_format/all_samples_normalized{wildcard_all_samples}.rds"
 	threads: 4
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	notebook:
 		"data_to_rds_format.r.ipynb"
 
@@ -45,6 +45,6 @@ rule format_to_rds_sum_control:
 		output_filename = "data/data_rds_format/sum_control_{wildcard_sum_control}.rds"
 	threads: 3
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	notebook:
 		"data_to_rds_format.r.ipynb"

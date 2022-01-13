@@ -1,0 +1,39 @@
+# "Boosting"
+
+INPUT_SAMPLE_TYPES = "data/sample_types.txt"
+MODELS_MULTINOMIAL = ["LDA", "Lasso"]
+DATASET = ["ATAC", "Methylation"]
+
+OUTPUT_MULTINOMIAL = expand("Classification_output/{dataset}/NEW_CORRECT_PRED/Multinomial_models_output/{model_multinomial}_Predictions_Full_data.rds", dataset = DATASET, model_multinomial = MODELS_MULTINOMIAL)
+OUTPUT_MULTINOMIAL_PCA = expand("Classification_output/{dataset}/NEW_CORRECT_PRED/Multinomial_models_output/{model_multinomial}_Predictions_PCA.rds", dataset = DATASET, model_multinomial = MODELS_MULTINOMIAL)
+
+rule all:
+    input: OUTPUT_MULTINOMIAL, OUTPUT_MULTINOMIAL_PCA
+
+rule multinomial_classification:
+    input: 
+        input_predictions = "data/{dataset}_predictions_train_20_predict_80/NEW_CORRECT_PRED/Full_data_{dataset}_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/{dataset}/NEW_CORRECT_PRED/Multinomial_models_output/{model_multinomial}_Predictions_Full_data.rds"
+    threads: 10
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml" 
+    params: 
+        class_type = "{model_multinomial}"
+    script: 
+        "Classification/Classification_multinomial/{wildcards.model_multinomial}_multinomial.R"
+
+rule PCA_multinomial_classification:
+    input: 
+        input_predictions = "data/{dataset}_predictions_train_20_predict_80/NEW_CORRECT_PRED/PCA_{dataset}_pred_lasso_formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/{dataset}/NEW_CORRECT_PRED/Multinomial_models_output/{model_multinomial}_Predictions_PCA.rds"
+    threads: 10
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml" 
+    params: 
+        class_type = "{model_multinomial}"
+    script: 
+        "Classification/Classification_multinomial/{wildcards.model_multinomial}_multinomial.R"

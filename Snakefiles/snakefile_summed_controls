@@ -1,0 +1,64 @@
+#####WILDCARDS########
+
+SUFFIX = ["_normalized", "_normalized_gaussian_smooth", "_normalized_gaussian_smooth_trimmed" ,"_normalized_sliding_mean", "_normalized_sliding_mean_trimmed"]
+STD = ["TRUE", "FALSE"]
+METHOD = ["LASSO","RIDGE"]
+
+
+
+######INPUT###########
+INPUT_TRAIN_DATA = expand("data/data_rds_format/sum_control_ATAC_bin_rm{suffix}.rds", suffix = SUFFIX)
+INPUT_TEST_DATA = expand("data/data_rds_format/all_samples{suffix}.rds", suffix = SUFFIX)
+ATAC_INPUT =  "data/ATACseq_250kb_bins.txt"
+
+######OUTPUT##########
+LASSO_RIDGE_CORR = expand("Summed_control/Correlation_tables/{method}__{std}_corr{suffix}.csv", method = METHOD, suffix = SUFFIX, std = STD)
+LASSO_RIDGE_PLOTS_SUMMED = expand("Summed_control/Correlation_plots/Summed_controls_{method}__{std}_corr{suffix}.png", method = METHOD, suffix = SUFFIX, std = STD)
+LASSO_RIDGE_PLOTS_INDIV = expand("Summed_control/Correlation_plots/All_individuals_{method}__{std}_corr{suffix}.png", method = METHOD, suffix = SUFFIX, std = STD)
+LASSO_RIDGE_PREDICTIONS = expand("Summed_control/ATAC_Predictions_on_all_individuals/{method}__{std}_ATAC_pred{suffix}.rds", method = METHOD, suffix = SUFFIX, std = STD)
+LASSO_RIDGE_PREDICTIONS_SUMMED = expand("Summed_control/Summed_control_CV_predictions/{method}__{std}_ATAC_pred{suffix}.rds", method = METHOD, suffix = SUFFIX, std = STD)
+
+
+BOOSTING_CORR = expand("Summed_control/Correlation_tables/boosting_corr{suffix}.csv", suffix = SUFFIX)
+BOOSTING_PLOTS_SUMMED = expand("Summed_control/Correlation_plots/Summed_controls_boosting_corr{suffix}.png", suffix = SUFFIX)
+BOOSTING_PLOTS_INDIV = expand("Summed_control/Correlation_plots/All_individuals_boosting_corr{suffix}.png", suffix = SUFFIX)
+BOOSTING_PREDICTIONS = expand("Summed_control/ATAC_Predictions_on_all_individuals/boosting_ATAC_pred{suffix}.rds", suffix = SUFFIX)
+BOOSTING_PREDICTIONS_SUMMED = expand("Summed_control/Summed_control_CV_predictions/boosting_ATAC_pred{suffix}.rds", suffix = SUFFIX)
+
+
+rule all:
+    input: LASSO_RIDGE_CORR, LASSO_RIDGE_PLOTS_SUMMED, LASSO_RIDGE_PLOTS_INDIV, LASSO_RIDGE_PREDICTIONS, BOOSTING_CORR, BOOSTING_PLOTS_SUMMED, BOOSTING_PLOTS_INDIV, BOOSTING_PREDICTIONS, LASSO_RIDGE_PREDICTIONS_SUMMED, BOOSTING_PREDICTIONS_SUMMED
+
+rule Lasso_and_ridge_summed_controls:
+    input: 
+        input_train = "data/data_rds_format/sum_control_ATAC_bin_rm{suffix}.rds",
+        input_test = "data/data_rds_format/all_samples{suffix}.rds",
+        ATAC_input = ATAC_INPUT
+    params: 
+        STD = "{std}",
+        METHOD = "{method}"
+    threads: 8
+    output: 
+        lasso_ridge_corr = "Summed_control/Correlation_tables/{method}__{std}_corr{suffix}.csv",
+        lasso_ridge_plot_summed = "Summed_control/Correlation_plots/Summed_controls_{method}__{std}_corr{suffix}.png",
+        lasso_ridge_plot_indiv = "Summed_control/Correlation_plots/All_individuals_{method}__{std}_corr{suffix}.png",
+        lasso_ridge_predictions = "Summed_control/ATAC_Predictions_on_all_individuals/{method}__{std}_ATAC_pred{suffix}.rds",
+        lasso_ridge_predictions_summed = "Summed_control/Summed_control_CV_predictions/{method}__{std}_ATAC_pred{suffix}.rds"
+    script: 
+        "Summed_control/Lasso_and_ridge.R"
+        
+        
+
+rule Boosting_summed_controls:
+    input: 
+        input_train = "data/data_rds_format/sum_control_ATAC_bin_rm{suffix}.rds",
+        input_test = "data/data_rds_format/all_samples{suffix}.rds",
+        ATAC_input = ATAC_INPUT
+    output: 
+        boosting_corr = "Summed_control/Correlation_tables/boosting_corr{suffix}.csv",
+        boosting_plot_summed = "Summed_control/Correlation_plots/Summed_controls_boosting_corr{suffix}.png",
+        boosting_plot_indiv = "Summed_control/Correlation_plots/All_individuals_boosting_corr{suffix}.png",
+        boosting_predictions = "Summed_control/ATAC_Predictions_on_all_individuals/boosting_ATAC_pred{suffix}.rds",
+        boosting_predictions_summed = "Summed_control/Summed_control_CV_predictions/boosting_ATAC_pred{suffix}.rds"
+    script: 
+        "Summed_control/Boosting.R"

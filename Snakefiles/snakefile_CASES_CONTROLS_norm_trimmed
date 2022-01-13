@@ -13,7 +13,7 @@ rule cases_controls_normalized_trimmed:
 		output_cases_normalized_trimmed = OUTPUT_cases_normalized_trimmed,
 		output_controls_normalized_trimmed = OUTPUT_controls_normalized_trimmed
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	log: 
 		notebook = "logs/processed_notebooks/processed_splitting_cases_controls_norm_trimmed.r.ipynb"
 	notebook:

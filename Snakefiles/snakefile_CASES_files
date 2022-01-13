@@ -14,7 +14,7 @@ rule cases_normalized:
 	output: 
 		output_cases_normalized = "data/cases/all_samples_normalized_CASES.csv"
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	notebook:
 		"Notebooks for data prep, formatting, normalizing/Splitting_cases_from_all_sample_normalized.r.ipynb"
 
@@ -26,7 +26,7 @@ rule cases_normalized_gaussian:
 	output:
 		output_cases_normalized_smoothed = "data/cases/all_samples_normalized_gaussian_smooth_CASES.csv"
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	notebook:
 		"Notebooks for data prep, formatting, normalizing/Splitting_cases_from_all_samples_smooth_gaussian.r.ipynb"
 
@@ -38,6 +38,6 @@ rule cases_normalized_gaussian_trimmed:
 	output:
 		output_cases_normalized_smoothed_trimmed = "data/cases/all_samples_normalized_gaussian_smooth_trimmed_CASES.csv"
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	notebook:
 		"Notebooks for data prep, formatting, normalizing/Splitting_cases_from_all_samples_smooth_gaussian_trimmed.r.ipynb"

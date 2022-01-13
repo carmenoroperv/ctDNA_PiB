@@ -9,3 +9,7 @@ sum_control_ATAC_bin_rm_gaussian_mean.csv
 /logs
 /Summed_control/ATAC_Predictions_on_all_individuals
 /Classification_output
+/Summed_control/Summed_control_CV_predictions
+/Summed_control/Classification/Classification_results
+/Classification/Classification_multinomial/Folds
+/Classification/Classification_binomial_all_chunked/Folds/Methylation_Folds

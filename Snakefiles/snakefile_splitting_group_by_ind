@@ -19,7 +19,7 @@ rule splitting_group_by_individual:
 		output_data_80 = "data/20_80_splits_group_by_ind/80_all_samples_normalized_{input_suffix}.rds", 
 	threads: 3
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	log:
 		notebook = "logs/processed_notebooks/processed_Data_splitting_20_80_group_by_individual_{input_suffix}.r.ipynb"
 	notebook:

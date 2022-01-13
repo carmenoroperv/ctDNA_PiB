@@ -37,7 +37,7 @@ rule all_samples_model_lasso_standardizing:
 		output_model = "Trained_models/On_all_individuals/Lasso_models/lasso_std_{std}_gaussian.rds"
 	threads: 4
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	log:
 		# optional path to the processed notebook
 		notebook = "logs/processed_notebooks/processed_all_samples_Smooth_gaussian_10_Lasso_reg_{std}.r.ipynb"
@@ -56,7 +56,7 @@ rule all_samples_model_lasso_smoothing:
 		output_model = OUTPUT_smooth_MODEL
 	threads: 2
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	log:
 		# optional path to the processed notebook
 		notebook = "logs/processed_notebooks/processed_all_samples_Lasso_reg_TRUE.r.ipynb"
@@ -74,7 +74,7 @@ rule all_samples_model_lasso_trimming:
 		output_model = OUTPUT_trim_MODEL
 	threads: 2
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	log:
 		# optional path to the processed notebook
 		notebook = "logs/processed_notebooks/processed_all_samples_Smooth_gaussian_10_Lasso_reg_TRUE_Discard.r.ipynb"

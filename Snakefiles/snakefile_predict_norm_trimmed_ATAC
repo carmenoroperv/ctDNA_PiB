@@ -1,0 +1,106 @@
+####### WILDCARCDS ########
+MODELS_BINOMIAL = ["Lasso", "LDA", "Boosting", "SVM_linear", "SVM_poly", "SVM_radial"]
+MODELS_BINOMIAL_CASE_CONTROL = ["Lasso", "LDA", "Boosting", "SVM_linear", "SVM_radial"]
+MODELS_MULTINOMIAL = ["LDA", "Boosting"]
+CLASSES = ["Bile_Duct_Cancer", "Breast_Cancer", "Colorectal_Cancer", "Gastric_cancer", "Healthy", "Lung_Cancer", "Ovarian_Cancer", "Pancreatic_Cancer"]
+CLASSES_CASE_CONTROL = ["Bile_Duct_Cancer", "Breast_Cancer", "Colorectal_Cancer", "Gastric_cancer","Lung_Cancer", "Ovarian_Cancer", "Pancreatic_Cancer"]
+PCA  = ["PCA", "Full_data"]
+
+
+########## INPUT ##########
+INPUT_ATAC = "data/ATACseq_250kb_bins.rds"
+
+INPUT_ATAC_PRED_TRAIN = "data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds" 
+INPUT_ATAC_PRED_TEST_CONTROLS = "data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds" 
+INPUT_ATAC_PRED_TEST_CASES = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds" 
+INPUT_FORMAT = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed.rds"
+INPUT_STANDARDIZE = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
+
+
+########## RULES ##########
+
+rule all:
+    input: "data/ATAC_predictions_train_20_predict_80/NEW_CORRECT_PRED/PCA_ATAC_pred_lasso_formatted_standardized.rds"
+
+
+rule splitting_final:
+    input: 
+        input_train_data = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CONTROLS.rds"
+    output: 
+        train_data_output = "data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds", 
+        test_data_output = "data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds" 
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml"
+    log:
+        notebook = "logs/processed_notebooks/train_20_predict_80/splitting/splitting_normalized_trimmed.r.ipynb"  
+    notebook: 
+        "Splitting.r.ipynb"
+
+
+##########################################
+#ATAC prediction
+##########################################
+
+#Input files should be the output files from the splitting final, one for the test data and one for the train data
+
+rule ATAC_pred:
+    input: 
+        input_train = "data/ATAC_predictions_new_split/train_normalized_trimmed_CONTROLS_split.rds",
+        input_test_controls = "data/ATAC_predictions_new_split/test_normalized_trimmed_CONTROLS_split.rds",
+        input_test_cases = "data/cases_controls/cases_controls_rds_format/all_samples_normalized_trimmed_CASES.rds",
+        input_target = INPUT_ATAC
+    output:  
+        output_pred = "data/ATAC_predictions_train_20_predict_80/NEW_CORRECT_PRED/ATAC_pred_lasso_normalized_trimmed.rds",
+        output_model = "Trained_models/train_20_predict_80_models/NEW_CORRECT_PRED/Lasso_models/lasso_normalized_trimmed.rds"
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml" 
+    log:
+        notebook = "logs/processed_notebooks/train_20_predict_80/processed_ATAC_Lasso_reg_TRUE_normalized_trimmed_pred_made_correct.r.ipynb"  
+    notebook: 
+        "ATAC_pred_models/Train_20_predict_80_and_cases_models/Lasso_regression/Lasso_reg_TRUE_pred_made_correct.r.ipynb"
+
+
+############################### FORMATTING #####################################
+
+rule format:
+#should take the input fron both ATAC_pred rules
+    input:
+        input = "data/ATAC_predictions_train_20_predict_80/NEW_CORRECT_PRED/ATAC_pred_lasso_normalized_trimmed.rds"
+    output: 
+        output_formatted_pred = "data/ATAC_predictions_train_20_predict_80/NEW_CORRECT_PRED/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml" 
+    notebook: 
+        "prep_formatting_normalizing/Format_ATAC_predictions.r.ipynb"
+    
+
+############################### STANDARDIZING #####################################
+
+rule standardize:
+    input:
+        input_file = "data/ATAC_predictions_train_20_predict_80/NEW_CORRECT_PRED/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
+    output: 
+        output_formatted_pred = "data/ATAC_predictions_train_20_predict_80/NEW_CORRECT_PRED/Full_data_ATAC_pred_lasso_formatted_standardized.rds"
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml" 
+    notebook: 
+        "prep_formatting_normalizing/Standardizing_ATAC_predictions.r.ipynb"
+
+
+############################### PCA #####################################
+
+rule PCA:
+    input: 
+        input_predictions = "data/ATAC_predictions_train_20_predict_80/NEW_CORRECT_PRED/Full_data_ATAC_pred_lasso_formatted_standardized.rds"
+    output: 
+        output_pca = "data/ATAC_predictions_train_20_predict_80/NEW_CORRECT_PRED/PCA_ATAC_pred_lasso_formatted_standardized.rds"
+    threads: 1
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml" 
+    log: 
+        notebook = "logs/processed_notebooks/PCA.r.ipynb"
+    notebook: 
+        "PCA.r.ipynb"
+
+
+        

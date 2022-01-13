@@ -1,0 +1,62 @@
+
+INPUT_SAMPLE_TYPES = "data/sample_types.txt"
+CV_REPS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+FOLDS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+OUTPUT_MULTINOMIAL_GBM = expand("Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Multinomial_models_output/Boosting/Boosting_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_Full_data.rds", fold_nr = FOLDS, cv_rep = CV_REPS)
+OUTPUT_MULTINOMIAL_PCA_GBM = expand("Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Multinomial_models_output/Boosting/Boosting_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_PCA.rds", fold_nr = FOLDS, cv_rep = CV_REPS)
+OUTPUT_MULTINOMIAL_COLLINEAR_GBM = expand("Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Multinomial_models_output/Boosting/Boosting_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_Collinear_features_removed.rds",  fold_nr = FOLDS, cv_rep = CV_REPS)
+
+
+rule all:
+    input: OUTPUT_MULTINOMIAL_GBM, OUTPUT_MULTINOMIAL_PCA_GBM, OUTPUT_MULTINOMIAL_COLLINEAR_GBM
+
+
+################### GBM #######################
+
+
+rule multinomial_classification_ATAC_and_meth_GBM:
+    input: 
+        input_predictions = "data/Meth_and_ATAC_predictions_combined/NEW_CORRECT_PRED/Full_data_ATAC_and_methylation.rds",
+        input_fold = "Classification/Classification_multinomial/Folds/Fold_{fold_nr}_for_CV_rep_{cv_rep}.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Multinomial_models_output/Boosting/Boosting_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_Full_data.rds"
+    params: 
+        cv_rep = "{cv_rep}",
+        fold_nr = "{fold_nr}"
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml" 
+    script: 
+        "Classification/Classification_multinomial/Boosting_multinomial_chunked.R"
+
+rule PCA_multinomial_classification_ATAC_and_meth_GBM:
+    input: 
+        input_predictions = "data/Meth_and_ATAC_predictions_combined/NEW_CORRECT_PRED/PCA_ATAC_and_methylation.rds",
+        input_fold = "Classification/Classification_multinomial/Folds/Fold_{fold_nr}_for_CV_rep_{cv_rep}.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Multinomial_models_output/Boosting/Boosting_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_PCA.rds"
+    params: 
+        cv_rep = "{cv_rep}",
+        fold_nr = "{fold_nr}"
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml" 
+    script: 
+        "Classification/Classification_multinomial/Boosting_multinomial_chunked.R"
+        
+
+rule collinear_multinomial_classification_ATAC_and_meth_GBM:
+    input: 
+        input_predictions = "data/Meth_and_ATAC_predictions_combined/NEW_CORRECT_PRED/Collinear_features_removed_ATAC_and_methylation.rds",
+        input_fold = "Classification/Classification_multinomial/Folds/Fold_{fold_nr}_for_CV_rep_{cv_rep}.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Multinomial_models_output/Boosting/Boosting_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_Collinear_features_removed.rds"
+    params: 
+        cv_rep = "{cv_rep}",
+        fold_nr = "{fold_nr}"
+    conda: 
+        "conda_envs/ctDNA_conda_env.yml" 
+    script: 
+        "Classification/Classification_multinomial/Boosting_multinomial_chunked.R"

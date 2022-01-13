@@ -49,7 +49,7 @@ rule train_20_test_80_model_lasso_standardizing:
 		output_model = "Trained_models/Train_20_predict_80_and_cases_models/Lasso_models/lasso_std_{std}_gaussian.rds"
 	threads: 4
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	log:
 		# optional path to the processed notebook
 		notebook = "logs/processed_notebooks/train_20_test_80_and_cases/processed_Smooth_gaussian_10_Lasso_reg_{std}.r.ipynb"
@@ -69,7 +69,7 @@ rule train_20_test_80_model_lasso_smoothing:
 		output_model = OUTPUT_smooth_LASSO_MODEL
 	threads: 2
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	log:
 		# optional path to the processed notebook
 		notebook = "logs/processed_notebooks/train_20_test_80_and_cases/processed_Lasso_reg_TRUE.r.ipynb"
@@ -88,7 +88,7 @@ rule train_20_test_80_model_lasso_trimming:
 		output_model = OUTPUT_trim_LASSO_MODEL
 	threads: 2
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	log:
 		# optional path to the processed notebook
 		notebook = "logs/processed_notebooks/train_20_test_80_and_cases/processed_Smooth_gaussian_10_Lasso_reg_TRUE_Discard.r.ipynb"
@@ -107,7 +107,7 @@ rule train_20_test_80_model_lasso_normalized_trimming:
 		output_model = OUTPUT_norm_trim_LASSO_MODEL
 	threads: 2
 	conda:
-		"conda_envs/ctDNA.yml"
+		"conda_envs/ctDNA_conda_env.yml"
 	log:
 		# optional path to the processed notebook
 		notebook = "logs/processed_notebooks/train_20_test_80_and_cases/processed_Smooth_gaussian_10_Lasso_reg_TRUE_norm_Discard.r.ipynb"
