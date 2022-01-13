@@ -9,6 +9,9 @@ library(doRNG)
 install.packages("splitTools", repos = "http://cran.us.r-project.org/src/contrib/splitTools_0.3.1.tar.gz")
 library(splitTools)
 
+system("R --max-ppsize=300000 --save")
+options(expressions = 500000)
+
 data <- readRDS(snakemake@input[["input_predictions"]])
 sample_types <- read.table(snakemake@input[["input_sample_types"]], header = F, sep = " ")
 colnames(sample_types) <- c("sample", "sample_type")
@@ -56,9 +59,11 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv){
             testdata  <- dataset[rows,]
             testdata <- testdata %>% dplyr::select(-sample_type)
             traindata <- dataset[-rows,]
+            trainlabels <- traindata$sample_type
+            traindata <- traindata %>% dplyr::select(-sample_type)
 
 
-            fit       <- lda(sample_type ~ ., data=traindata, family = "multinomial")
+            fit       <- lda(x = traindata,grouping = trainlabels, family = "multinomial")
             tmp <- predict(fit, testdata)
             tmp <- as.data.frame(tmp$posterior, row.names = NULL)
             message(colnames(tmp))

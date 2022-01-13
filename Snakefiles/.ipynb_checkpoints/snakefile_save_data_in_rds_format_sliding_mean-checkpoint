@@ -1,0 +1,20 @@
+ALL_SAMPLES_SUFFIXES = ["_sliding_mean", "_sliding_mean_trimmed"]
+all_samples_input_final = expand("data/all_samples_normalized{wildcard_all_samples}.csv", wildcard_all_samples = ALL_SAMPLES_SUFFIXES)
+all_samples_output_final = expand("data/data_rds_format/all_samples_normalized{wildcard_all_samples}.rds", wildcard_all_samples = ALL_SAMPLES_SUFFIXES)
+
+rule all: 
+	input: all_samples_output_final
+
+"data/all_samples_normalized_sliding_mean.csv"
+output_file = "data/data_rds_format/all_samples_normalized_sliding_mean.rds"
+
+rule format_to_rds_all_samples:
+	input: 
+		input_filename = "data/all_samples_normalized{wildcard_all_samples}.csv"
+	output: 
+		output_filename = "data/data_rds_format/all_samples_normalized{wildcard_all_samples}.rds"
+	threads: 4
+	conda:
+		"conda_envs/ctDNA.yml"
+	notebook:
+		"data_to_rds_format.r.ipynb"

@@ -1,0 +1,83 @@
+
+
+INPUT_SAMPLE_TYPES = "data/sample_types.txt"
+
+MODELS_BINOMIAL = ["Lasso", "LDA", "SVM_linear", "SVM_radial", "Boosting", "SVM_poly"]
+CLASSES = ["Bile_Duct_Cancer", "Breast_Cancer", "Colorectal_Cancer", "Gastric_cancer", "Healthy", "Lung_Cancer", "Ovarian_Cancer", "Pancreatic_Cancer"]
+
+CV_REPS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+FOLDS = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+FOLDS_INPUT = expand("Classification/Classification_binomial_all_chunked/Methylation_Folds/{class_type}/Fold_{fold_nr}_for_CV_rep_{cv_rep}_{class_type}.rds", class_type = CLASSES, fold_nr = FOLDS, cv_rep = CV_REPS)
+
+
+OUTPUT_BINOMIAL = expand("Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Binomial_models_output_chunked/Full_data/{model_binomial}/{model_binomial}_class_{class_type}_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_Full_data.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES, fold_nr = FOLDS, cv_rep = CV_REPS)
+
+OUTPUT_BINOMIAL_PCA = expand("Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Binomial_models_output_chunked/PCA/{model_binomial}/{model_binomial}_class_{class_type}_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_PCA.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES, fold_nr = FOLDS, cv_rep = CV_REPS)
+
+OUTPUT_BINOMIAL_COLLINEAR_REMOVED = expand("Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Binomial_models_output_chunked/Collinear_features_removed/{model_binomial}/{model_binomial}_class_{class_type}_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_Collinear_features_removed.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES, fold_nr = FOLDS, cv_rep = CV_REPS)
+
+rule all:
+    input: OUTPUT_BINOMIAL
+
+# OUTPUT_BINOMIAL_PCA, OUTPUT_BINOMIAL_COLLINEAR_REMOVED, 
+
+##########################################
+#Classification
+##########################################
+
+############################### BINOMIAL #####################################
+
+
+rule ATAC_and_methylation_PCA_binomial_classification_chunked:
+    input: 
+        input_predictions =  "data/Meth_and_ATAC_predictions_combined/NEW_CORRECT_PRED/PCA_ATAC_and_methylation.rds",
+        input_fold = "Classification/Classification_binomial_all_chunked/Methylation_Folds/{class_type}/Fold_{fold_nr}_for_CV_rep_{cv_rep}_{class_type}.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Binomial_models_output_chunked/PCA/{model_binomial}/{model_binomial}_class_{class_type}_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_PCA.rds"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    params: 
+        class_type = "{class_type}",
+        cv_rep = "{cv_rep}",
+        fold_nr = "{fold_nr}",
+        data_type = "Methylation_and_ATAC"
+    script: 
+        "Classification/Classification_binomial_all_chunked/{wildcards.model_binomial}.R"
+        
+
+rule ATAC_and_methylation_binomial_classification_chunked:
+    input: 
+        input_predictions =  "data/Meth_and_ATAC_predictions_combined/NEW_CORRECT_PRED/Full_data_ATAC_and_methylation.rds",
+        input_fold = "Classification/Classification_binomial_all_chunked/Methylation_Folds/{class_type}/Fold_{fold_nr}_for_CV_rep_{cv_rep}_{class_type}.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Binomial_models_output_chunked/Full_data/{model_binomial}/{model_binomial}_class_{class_type}_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_Full_data.rds"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    params: 
+        class_type = "{class_type}",
+        cv_rep = "{cv_rep}",
+        fold_nr = "{fold_nr}",
+        data_type = "Methylation_and_ATAC"
+    script: 
+        "Classification/Classification_binomial_all_chunked/{wildcards.model_binomial}.R"
+        
+
+rule ATAC_and_methylation_collinear_removed_binomial_classification_chunked:
+    input: 
+        input_predictions =  "data/Meth_and_ATAC_predictions_combined/NEW_CORRECT_PRED/Collinear_features_removed_ATAC_and_methylation.rds",
+        input_fold = "Classification/Classification_binomial_all_chunked/Methylation_Folds/{class_type}/Fold_{fold_nr}_for_CV_rep_{cv_rep}_{class_type}.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        predictions = "Classification_output/Methylation_and_ATAC/NEW_CORRECT_PRED/Binomial_models_output_chunked/Collinear_features_removed/{model_binomial}/{model_binomial}_class_{class_type}_CVrep_{cv_rep}_fold_{fold_nr}_Predictions_Collinear_features_removed.rds"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    params: 
+        class_type = "{class_type}",
+        cv_rep = "{cv_rep}",
+        fold_nr = "{fold_nr}",
+        data_type = "Methylation_and_ATAC"
+    script: 
+        "Classification/Classification_binomial_all_chunked/{wildcards.model_binomial}.R"

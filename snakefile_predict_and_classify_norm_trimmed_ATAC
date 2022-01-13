@@ -1,7 +1,11 @@
 ####### WILDCARCDS ########
 MODELS_BINOMIAL = ["Lasso", "LDA", "Boosting", "SVM_linear", "SVM_poly", "SVM_radial"]
-MODELS_MULTINOMIAL = ["Lasso", "LDA", "Boosting"]
+MODELS_BINOMIAL_CASE_CONTROL = ["Lasso", "LDA", "Boosting", "SVM_linear", "SVM_radial"]
+MODELS_MULTINOMIAL = ["LDA", "Boosting"]
 CLASSES = ["Bile_Duct_Cancer", "Breast_Cancer", "Colorectal_Cancer", "Gastric_cancer", "Healthy", "Lung_Cancer", "Ovarian_Cancer", "Pancreatic_Cancer"]
+CLASSES_CASE_CONTROL = ["Bile_Duct_Cancer", "Breast_Cancer", "Colorectal_Cancer", "Gastric_cancer","Lung_Cancer", "Ovarian_Cancer", "Pancreatic_Cancer"]
+PCA  = ["PCA", "Full_data"]
+
 
 ########## INPUT ##########
 INPUT_ATAC = "data/ATACseq_250kb_bins.rds"
@@ -14,16 +18,34 @@ INPUT_ATAC_PRED_TEST_CASES = "data/cases_controls/cases_controls_rds_format/all_
 INPUT_FORMAT = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed.rds"
 INPUT_STANDARDIZE = "data/ATAC_predictions_train_20_predict_80/ATAC_pred_lasso_normalized_trimmed_formatted.rds"
 
-OUTPUT_BINOMIAL = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_Full_data_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES)
-OUTPUT_BINOMIAL_PCA = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_PCA_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES)
+OUTPUT_BINOMIAL = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_Full_data_{class_type}.rds", model_binomial = MODELS_BINOMIAL_CASE_CONTROL, class_type = CLASSES)
+OUTPUT_BINOMIAL_PCA = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_PCA_{class_type}.rds", model_binomial = MODELS_BINOMIAL_CASE_CONTROL, class_type = CLASSES)
 
 OUTPUT_MULTINOMIAL = expand("Classification_output/Multinomial_models_output/{model_multinomial}_Predictions_Full_data.rds", model_multinomial = MODELS_MULTINOMIAL)
 OUTPUT_MULTINOMIAL_PCA = expand("Classification_output/Multinomial_models_output/{model_multinomial}_Predictions_PCA.rds", model_multinomial = MODELS_MULTINOMIAL)
 
+
+AUCS_CASE_CONTROL = expand("Classification_output/ATAC/Binomial_models_output/Evaluation/Case_control/AUCs_{model_binomial}__{dataset}.rds", model_binomial = MODELS_BINOMIAL_CASE_CONTROL, dataset = PCA) 
+ROCS_CASE_CONTROL = expand("Classification_output/ATAC/Binomial_models_output/Evaluation/Case_control/ROC_{model_binomial}__{dataset}.png", model_binomial = MODELS_BINOMIAL_CASE_CONTROL, dataset = PCA) 
+EVAL_METRICS_CASE_CONTROL = expand("Classification_output/ATAC/Binomial_models_output/Evaluation/Case_control/Eval_metrics_{model_binomial}__{dataset}.rds", model_binomial = MODELS_BINOMIAL_CASE_CONTROL, dataset = PCA)
+ACCURACY_CASE_CONTROL = expand("Classification_output/ATAC/Binomial_models_output/Evaluation/Case_control/Accuracy_{model_binomial}__{dataset}.rds", model_binomial = MODELS_BINOMIAL_CASE_CONTROL, dataset = PCA)
+
+AUCS_BINOMIAL = expand("Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/AUCs_{model_binomial}__{dataset}.rds", model_binomial = MODELS_BINOMIAL, dataset = PCA)
+ROC_GRIDS_BINOMIAL = expand("Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/ROCgrid_{model_binomial}__{dataset}.png", model_binomial = MODELS_BINOMIAL, dataset = PCA)
+ROC_AVG_BINOMIAL = expand("Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/ROCavg_{model_binomial}__{dataset}.png", model_binomial = MODELS_BINOMIAL, dataset = PCA)
+EVAL_METRICS_BINOMIAL = expand("Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/Eval_metrics_{model_binomial}__{dataset}.rds", model_binomial = MODELS_BINOMIAL, dataset = PCA)
+ACCURACY_BINOMIAL = expand("Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/Accuracy_{model_binomial}__{dataset}.rds", model_binomial = MODELS_BINOMIAL, dataset = PCA)
+
+AUCS_MULTINOMIAL = expand("Classification_output/ATAC/Multinomial_models_output/Evaluation/AUCs_{model_multinomial}__{dataset}.rds", model_multinomial = MODELS_MULTINOMIAL, dataset = PCA)
+ROC_GRIDS_MULTINOMIAL = expand("Classification_output/ATAC/Multinomial_models_output/Evaluation/ROCgrid_{model_multinomial}__{dataset}.png", model_multinomial = MODELS_MULTINOMIAL, dataset = PCA) 
+ROC_AVG_MULTINOMIAL = expand("Classification_output/ATAC/Multinomial_models_output/Evaluation/ROCavg_{model_multinomial}__{dataset}.png", model_multinomial = MODELS_MULTINOMIAL, dataset = PCA)
+EVAL_METRICS_MULTINOMIAL = expand("Classification_output/ATAC/Multinomial_models_output/Evaluation/Eval_metrics_{model_multinomial}__{dataset}.rds", model_multinomial = MODELS_MULTINOMIAL, dataset = PCA)
+ACCURACY_MULTINOMIAL = expand("Classification_output/ATAC/Multinomial_models_output/Evaluation/Accuracy_{model_multinomial}__{dataset}.rds", model_multinomial = MODELS_MULTINOMIAL, dataset = PCA)
+
 ########## RULES ##########
 
 rule all:
-    input: OUTPUT_BINOMIAL_PCA, OUTPUT_MULTINOMIAL_PCA, OUTPUT_BINOMIAL, OUTPUT_MULTINOMIAL
+    input: AUCS_CASE_CONTROL, ROCS_CASE_CONTROL, EVAL_METRICS_CASE_CONTROL, ACCURACY_CASE_CONTROL, AUCS_BINOMIAL, ROC_GRIDS_BINOMIAL, ROC_AVG_BINOMIAL, EVAL_METRICS_BINOMIAL, ACCURACY_BINOMIAL, AUCS_MULTINOMIAL, ROC_GRIDS_MULTINOMIAL, ROC_AVG_MULTINOMIAL, EVAL_METRICS_MULTINOMIAL, ACCURACY_MULTINOMIAL
 
 
 rule splitting_final:
@@ -178,7 +200,7 @@ rule get_observed_cancer_types:
         input_predictions = "data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds",
         input_sample_types = INPUT_SAMPLE_TYPES
     output: 
-        observed = "Classification_output/Observed_cancer_types.rds"
+        observed = "Classification_output/ATAC/Observed_cancer_types.rds"
     threads: 1
     conda: 
         "conda_envs/ctDNA.yml" 
@@ -189,16 +211,78 @@ rule get_observed_cancer_types:
 
 rule combine_binomial_cancer_type_predictions:
     input: 
-        binomial_pred_full_data = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_Full_data_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES),
-        binomial_pred_PCA = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_PCA_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES),
-        observed = "Classification_output/Observed_cancer_types.rds"
+        binomial_pred_full_data = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_Full_data_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES_CASE_CONTROL),
+        binomial_pred_PCA = expand("Classification_output/Binomial_models_output/{model_binomial}_Predictions_PCA_{class_type}.rds", model_binomial = MODELS_BINOMIAL, class_type = CLASSES_CASE_CONTROL),
+        observed = "Classification_output/ATAC/Observed_cancer_types.rds"
     output: 
-        cancer_type_predictions = "Classification_output/Binomial_models_output/Combined_cancer_type_predictions/{model_binomial}_cancer_type_Predictions_combined_Full_data.rds",
-        cancer_type_predictions_PCA = "Classification_output/Binomial_models_output/Combined_cancer_type_predictions/{model_binomial}_cancer_type_Predictions_combined_PCA.rds"
+        cancer_type_predictions = "Classification_output/ATAC/Binomial_models_output/Combined_cancer_type_predictions/{model_binomial}_cancer_type_Predictions_combined_Full_data.rds",
+        cancer_type_predictions_PCA = "Classification_output/ATAC/Binomial_models_output/Combined_cancer_type_predictions/{model_binomial}_cancer_type_Predictions_combined_PCA.rds"
     threads: 1
     conda: 
         "conda_envs/ctDNA.yml" 
     params: 
-        model = "{model_binomial}"
+        model = "{model_binomial}",
+        methylation  = ""
     script: 
         "Classification/combine_binomial_cancer_type_predictions.R"
+        
+
+####################################################################################
+
+
+rule ATAC_evaluate_classific_case_control:
+    input: 
+        predictions = "Classification_output/Binomial_models_output/{model_binomial}_Predictions_{dataset}_Healthy.rds",
+        observed = "Classification_output/ATAC/Observed_cancer_types.rds"
+    output: 
+        aucs = "Classification_output/ATAC/Binomial_models_output/Evaluation/Case_control/AUCs_{model_binomial}__{dataset}.rds", 
+        roc = "Classification_output/ATAC/Binomial_models_output/Evaluation/Case_control/ROC_{model_binomial}__{dataset}.png", 
+        eval_metrics = "Classification_output/ATAC/Binomial_models_output/Evaluation/Case_control/Eval_metrics_{model_binomial}__{dataset}.rds",
+        accuracy = "Classification_output/ATAC/Binomial_models_output/Evaluation/Case_control/Accuracy_{model_binomial}__{dataset}.rds"
+    threads: 1
+    params: 
+        classification_type = "binomial", 
+        model = "{model_binomial}"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    script: 
+        "Classification/AUCs_ROCs_accuracies_case_control.R"
+
+
+rule evaluate_classific_binom:
+    input: 
+        predictions = "Classification_output/ATAC/Binomial_models_output/Combined_cancer_type_predictions/{model_binomial}_cancer_type_Predictions_combined_{dataset}.rds",
+        observed = "Classification_output/ATAC/Observed_cancer_types.rds"
+    output: 
+        aucs = "Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/AUCs_{model_binomial}__{dataset}.rds", 
+        roc_grid = "Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/ROCgrid_{model_binomial}__{dataset}.png", 
+        roc_avg = "Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/ROCavg_{model_binomial}__{dataset}.png",
+        eval_metrics = "Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/Eval_metrics_{model_binomial}__{dataset}.rds",
+        accuracy = "Classification_output/ATAC/Binomial_models_output/Evaluation/Cancer_type/Accuracy_{model_binomial}__{dataset}.rds"
+    threads: 1
+    params: 
+        classification_type = "binomial"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    script: 
+        "Classification/AUCs_ROCs_accuracies_cancer_type.R"
+        
+
+rule evaluate_classific_multinom:
+    input: 
+        predictions = "Classification_output/Multinomial_models_output/{model_multinomial}_Predictions_{dataset}.rds",
+        observed = "Classification_output/ATAC/Observed_cancer_types.rds"
+    output: 
+        aucs = "Classification_output/ATAC/Multinomial_models_output/Evaluation/AUCs_{model_multinomial}__{dataset}.rds",
+        roc_grid = "Classification_output/ATAC/Multinomial_models_output/Evaluation/ROCgrid_{model_multinomial}__{dataset}.png", 
+        roc_avg = "Classification_output/ATAC/Multinomial_models_output/Evaluation/ROCavg_{model_multinomial}__{dataset}.png",
+        eval_metrics = "Classification_output/ATAC/Multinomial_models_output/Evaluation/Eval_metrics_{model_multinomial}__{dataset}.rds",
+        accuracy = "Classification_output/ATAC/Multinomial_models_output/Evaluation/Accuracy_{model_multinomial}__{dataset}.rds"
+    params: 
+        classification_type = "multinomial"
+    threads: 1
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    script: 
+        "Classification/AUCs_ROCs_accuracies_cancer_type.R"
+        

@@ -1269,3 +1269,44 @@ besttune degree
 2
 besttune scale
 1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+4
+besttune degree
+1
+besttune scale
+1
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+besttune C
+1
+besttune degree
+1
+besttune scale
+10
+[1] "Results: "
+  observed CV_rep {class_type}_pred
+1    Other      1        0.10630746
+2    Other      1        0.14478110
+3    Other      1        0.21457276
+4    Other      1        0.03741957
+5    Other      1        0.01553299
+6    Other      1        0.18470364
+[Tue Nov 30 22:58:42 2021]
+Finished job 0.
+1 of 1 steps (100%) done

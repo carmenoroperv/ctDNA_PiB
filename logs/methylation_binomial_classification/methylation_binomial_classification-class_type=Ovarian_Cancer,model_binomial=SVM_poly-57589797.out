@@ -1169,3 +1169,144 @@ besttune scale
 0.01
 CV inner loop, CV rep number: 10
 CV inner loop, CV rep number: 10
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+10
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+1
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV rep number: 10
+besttune C
+4
+besttune degree
+1
+besttune scale
+1
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.001
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+1
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+CV inner loop, CV rep number: 10
+CV inner loop, CV rep number: 10
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+besttune C
+2
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+2
+besttune degree
+1
+besttune scale
+1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.01
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+1
+besttune scale
+1
+[1] "Results: "
+  observed CV_rep {class_type}_pred
+1    Other      1        0.07427074
+2    Other      1        0.04589725
+3    Other      1        0.04625282
+4    Other      1        0.06502211
+5   Cancer      1        0.18311872
+6   Cancer      1        0.18467639
+[Wed Dec  1 00:40:32 2021]
+Finished job 0.
+1 of 1 steps (100%) done

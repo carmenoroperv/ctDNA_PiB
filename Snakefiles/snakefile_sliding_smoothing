@@ -1,0 +1,18 @@
+#######INPUT##########
+all_samples = "data/all_samples_normalized.csv"
+
+CSV_OUTPUT = "data/all_samples_normalized_sliding_mean.csv"
+
+rule all: 
+    input: CSV_OUTPUT
+    
+
+rule smoothing_sliding_av: 
+    input: 
+        all_samples = all_samples
+    output: 
+        csv_output = CSV_OUTPUT
+    log:
+        notebook = "logs/processed_notebooks/sliding_avg_all_samples/processed_Sliding_avrg_smoothing_all_controls.r.ipynb"
+    notebook: 
+        "prep_formatting_normalizing/Sliding_avrg_smoothing_all_controls.r.ipynb"

@@ -10,6 +10,9 @@ library(doRNG)
 library(multiROC)
 library(dummies)
 
+system("R --max-ppsize=100000 --save")
+options(expressions = 500000)
+
 ATAC_pred <- readRDS(snakemake@input[["input_predictions"]])
 sample_types <- read.table(snakemake@input[["input_sample_types"]], header = F, sep = " ")
 colnames(sample_types) <- c("sample", "sample_type")
@@ -36,7 +39,7 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
     registerDoParallel(cl)
     return_tibble <- foreach(i = 1:k_outer_cv, 
                             .inorder = TRUE,
-                            .options.RNG = 1985,
+                            .options.RNG = 1986,
                             .combine = "rbind",
                             .packages = c("splitTools", "glmnetUtils", "tidyverse")) %dorng% { # repeated Cross-validation loop
         
@@ -51,7 +54,7 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
             }
         
         message(paste("CV repetition number: ", i, sep = ""))
-        set.seed(i)
+        set.seed(i+1)
         folds <- create_folds(y, k = k_inner_cv)
 
         predicted <- tibble(CV_rep = rep(i, nrow(data)),
@@ -82,21 +85,43 @@ nested_CV_lasso <- function(data, k_inner_cv, k_outer_cv){
             message(best_lambda_min)
             ####################################################################
 
-            fit       <- glmnet(traindata, train_y, family = "multinomial", alpha = best_alpha, lambda = best_lambda_min)
-            tmp       <- predict(fit, s=best_lambda_min, testdata, type = "response")
+            #fit       <- glmnet(traindata, train_y, family = "multinomial", alpha = best_alpha, lambda = best_lambda_min)
+            tmp       <- predict(lasso_cva, s="lambda.min", alpha = best_alpha, testdata, type = "response")
+            
 
             
             tmp <- as.data.frame(tmp[, , ], row.names = NULL)
             message(colnames(tmp))
             message(head(tmp))
+            message("HERE")
+            message("Starting to write the predictions")
+            message("Dimensions of tmp")
+            message(dim(tmp))
+            message(head(tmp))
+            message("Dimensions of predicted tibble")
+            message(dim(predicted))
             predicted[-fold, 2:8] <- as.data.frame(tmp)
         }
-        
+    message("Returning the whole predicted tibble, to rbind")
+    print(colSums(is.na(predicted)))
+    predicted[is.na(predicted)] = 1000
+    predicted$CV_rep <- as.numeric(predicted$CV_rep)
+    predicted$Bile_Duct_Cancer = as.numeric(predicted$Bile_Duct_Cancer)
+    predicted$Breast_Cancer = as.numeric(predicted$Breast_Cancer)
+    predicted$Colorectal_Cancer = as.numeric(predicted$Colorectal_Cancer)
+    predicted$Gastric_cancer = as.numeric(predicted$Gastric_cancer)
+    predicted$Lung_Cancer = as.numeric(predicted$Lung_Cancer)
+    predicted$Ovarian_Cancer = as.numeric(predicted$Ovarian_Cancer)
+    predicted$Pancreatic_Cancer = as.numeric(predicted$Pancreatic_Cancer)
     return(predicted)
     } # end of outer cv loop
     stopCluster(cl)
     registerDoSEQ()
-    
+    message("Dimensions of return tibble before adding the observed")
+    message(dim(return_tibble))
+    message("dimensions of observed")
+    message(length(data$sample_type))
+    message("Adding the observed values")
     return_tibble <- cbind(tibble(observed = rep(data$sample_type, k_outer_cv), return_tibble))
     
     return(return_tibble)

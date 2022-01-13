@@ -29,9 +29,9 @@ if (class_type != "Healthy"){
     data <-subset(data, sample_type != "Duodenal_Cancer")
     data$sample_type <- as.factor(data$sample_type)
     data = data %>% droplevels("Duodenal_Cancer")
-    data <- data %>% mutate(sample_type = ifelse(sample_type == class_type, "Cancer", "Other"))
+    data <- data %>% mutate(sample_type = ifelse(sample_type == class_type, class_type, "Other"))
     } else {
-    data <- data %>% mutate(sample_type = ifelse(sample_type == class_type, "Healthy", "Cancer"))
+    data <- data %>% mutate(sample_type = ifelse(sample_type == class_type, class_type, "Cancer"))
 }
 
 observed  <- data$sample_type
@@ -68,7 +68,8 @@ nested_CV_lasso <- function(dataset, k_inner_cv, k_outer_cv, class_type){
         message(paste("CV repetition number: ", i, sep = ""))
         set.seed(i)
         folds <- create_folds(y, k = k_inner_cv)
-        predicted <- rep(NA, nrow(dataset))
+        predicted <- tibble(class_prob = rep(NA, nrow(dataset)),
+                            label_pred = rep(NA, nrow(dataset)))
         
         for (fold in folds){
             message(paste("CV inner loop, CV rep number: ", i, sep = ""))
@@ -90,10 +91,10 @@ nested_CV_lasso <- function(dataset, k_inner_cv, k_outer_cv, class_type){
             ###############################################################################
             fit       <- glmnet(traindata, train_y, family = "binomial", alpha = best_alpha, lambda = best_lambda_min)
             tmp       <- predict(fit, s=best_lambda_min, testdata, type = "response")
-            predicted[-fold] <- tmp
+            tmp_class <- predict(fit, s=best_lambda_min, testdata, type = "class")
+            predicted[-fold, 1] <- tmp
+            predicted[-fold, 2] <- tmp_class
         }
-        
-        predicted = tibble("{class_type}_pred" := predicted)
         return(predicted)
     } # end of outer cv loop
     

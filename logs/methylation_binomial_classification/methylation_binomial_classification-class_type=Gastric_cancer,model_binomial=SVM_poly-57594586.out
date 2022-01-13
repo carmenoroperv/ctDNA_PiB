@@ -1239,3 +1239,74 @@ besttune degree
 besttune scale
 0.001
 CV inner loop, CV rep number: 10
+besttune C
+1
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+4
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+0.25
+besttune degree
+2
+besttune scale
+0.001
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.1
+besttune C
+2
+besttune degree
+2
+besttune scale
+10
+besttune C
+0.25
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+2
+besttune degree
+1
+besttune scale
+10
+besttune C
+1
+besttune degree
+3
+besttune scale
+0.001
+besttune C
+0.5
+besttune degree
+1
+besttune scale
+0.01
+[1] "Results: "
+  observed CV_rep {class_type}_pred
+1   Cancer      1       0.185805119
+2   Cancer      1       0.038795285
+3   Cancer      1       0.002802666
+4   Cancer      1       0.125629998
+5    Other      1       0.048410252
+6    Other      1       0.117377815
+[Tue Nov 30 23:41:56 2021]
+Finished job 0.
+1 of 1 steps (100%) done

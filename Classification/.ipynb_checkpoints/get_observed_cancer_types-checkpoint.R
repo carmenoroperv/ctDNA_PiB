@@ -1,7 +1,7 @@
 library(tidyverse)
 
 #data <- readRDS("../data/ATAC_predictions_train_20_predict_80/Full_data_ATAC_pred_lasso_formatted_standardized.rds")
-data <- readRDS(snakemake@input[["input_predictions"]]))
+data <- readRDS(snakemake@input[["input_predictions"]])
 
 sample_types <- read.table(snakemake@input[["input_sample_types"]], header = F, sep = " ")
 colnames(sample_types) <- c("sample", "sample_type")

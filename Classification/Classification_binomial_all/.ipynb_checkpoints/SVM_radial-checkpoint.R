@@ -26,9 +26,9 @@ if (class_type != "Healthy"){
     data <-subset(data, sample_type != "Duodenal_Cancer")
     data$sample_type <- as.factor(data$sample_type)
     data = data %>% droplevels("Duodenal_Cancer")
-    data <- data %>% mutate(sample_type = ifelse(sample_type == class_type, "Cancer", "Other"))
+    data <- data %>% mutate(sample_type = ifelse(sample_type == class_type, class_type, "Other"))
     } else {
-    data <- data %>% mutate(sample_type = ifelse(sample_type == class_type, "Healthy", "Cancer"))
+    data <- data %>% mutate(sample_type = ifelse(sample_type == class_type, class_type, "Cancer"))
 }
 
 observed  <- data$sample_type
@@ -51,7 +51,9 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv, class_type){
         message(paste("CV repetition number: ", i, sep = ""))
         set.seed(i)
         folds <- create_folds(dataset$sample_type, k = k_inner_cv)
-        predicted <- rep(NA, nrow(dataset))
+        predicted <- tibble(class1_prob = rep(NA, nrow(dataset)),
+                            class2_prob = rep(NA, nrow(dataset)),
+                            label_pred = rep(NA, nrow(dataset)))
 
             for (fold in folds){
                 message(paste("CV inner loop, CV rep number: ", i, sep = ""))
@@ -100,10 +102,12 @@ cross_validation <- function(dataset, k_inner_cv, k_outer_cv, class_type){
                              preProc = c("center", "scale"))
                 
                 tmp <- predict(fit2, newdata = testdata, type = "prob")
-                predicted[-fold] <- tmp$Cancer
+                tmp_class <- predict(fit2, newdata = testdata)
+                predicted[-fold, 1:2] <- tmp
+                predicted[-fold, 3] <- tmp_class
+                colnames(predicted) <- c(colnames(tmp), "label_pred")
 
         }
-        predicted <- tibble("{class_type}_pred" = predicted)
         return(predicted)
         } # end of outer cv loop
     

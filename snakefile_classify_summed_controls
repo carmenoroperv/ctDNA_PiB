@@ -1,0 +1,62 @@
+####INPUT#####
+
+DATASETS = ["RIDGE__TRUE_ATAC_pred_normalized_"]
+MODELS = ["GBM", "lasso"]
+
+INPUT_TRAIN_DATA = expand("Summed_control/ATAC_Predictions_on_all_individuals/{dataset}formatted_standardized.rds", dataset = DATASETS)
+INPUT_SAMPLE_TYPES = "data/sample_types.txt"
+
+
+############ OUTPUT PRED #############
+OUTPUT_LASSO = expand("Summed_control/Classification/{dataset}lasso_CLASSIFICATION_PRED.rds", dataset = DATASETS)
+OUTPUT_GBM = expand("Summed_control/Classification/{dataset}GBM_CLASSIFICATION_PRED.rds", dataset = DATASETS)
+
+############ OUTPUT EVAL #############
+AUCS = expand("Summed_control/Classification/Evaluation/{dataset}/AUCs_{model}.rds", dataset = DATASETS, model = MODELS)
+ROCS = expand("Summed_control/Classification/Evaluation/{dataset}/ROC_{model}.png", dataset = DATASETS, model = MODELS)
+EVALMETRICS = expand("Summed_control/Classification/Evaluation/{dataset}/Eval_metrics_{model}.rds", dataset = DATASETS, model = MODELS)
+ACCURACY = expand("Summed_control/Classification/Evaluation/{dataset}/Accuracy_{model}.rds", dataset = DATASETS, model = MODELS)
+
+rule all: 
+    input: OUTPUT_LASSO, OUTPUT_GBM, AUCS, ROCS, EVALMETRICS, ACCURACY 
+
+rule Lasso_classification_summed:
+    input: 
+        input_predictions = "Summed_control/ATAC_Predictions_on_all_individuals/{dataset}formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        lasso_classification_pred = "Summed_control/Classification/{dataset}lasso_CLASSIFICATION_PRED.rds"
+    conda: 
+        "conda_envs/ctDNA.yml"
+    threads: 10
+    script: 
+        "Summed_control/Classification/Lasso.R"
+     
+
+rule GBM_classification_summed:
+    input: 
+        input_predictions = "Summed_control/ATAC_Predictions_on_all_individuals/{dataset}formatted_standardized.rds",
+        input_sample_types = INPUT_SAMPLE_TYPES
+    output: 
+        GBM_classification_pred = "Summed_control/Classification/{dataset}GBM_CLASSIFICATION_PRED.rds"
+    conda: 
+        "conda_envs/ctDNA.yml"
+    threads: 10
+    script: 
+        "Summed_control/Classification/Boosting.R"
+        
+rule evaluate_classification_summed:
+    input: 
+        predictions = "Summed_control/Classification/{dataset}{model}_formatted.rds"
+    output: 
+        aucs = "Summed_control/Classification/Evaluation/{dataset}/AUCs_{model}.rds", 
+        roc = "Summed_control/Classification/Evaluation/{dataset}/ROC_{model}.png", 
+        eval_metrics = "Summed_control/Classification/Evaluation/{dataset}/Eval_metrics_{model}.rds",
+        accuracy = "Summed_control/Classification/Evaluation/{dataset}/Accuracy_{model}.rds"
+    params: 
+        classification_type = "binomial", 
+        model = "{model}"
+    conda: 
+        "conda_envs/ctDNA.yml" 
+    script: 
+        "Classification/AUCs_ROCs_accuracies_case_control.R"
